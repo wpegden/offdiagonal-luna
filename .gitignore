@@ -10,6 +10,12 @@
 # hand-built one, and the marker's removal at launch must not dirty the tree.
 .trellis-creating
 
+# Operator stop sentinel (bridge.py): present only while an operator is
+# halting the run at the next checkpoint. Ignored so S13's `git add -A`
+# never commits it — a committed sentinel is restored by every
+# `reset --hard` and produces a halt loop.
+.trellis-stop-after-checkpoint
+
 # Editor / OS
 .DS_Store
 *.swp

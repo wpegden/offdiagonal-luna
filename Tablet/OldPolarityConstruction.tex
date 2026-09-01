@@ -95,9 +95,38 @@ conditions.  By the cardinality definition in
 \noderef{ForwardIndependentCount}, the level-$m$ coherent tuples are
 counted by $\operatorname{fwi}_m(D)$.
 
-For completeness, the marking argument behind the invoked estimate is as
-follows.  Form the rooted tree whose root is the empty tuple and whose
-children append one coherent pair.  For a coherent partial tuple
+We now split according to $\delta$.  First suppose that
+$0<\delta\leq5$.  Put
+\[
+ L_q=\operatorname{Nat.ceil}(\operatorname{Real.log}q),
+ \qquad w=32tqL_q.
+\]
+This is exactly the natural-logarithm threshold, rounded upward to an
+integer, in \noderef{OldCoherentTreeCount}.  Since $q\leq x$ and $\log x>4$,
+the ceiling satisfies
+\[
+ L_q\leq\log q+1\leq\log x+1\leq\frac54\log x.
+\]
+Moreover $q\geq16$ implies $L_q\geq1$, so $w=32tqL_q\geq2$.
+Using the defining upper bound on $q$ and $x=k/s$, we obtain, line by line,
+\[
+\begin{aligned}
+ w&=32tqL_q\\
+  &\leq32t\left(\frac{\delta}{200}\frac{x}{\log x}\right)
+       \frac54\log x\\
+  &=\frac{\delta}{5}\,t\frac{k}{s}
+   \leq\frac{\delta}{5}k
+   \leq k.
+\end{aligned} \tag{6}
+\]
+The penultimate inequality uses $t=s-2\leq s$, and the last uses
+$\delta\leq5$.  Thus the required hypothesis $w\leq k$ is established in
+this branch before the old counting lemma is used; no such conclusion is
+being asserted for the other branch.
+
+For completeness, we now give the marked-tree verification used in this
+small-$\delta$ branch.  Form a rooted tree whose root is the empty tuple and
+whose children append one coherent pair.  For a coherent partial tuple
 $\sigma=(a_1,b_1,\ldots,a_m,b_m)$ put
 \[
  B^\sigma=V(G)\setminus\bigcup_{i=1}^mN_G(a_i),\qquad
@@ -131,21 +160,6 @@ forbidden-set cardinality.  Induction along a path therefore gives
 \]
 where $u$ is the number of unmarked extensions on the path.
 
-Let $L_q=\lceil\log q\rceil$ and
-$w=32tqL_q$.  Since $q\leq B\leq x$, we have
-$\log q\leq\log x$.  The choice $\log x>4$ gives
-\[
- L_q\leq\log q+1\leq\log x+1\leq\frac54\log x.
-\]
-It follows that
-\[
- w\leq32t\frac{\delta}{200}\frac{x}{\log x}
-          \frac54\log x
-   =\frac{\delta}{5}\frac{t}{s} k
-   \leq\frac{\delta}{5}k. \tag{6}
-\]
-In particular, $w\leq k$, as required below.
-
 The parameter bounds give
 \[
  \frac1{4q}\leq\frac dn\leq\frac4q,
@@ -165,34 +179,73 @@ $B^\sigma$ would be empty, contradicting that the final second coordinate
 $b_m$ lies in it.  Every root-to-level-$k$ path consequently has at most
 $w$ unmarked extensions.
 
-We can now apply \noderef{OldCoherentTreeCount} to the exact parameter
-package from \noderef{OldPolarityParameters}, the mixing estimate (2), the
-positive values $n,d$, and the threshold $w=32tq\operatorname{Nat.ceil}
-(\operatorname{Real.log}q)\leq k$ established in (6).  It gives
+The parameter package in \noderef{OldPolarityParameters} gives
+$1\leq n$ and $1\leq d$: the displayed positive lower bounds, together
+with $q\geq16$ and $t\geq2$, make these cardinality and degree parameters
+positive.  Together with the mixing estimate (2), the exact definitions of
+$G$ and $D$, and (6), these are precisely the hypotheses of
+\noderef{OldCoherentTreeCount}.  Applying it gives
 \[
  \operatorname{fwi}_k(D)\leq
  8^k\left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k}. \tag{9}
 \]
 
-Finally, write $a=(q^{t-1}-1)/(q-1)$.  The exact formulas in
-\noderef{OldPolarityParameters} give $\lambda^2=d-a\leq d$,
-$d\geq q^{t-1}$, and, since $q\geq16$,
+Write $a=(q^{t-1}-1)/(q-1)$.  The exact formulas in
+\noderef{OldPolarityParameters} give $\lambda^2=d-a\leq d$ and
+$d\geq q^{t-1}$.  Also, since $q\geq16$,
 \[
  n=1+q+\cdots+q^t\leq\frac{16}{15}q^t. \tag{10}
 \]
-Using (6), (9), and (10), and noting that
-$8(16/15)^2<32$, we obtain
+Since $0\leq w\leq k$, the first inequality below follows from
+$\lambda^2/d^2\leq1/d$; the next two use (6), (9), (10), and positivity:
 \[
 \begin{aligned}
  \operatorname{fwi}_k(D)
- &\leq 8^k d^{-(k-w)}n^{2k} \\
- &\leq
- \left(8\left(\frac{16}{15}\right)^2
- q^{\,2t-(t-1)(1-w/k)}\right)^k \\
- &\leq
- \left(32q^{\,2t-(t-1)(1-\delta/5)}\right)^k.
+ &\leq 8^k d^{-(k-w)}n^{2k}\\
+ &\leq \left(8\left(\frac{16}{15}\right)^2\right)^k
+       q^{\,2tk-(t-1)(k-w)}\\
+ &\leq 32^k q^{\,2tk-(t-1)(1-\delta/5)k}\\
+ &=\left(32q^{\,2t-(t-1)(1-\delta/5)}\right)^k.
 \end{aligned}
 \]
-Substituting $t=s-2$ gives the asserted exponent
-$2(s-2)-(s-3)(1-\delta/5)$ and completes the proof.
+Here $8(16/15)^2<32$, and $w\leq(\delta/5)k$ with $t-1\geq0$
+justifies the exponent comparison.
+Since $t=s-2$ and $t-1=s-3$, this is the asserted bound in the theorem.
+
+Finally suppose that $\delta\geq5$.  We do not invoke
+\noderef{OldCoherentTreeCount} in this case and do not use $k-w$.  Let
+\[
+ M=|V(D)|=\operatorname{card}(D.\mathrm{vertex}).
+\]
+By the ordered nonedge-pair definition in \noderef{OldPairDigraph},
+$V(D)$ is a subset of $V(G)\times V(G)$.  The finiteness and cardinality
+identities supplied by \noderef{OldPolarityParameters} therefore give
+\[
+ M\leq n^2\leq(2q^t)^2=4q^{2t}. \tag{11}
+\]
+The statement of \noderef{ForwardIndependentTuple} makes a
+forward-independent $k$-tuple a tuple in $V(D)^k$, and
+\noderef{ForwardIndependentCount} defines $\operatorname{fwi}_k(D)$ as the
+cardinality of the subtype of such tuples.  Hence, after coercing
+cardinalities to reals, it is at most the cardinality of the ambient tuple
+type:
+\[
+ \operatorname{fwi}_k(D)\leq M^k\leq(4q^{2t})^k. \tag{12}
+\]
+Now $\delta\geq5$ implies $1-\delta/5\leq0$, while $t-1\geq0$, and so
+\[
+ E:=2t-(t-1)(1-\delta/5)\geq2t.
+\]
+Because $q\geq16>1$, monotonicity in the exponent gives
+$q^{2t}\leq q^E$.  Since $4\leq32$ and all factors are nonnegative,
+\[
+ (4q^{2t})^k\leq(32q^E)^k. \tag{13}
+\]
+Combining (12) and (13), and substituting $t=s-2$ (so $t-1=s-3$), gives
+the asserted bound
+\[
+ \operatorname{fwi}_k(D)\leq
+ \left(32q^{\,2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+\]
+This completes both cases.
 \end{proof}
