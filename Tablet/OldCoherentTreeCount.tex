@@ -40,77 +40,160 @@ Then
 \]
 \end{lemma}
 \begin{proof}
-Write $w=32tq\,\operatorname{Nat.log}(2,q)$.  By
-\noderef{OldPolarityParameters}, the displayed values of $n,d,\lambda$ and
-the spectral bound belong to this particular projective polarity graph; the
-same package gives the displayed size and degree estimates.  The explicit
-mixing assumption is the ordered-subset input required by
-\noderef{AlonRodlBound}; it is stated explicitly here so that no unproved
-spectral-to-mixing implication is hidden in this counting node.
+Write $L=\operatorname{Nat.log}(2,q)$ and
+$w=32tqL$.  The graph in the statement is the projective orthogonality
+graph supplied by \noderef{PolarityGraph}, and its exact parameter package is
+the one recorded in \noderef{OldPolarityParameters}.  The ordered nonedge
+vertices and the arc rule used below are precisely those of
+\noderef{OldPairDigraph}.  We use the displayed mixing inequality as an
+explicit hypothesis; it is the input required by
+\noderef{AlonRodlBound}, so no spectral-to-mixing implication is being used
+implicitly.
 
-A forward-independent $m$-tuple in $D$ is, by the vertex and arc
-definitions in \noderef{OldPairDigraph}, exactly a coherent tuple
+First identify the objects counted by the left-hand side.  By
+\noderef{OldPairDigraph}, an ordered pair $(a_i,b_i)$ is a vertex of $D$ if
+and only if $a_i b_i\notin E(G)$, and an arc from $(a_i,b_i)$ to
+$(a_j,b_j)$ is present if and only if $a_i b_j\in E(G)$.  Therefore, by the
+forward-independence condition in \noderef{ForwardIndependentTuple}, a
+forward-independent $m$-tuple in $D$ is exactly a coherent tuple
 \[
  (a_1,b_1,\ldots,a_m,b_m)\in V(G)^{2m}
 \]
-with $a_i b_i\notin E(G)$ for every $i$ and
-$a_i b_j\notin E(G)$ whenever $i<j$.  Form the rooted tree $\mathcal T$
-whose root is the empty tuple and whose children are obtained by appending
-one coherent pair.  Its vertices at level $k$ are therefore counted by
-\operatorname{fwi}_k(D), using the definition of
-\noderef{ForwardIndependentCount}.
+such that $a_i b_i\notin E(G)$ for every $i$ and
+$a_i b_j\notin E(G)$ whenever $i<j$.  This equivalence is reversible,
+including when entries repeat, because both definitions use the same
+ordered conditions and $D$ is loopless.  By the definition of
+\noderef{ForwardIndependentCount}, the number of coherent tuples of length
+$m$ is thus $\operatorname{fwi}_m(D)$.
 
-Fix a coherent partial tuple
-$\sigma=(a_1,b_1,\ldots,a_m,b_m)$ and put
+Form a rooted tree $\mathcal T$ whose root is the empty tuple and whose
+children are obtained by appending one coherent pair.  Its level-$k$
+vertices are consequently counted by $\operatorname{fwi}_k(D)$.  Fix a
+coherent partial tuple
+$\sigma=(a_1,b_1,\ldots,a_m,b_m)$ and define
 \[
  B^\sigma=V(G)\setminus\bigcup_{i=1}^mN_G(a_i),\qquad
  A^\sigma=\left\{a\in V(G):
  |N_G(a)\cap B^\sigma|\leq\frac{d}{2n}|B^\sigma|\right\}.
 \]
-Apply the product estimate of \noderef{AlonRodlBound} to these two sets,
-using the mixing inequality and $n,d>0$.  It gives
+The definition of $A^\sigma$ gives the low-degree hypothesis for every
+element of $A^\sigma$.  Applying \noderef{AlonRodlBound} to $A^\sigma$
+and $B^\sigma$, with the displayed mixing inequality and $n,d>0$, gives
 \[
- |A^\sigma||B^\sigma|\leq
- h:=\frac{4\lambda^2n^2}{d^2}.
+ H:=\frac{4\lambda^2n^2}{d^2},\qquad
+ |A^\sigma||B^\sigma|\leq H. \tag{1}
 \]
-Any coherent child appending $(a,b)$ has $b\in B^\sigma$, because every
-earlier $a_i b$ is a nonedge.  Mark the children with
-$(a,b)\in A^\sigma\times B^\sigma$.  There are at most $h$ marked
-children, while there are at most
-\[
- \Delta=n^2
-\]
-children in total.  In the natural-valued signature encoding used by
-\noderef{RootedTreeCounting}, integer floors of $h$ give the same inequality;
-monotonicity of the powers allows the resulting estimate to be written with
-the real number $h$ above.
 
-It remains to bound unmarked runs.  If an appended pair is unmarked, then
-$a\notin A^\sigma$, so more than a $d/(2n)$ fraction of $B^\sigma$ is
-removed when passing to the next $B$-set.  Hence each such step multiplies
-$|B^\sigma|$ by at most $1-d/(2n)$.  If a root-to-vertex path had more than
-$w$ unmarked steps, then, since $w-1\geq16tq\operatorname{Nat.log}(2,q)$,
-\[
- |B^\sigma|\leq n\left(1-\frac d{2n}\right)^{w-1}
- \leq2q^t\exp\left(-\frac d{2n}\,16tq\operatorname{Nat.log}(2,q)\right)<1.
-\]
-Here $d/n\geq1/(4q)$ follows from the displayed size and degree bounds, and
-the final strict inequality follows from $q\geq16$ (changing between fixed
-logarithm bases only strengthens the absolute constant).  But the last
-second-coordinate $b_m$ belongs to $B^\sigma$ by coherence, a contradiction.
-Thus every path has at most $w$ unmarked vertices.
+Any coherent child appending $(a,b)$ has $b\in B^\sigma$: for every
+$i\leq m$, coherence says $a_i b\notin E(G)$.  Mark precisely the children
+whose appended pair lies in $A^\sigma\times B^\sigma$.  There are at most
+$n^2$ children, since a child is determined by an ordered pair in
+$V(G)^2$ and $|V(G)|=n$.  By (1), the number of marked children is at most
+$\lfloor H\rfloor$; here $H\geq0$, so the integer floor is legitimate.  Set
+$\Delta=n^2$ and $h=\lfloor H\rfloor$ for the application of
+\noderef{RootedTreeCounting}.
 
-We may now apply the marked-signature estimate
-\noderef{RootedTreeCounting} with $\Delta=n^2$ and
-$h=4\lambda^2n^2/d^2$.  The parameter package gives
-$h\leq n^2$: indeed $d\geq q\geq16$ from its exact formula and
-$\lambda\leq2\sqrt d$.  Since $k\geq w$, it follows that
+We next prove the required bound on unmarked runs.  Put
+$r=d/(2n)$.  The local hypotheses give
+\[
+ \frac1{4q}\leq\frac dn\leq\frac4q,
+ \qquad 0\leq r\leq\frac2q\leq1. \tag{2}
+\]
+Indeed, the lower bound uses $d\geq q^{t-1}/2$ and $n\leq2q^t$, while
+the upper bound uses $d\leq2q^{t-1}$ and $n\geq q^t/2$; positivity of
+$n,d$ gives the nonnegativity in (2), and $q\geq16$ gives $2/q\leq1$.
+
+If a child appends $(a,b)$, its next forbidden set satisfies the exact
+identity
+\[
+ B^{\sigma\smallfrown(a,b)}=B^\sigma\setminus N_G(a),
+\]
+so it is always a subset of $B^\sigma$.  If the child is unmarked, then
+$b\in B^\sigma$ as observed above and $(a,b)\notin A^\sigma\times
+B^\sigma$ forces $a\notin A^\sigma$.  The definition of $A^\sigma$ then
+gives the strict inequality
+\[
+ |N_G(a)\cap B^\sigma|>r|B^\sigma|,
+ \qquad
+ |B^{\sigma\smallfrown(a,b)}|
+ =|B^\sigma|-|N_G(a)\cap B^\sigma|
+ <(1-r)|B^\sigma|. \tag{3}
+\]
+The first set-inclusion observation shows that marked extensions never
+increase the cardinality.  Induction on the number $u$ of unmarked
+extensions along any root-to-vertex path now gives
+\[
+ |B^\sigma|\leq n(1-r)^u. \tag{4}
+\]
+For the induction, before the first unmarked extension use
+$|B^\sigma|\leq|V(G)|=n$.  A marked extension preserves the induction
+inequality by inclusion, while (3) multiplies the previous bound by
+$1-r\geq0$ and makes it strict at an unmarked extension.  This proves (4)
+with all intervening marked extensions included.
+
+Suppose a root-to-vertex path had more than $w$ unmarked vertices.  It then
+has at least $w+1$ unmarked extensions, so (4), monotonicity of powers in
+$[0,1]$, and $w+1\geq w-1$ yield
+\[
+ |B^\sigma|\leq n(1-r)^{w-1}. \tag{5}
+\]
+The integer $L=\operatorname{Nat.log}(2,q)$ satisfies the floor-log facts
+\[
+ 2^L\leq q<2^{L+1}.
+\]
+Since $q\geq16=2^4$, monotonicity gives $L\geq4$.  Also $w=32tqL\geq2$,
+so $w-1\geq w/2=16tqL$.  Using $1-x\leq\exp(-x)$ for $0\leq x\leq1$,
+the bounds in (2), and the size estimate $n\leq2q^t$, (5) gives
+\[
+ \begin{aligned}
+ |B^\sigma|
+ &\leq 2q^t\exp\left(-r\,16tqL\right)\\
+ &\leq 2q^t\exp(-2tL). \tag{6}
+ \end{aligned}
+\]
+For completeness, the last expression is strictly smaller than $1$ with
+the floor logarithm used here.  The inequality $q<2^{L+1}$ implies
+\[
+ 2q^t<2\,2^{t(L+1)}.
+\]
+The elementary inequality $2<\exp(1)$, raised to the positive integer
+$t(L+1)$, gives
+$2^{t(L+1)}<\exp(t(L+1))$.  Hence, since $t\geq2$ and $L\geq4$,
+\[
+ 2q^t\exp(-2tL)
+ <2\exp\bigl(-t(L-1)\bigr)
+ \leq2\exp(-6)<1. \tag{7}
+\]
+The final inequality follows from
+$\exp(6)\geq1+6>2$.  Thus (6) says $|B^\sigma|<1$, forcing
+$B^\sigma=\varnothing$.  But coherence puts the final second coordinate
+$b_m$ in $B^\sigma$: it is nonadjacent to $a_m$ by vertex membership and
+to every earlier $a_i$ by the cross conditions.  This contradiction proves
+that every root-to-vertex path has at most $w$ unmarked extensions.
+
+It remains to check the hypotheses of \noderef{RootedTreeCounting}.  From
+the exact formula $d=(q^t-1)/(q-1)=1+q+\cdots+q^{t-1}$ and $t\geq2$,
+$d\geq q\geq16$.  The exact square-root formula for $\lambda$ gives
+$\lambda\geq0$, and the displayed bound $\lambda\leq2\sqrt d$ gives
+$\lambda^2\leq4d$.  Consequently
+\[
+ 0\leq H=\frac{4\lambda^2n^2}{d^2}\leq\frac{16n^2}{d}\leq n^2=\Delta,
+\]
+so $h=\lfloor H\rfloor\leq\Delta$.  Since $k\geq w$, the cited
+rooted-tree estimate, with true entries recording unmarked extensions,
+gives
 \[
  \operatorname{fwi}_k(D)
- \leq 2^k(n^2)^w
- \left(\frac{4\lambda^2n^2}{d^2}\right)^{k-w}
- =2^k4^{k-w}
- \left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k}.
+ \leq 2^k(n^2)^w\lfloor H\rfloor^{k-w}
+ \leq 2^k(n^2)^w H^{k-w}.
 \]
-Finally $2^k4^{k-w}\leq8^k$, giving the claimed bound.
+Substituting the definition of $H$ and collecting powers yields
+\[
+ \operatorname{fwi}_k(D)
+ \leq 2^k4^{k-w}
+ \left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k}
+ \leq 8^k
+ \left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k},
+\]
+because $0\leq w\leq k$ and $2^k4^{k-w}\leq2^k4^k=8^k$.
 \end{proof}

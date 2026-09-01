@@ -1,6 +1,7 @@
 import Tablet.OldPairDigraph
 import Tablet.OldPolarityParameters
 import Tablet.ForwardIndependentCount
+import Tablet.ForwardIndependentTuple
 import Tablet.RootedTreeCounting
 import Tablet.AlonRodlBound
 
