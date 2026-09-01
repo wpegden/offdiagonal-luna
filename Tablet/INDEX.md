@@ -22,7 +22,7 @@
 | MonochromaticClique | definition | definition | closed | - | - | CompleteColoring |
 | MulticolorRamseyNumber | definition | definition | closed | - | - | CompleteColoring, MonochromaticClique, Preamble |
 | NonprincipalSpectralBound | definition | definition | closed | - | - | LoopGraph |
-| OldCoherentTreeCount | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, OldPairDigraph, RootedTreeCounting |
+| OldCoherentTreeCount | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, OldPairDigraph, OldPolarityParameters, RootedTreeCounting |
 | OldPairDigraph | definition | definition | closed | - | - | LoopGraph, LooplessDigraph |
 | OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
 | OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |

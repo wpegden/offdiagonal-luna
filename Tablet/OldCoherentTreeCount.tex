@@ -1,55 +1,116 @@
 \begin{lemma}
-Let $G$ be a finite loop-aware undirected graph and write
-$D=\operatorname{OldPairDigraph}(G)$.  Let
-$t,q,k,n,h\in\mathbb N$ satisfy $2\leq t$ and
+Let $K$ be a finite field with $q=|K|$ a prime power satisfying $q\geq16$,
+and let $t\geq2$.  Put
+$G=G_K(t)=\operatorname{PolarityGraph}(K,t)$ and
+$D=\operatorname{OldPairDigraph}(G)$, using
+\noderef{PolarityGraph} and \noderef{OldPairDigraph}.  Let
+$n,d\in\mathbb N$ and $\lambda\in\mathbb R$ satisfy the parameter package
+provided by \noderef{OldPolarityParameters}:
 \[
- 32tq\,\operatorname{Nat.log}(2,q)\leq k.
+ |V(G)|=n=\frac{q^{t+1}-1}{q-1},\qquad
+ d=\frac{q^t-1}{q-1},
 \]
-Suppose there is a function
-$c:(\operatorname{Fin}(k)\to\{\mathsf{false},\mathsf{true}\})\to\mathbb N$
-such that
+$G$ is $d$-regular, its nonprincipal spectral parameter is
 \[
- \sum_{z:\operatorname{Fin}(k)\to\{\mathsf{false},\mathsf{true}\}}c(z)
- =\operatorname{fwi}_k(D),
-\]
-and, for every signature $z$,
-\[
- c(z)\leq(n^2)^{\sum_{i:\operatorname{Fin}(k)}
-   \begin{cases}1&\text{if }z(i)=\mathsf{true},\\0&\text{if }z(i)=\mathsf{false},\end{cases}}
- h^{k-\sum_{i:\operatorname{Fin}(k)}
-   \begin{cases}1&\text{if }z(i)=\mathsf{true},\\0&\text{if }z(i)=\mathsf{false},\end{cases}}
+ \lambda=\sqrt{d-\frac{q^{t-1}-1}{q-1}},
+ \qquad
+ \operatorname{NonprincipalSpectralBound}(G,\lambda)
+ \text{ in the sense of \noderef{NonprincipalSpectralBound}},
 \]
 and
 \[
- c(z)>0\Longrightarrow
- \sum_{i:\operatorname{Fin}(k)}
-   \begin{cases}1&\text{if }z(i)=\mathsf{true},\\0&\text{if }z(i)=\mathsf{false}\end{cases}
- \leq 32tq\,\operatorname{Nat.log}(2,q).
+ q^t/2\leq n\leq2q^t,\qquad
+ q^{t-1}/2\leq d\leq2q^{t-1},\qquad
+ \lambda\leq2\sqrt d.
 \]
-If $h\leq n^2$, then
+Assume also the expander-mixing inequality, in the ordered-edge convention,
+for all vertex subsets $A,B$:
+\[
+ \left|e_G(A,B)-\frac d n|A||B|\right|
+ \leq \lambda\sqrt{|A||B|}.
+\]
+Finally let $k\in\mathbb N$ satisfy $1\leq n$, $1\leq d$, and
+\[
+ w:=32tq\,\operatorname{Nat.log}(2,q)\leq k.
+\]
+Then
 \[
  \operatorname{fwi}_k(D)\leq
- 2^k(n^2)^{32tq\,\operatorname{Nat.log}(2,q)}
- h^{k-32tq\,\operatorname{Nat.log}(2,q)}.
+ 8^k\left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k}.
 \]
 \end{lemma}
 \begin{proof}
-For a signature $z$, let $j(z)$ denote the displayed sum of its true
-coordinates.  The assumed per-signature inequality gives
+Write $w=32tq\,\operatorname{Nat.log}(2,q)$.  By
+\noderef{OldPolarityParameters}, the displayed values of $n,d,\lambda$ and
+the spectral bound belong to this particular projective polarity graph; the
+same package gives the displayed size and degree estimates.  The explicit
+mixing assumption is the ordered-subset input required by
+\noderef{AlonRodlBound}; it is stated explicitly here so that no unproved
+spectral-to-mixing implication is hidden in this counting node.
+
+A forward-independent $m$-tuple in $D$ is, by the vertex and arc
+definitions in \noderef{OldPairDigraph}, exactly a coherent tuple
 \[
- c(z)\leq(n^2)^{j(z)}h^{k-j(z)}.
+ (a_1,b_1,\ldots,a_m,b_m)\in V(G)^{2m}
 \]
-If $c(z)>0$, the second assumption gives
-$j(z)\leq32tq\,\operatorname{Nat.log}(2,q)$; if $c(z)=0$, its
-contribution to the sum is zero.  Since $h\leq n^2$, increasing the
-exponent of $n^2$ and decreasing the exponent of $h$ preserves or
-increases the product, so every nonzero summand is at most
+with $a_i b_i\notin E(G)$ for every $i$ and
+$a_i b_j\notin E(G)$ whenever $i<j$.  Form the rooted tree $\mathcal T$
+whose root is the empty tuple and whose children are obtained by appending
+one coherent pair.  Its vertices at level $k$ are therefore counted by
+\operatorname{fwi}_k(D), using the definition of
+\noderef{ForwardIndependentCount}.
+
+Fix a coherent partial tuple
+$\sigma=(a_1,b_1,\ldots,a_m,b_m)$ and put
 \[
- (n^2)^{32tq\,\operatorname{Nat.log}(2,q)}
- h^{k-32tq\,\operatorname{Nat.log}(2,q)}.
+ B^\sigma=V(G)\setminus\bigcup_{i=1}^mN_G(a_i),\qquad
+ A^\sigma=\left\{a\in V(G):
+ |N_G(a)\cap B^\sigma|\leq\frac{d}{2n}|B^\sigma|\right\}.
 \]
-There are exactly $2^k$ functions from $\operatorname{Fin}(k)$ to
-$\{\mathsf{false},\mathsf{true}\}$.  Summing the per-signature bound and
-using the assumed identity for the sum of the $c(z)$ proves the claimed
-inequality.
+Apply the product estimate of \noderef{AlonRodlBound} to these two sets,
+using the mixing inequality and $n,d>0$.  It gives
+\[
+ |A^\sigma||B^\sigma|\leq
+ h:=\frac{4\lambda^2n^2}{d^2}.
+\]
+Any coherent child appending $(a,b)$ has $b\in B^\sigma$, because every
+earlier $a_i b$ is a nonedge.  Mark the children with
+$(a,b)\in A^\sigma\times B^\sigma$.  There are at most $h$ marked
+children, while there are at most
+\[
+ \Delta=n^2
+\]
+children in total.  In the natural-valued signature encoding used by
+\noderef{RootedTreeCounting}, integer floors of $h$ give the same inequality;
+monotonicity of the powers allows the resulting estimate to be written with
+the real number $h$ above.
+
+It remains to bound unmarked runs.  If an appended pair is unmarked, then
+$a\notin A^\sigma$, so more than a $d/(2n)$ fraction of $B^\sigma$ is
+removed when passing to the next $B$-set.  Hence each such step multiplies
+$|B^\sigma|$ by at most $1-d/(2n)$.  If a root-to-vertex path had more than
+$w$ unmarked steps, then, since $w-1\geq16tq\operatorname{Nat.log}(2,q)$,
+\[
+ |B^\sigma|\leq n\left(1-\frac d{2n}\right)^{w-1}
+ \leq2q^t\exp\left(-\frac d{2n}\,16tq\operatorname{Nat.log}(2,q)\right)<1.
+\]
+Here $d/n\geq1/(4q)$ follows from the displayed size and degree bounds, and
+the final strict inequality follows from $q\geq16$ (changing between fixed
+logarithm bases only strengthens the absolute constant).  But the last
+second-coordinate $b_m$ belongs to $B^\sigma$ by coherence, a contradiction.
+Thus every path has at most $w$ unmarked vertices.
+
+We may now apply the marked-signature estimate
+\noderef{RootedTreeCounting} with $\Delta=n^2$ and
+$h=4\lambda^2n^2/d^2$.  The parameter package gives
+$h\leq n^2$: indeed $d\geq q\geq16$ from its exact formula and
+$\lambda\leq2\sqrt d$.  Since $k\geq w$, it follows that
+\[
+ \operatorname{fwi}_k(D)
+ \leq 2^k(n^2)^w
+ \left(\frac{4\lambda^2n^2}{d^2}\right)^{k-w}
+ =2^k4^{k-w}
+ \left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k}.
+\]
+Finally $2^k4^{k-w}\leq8^k$, giving the claimed bound.
 \end{proof}
