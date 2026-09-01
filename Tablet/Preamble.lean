@@ -1,0 +1,2 @@
+-- Preamble: shared imports for all tablet nodes.
+-- Add specific Mathlib imports here (never `import Mathlib`).

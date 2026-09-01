@@ -1,0 +1,16 @@
+# Build artifacts
+.lake/
+
+# Trellis runtime artifacts
+.trellis/
+
+# Creation-in-progress marker (scripts/trellis_create_run.sh): present from the
+# first phase-B repo write until launch verifies. Ignored so S13's `git add -A`
+# never commits it — a created repo's tree must be byte-identical to a
+# hand-built one, and the marker's removal at launch must not dirty the tree.
+.trellis-creating
+
+# Editor / OS
+.DS_Store
+*.swp
+*~
