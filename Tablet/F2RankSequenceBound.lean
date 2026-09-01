@@ -3,7 +3,7 @@ import Tablet.F2PairDigraph
 open scoped BigOperators
 
 -- [TABLET NODE: F2RankSequenceBound]
-theorem F2RankSequenceBound (p k : Nat) (hp : 1 ≤ p) :
+theorem F2RankSequenceBound (p k : Nat) (hp : 1 ≤ p) (hk : 1 ≤ k) :
     Fintype.card
         { z : (Fin k → (Fin p → ZMod 2)) × (Fin k → (Fin p → ZMod 2)) //
           ∀ ⦃i j : Fin k⦄, i.val ≤ j.val →

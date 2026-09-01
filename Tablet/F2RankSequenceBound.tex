@@ -1,5 +1,5 @@
 \begin{lemma}
-Let $p\geq1$.  The number of ambient vector tuples
+Let $p\geq1$ and $k\geq1$.  The number of ambient vector tuples
 \[
  (\mathbf a_1,\mathbf b_1,\ldots,\mathbf a_k,\mathbf b_k)
  \in(\mathbb F_2^p)^{2k}
@@ -7,7 +7,7 @@ Let $p\geq1$.  The number of ambient vector tuples
 such that
 $\langle\mathbf a_i,\mathbf b_j\rangle=1$ whenever $i\leq j$ is at most
 \[
- \sum_{t=1}^{p}\binom kt,2^{pt+pk-\binom{t+1}{2}}.
+ \sum_{t=1}^{p}\binom kt\,2^{pt+pk-\binom{t+1}{2}}.
 \]
 Consequently, the forward-independent $k$-tuple count in
 $D_2(s)$ is bounded by this sum with $p=s-1$.  The ambient count is an
@@ -15,7 +15,8 @@ intentional overcount: it includes zero vectors and does not quotient by
 the projective equivalence relation.
 \end{lemma}
 \begin{proof}
-For an ambient tuple define $r_0=0$ and
+Because $k\geq1$, the first diagonal equation is present.  For an ambient
+tuple define $r_0=0$ and
 $r_i=\dim\operatorname{span}(\mathbf a_1,\ldots,\mathbf a_i)$.  The first
 diagonal equation forces $r_1=1$, and each subsequent rank is either the
 previous rank or one larger.  If the final rank is $t$, the set of indices

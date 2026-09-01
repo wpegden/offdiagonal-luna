@@ -10,7 +10,7 @@ theorem F2ForwardIndependentBound (s k : Nat) (hs : 4 ≤ s) (hsk : s ≤ k) :
       D = F2PairDigraph s ∧
       ¬ Nonempty (TransitiveTournament D s) ∧
       @Fintype.card D.vertex D.fintype =
-        2 ^ (2 * s - 3) - 2 ^ (s - 1) - 2 ^ (s - 2) + 1 ∧
+        2 ^ (2 * s - 3) - 2 ^ (s - 2) ∧
       (ForwardIndependentCount D k : ℝ) ≤
         (∑ t ∈ Finset.Icc 1 (s - 1),
           (Nat.choose k t *

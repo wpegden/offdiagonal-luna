@@ -3,8 +3,8 @@ For every $s\geq4$, the specialized digraph $D_2(s)$ of
 \noderef{F2PairDigraph} is loopless and $T_s$-free, and its exact number of
 vertices is
 \[
- |V(D_2(s))|=(2^{s-1}-1)(2^{s-2}-1)
- =2^{2s-3}-2^{s-1}-2^{s-2}+1.
+ |V(D_2(s))|=(2^{s-1}-1)2^{s-2}
+ =2^{2s-3}-2^{s-2}.
 \]
 \end{lemma}
 \begin{proof}
@@ -16,9 +16,11 @@ there are no $s$ pairs with diagonal inner products one and all strictly
 forward inner products zero.  By
 \noderef{OldPairDigraphProperties}, this makes $D_2(s)$ $T_s$-free.
 
-For the count, there are $2^p-1$ choices for $x$.  The nonzero solutions of
-$\langle x,y\rangle=1$ form an affine hyperplane of size $2^{p-1}$, so after
-the projective identification used in the paper the ordered nonedge-pair
-count is
-$(2^p-1)(2^{p-1}-1)$.  Expanding this product gives the stated formula.
+For the count, there are $2^p-1$ choices for the nonzero vector $x$.  For
+each such $x$, the equation $\langle x,y\rangle=1$ defines an affine
+hyperplane with exactly $2^{p-1}$ solutions.  Every such solution is
+automatically nonzero, and over $\mathbb F_2$ there is no further choice of
+a nonzero representative for a projective point.  Thus the ordered
+nonedge-pair count is
+$(2^p-1)2^{p-1}=2^{2p-1}-2^{p-1}=2^{2s-3}-2^{s-2}$, as stated.
 \end{proof}
