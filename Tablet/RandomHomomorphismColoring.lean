@@ -6,6 +6,8 @@ import Tablet.TransitiveTournament
 -- [TABLET NODE: RandomHomomorphismColoring]
 theorem RandomHomomorphismColoring
     (D : LooplessDigraph) (s ell n : Nat)
+    (hs : 0 < s) (hell : 0 < ell)
+    (horder : 0 < @Fintype.card D.vertex D.fintype)
     (hfree : ¬ Nonempty (TransitiveTournament D s))
     (hprob : (Nat.choose n s : ℝ) *
         ((ForwardIndependentCount D s : ℝ) /

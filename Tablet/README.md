@@ -38,8 +38,8 @@
 | ThmClose | proof | - | open |
 | ThmKCk | proof | - | open |
 | ThmMain | proof | - | open |
-| ThmMulticolor | proof | - | closed |
+| ThmMulticolor | proof | - | open |
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 22/37 closed
+**Summary:** 21/37 closed

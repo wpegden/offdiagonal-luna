@@ -1,5 +1,6 @@
 \begin{lemma}
-Let $D$ be a loopless $T_s$-free digraph on $N$ vertices.  If
+Let $D$ be a finite loopless digraph and write $N=|V(D)|$.  Assume that
+$s>0$, $\ell>0$, and $N>0$, and that $D$ is $T_s$-free.  If
 \[
  \binom ns\left(\frac{\operatorname{fwi}_s(D)}{N^s}\right)^{\ell-1}<1,
 \]
@@ -7,11 +8,14 @@ then the complete graph on $n$ vertices has an $\ell$-coloring with no
 monochromatic $K_s$.
 \end{lemma}
 \begin{proof}
-Choose independent uniform maps $\phi_c:[n]\to V(D)$ for
+Put $N=|V(D)|$, which is positive by hypothesis.  Choose independent
+uniform maps $\phi_c:[n]\to V(D)$ for
 $c=1,\ldots,\ell-1$.  For $i<j$, give $ij$ the least color $c$ for which
 $(\phi_c(i),\phi_c(j))$ is an arc, and give it color $\ell$ if no such color
 exists.  Symmetrize the values on the reversed ordered pair; diagonal values
-are irrelevant under \noderef{CompleteColoring}.
+are irrelevant under the symmetric coloring object of
+\noderef{CompleteColoring}.  Thus this construction is a map
+$[n]\times[n]\to[\ell]$ of exactly the form required there.
 
 If an $s$-set were a clique in a color $c<\ell$, its vertices in increasing
 order would map to a transitive tournament in $D$.  Looplessness ensures the
@@ -20,10 +24,11 @@ images are distinct, so this contradicts the hypothesis on $D$ and
 $s$-tuple is monochromatic exactly when each of the $\ell-1$ independent maps
 produces a forward-independent tuple.  Its probability is therefore
 $(\operatorname{fwi}_s(D)/N^s)^{\ell-1}$, with repeated images already
-included in the forward-tuple count.
+included in the forward-tuple count of \noderef{ForwardIndependentCount}.
 
 By linearity of expectation, the expected number of color-$\ell$ cliques is
 at most the displayed product.  The strict inequality makes this expectation
 less than one, so some choice of the maps has no such clique.  The resulting
-coloring has no monochromatic clique in any color.
+coloring has no monochromatic clique in any color, meaning precisely that
+there is no witness of \noderef{MonochromaticClique}.
 \end{proof}
