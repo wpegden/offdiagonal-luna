@@ -8,7 +8,7 @@
 | DStarCounting | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, RootedTreeCounting, TransitiveTournament |
 | ExpanderMixing | lemma | proof | closed | - | - | Preamble |
 | F2AsymptoticCorollary | lemma | proof | open | - | - | F2RankSequenceBound |
-| F2ForwardIndependentBound | lemma | proof | open | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
+| F2ForwardIndependentBound | lemma | proof | closed | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
 | F2PairDigraph | definition | definition | closed | - | - | OldPairDigraph |
 | F2PairDigraphProperties | lemma | proof | open | - | - | F2PairDigraph, OldPairDigraphProperties, TransitiveTournament |
 | F2RankSequenceBound | lemma | proof | open | - | - | F2PairDigraph |
@@ -39,4 +39,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 20 | **Open:** 15
+**Total:** 35 nodes | **Closed:** 21 | **Open:** 14

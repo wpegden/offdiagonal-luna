@@ -10,7 +10,7 @@
 | DStarCounting | proof | - | open |
 | ExpanderMixing | proof | - | closed |
 | F2AsymptoticCorollary | proof | - | open |
-| F2ForwardIndependentBound | proof | - | open |
+| F2ForwardIndependentBound | proof | - | closed |
 | F2PairDigraph | definition | - | closed |
 | F2PairDigraphProperties | proof | - | open |
 | F2RankSequenceBound | proof | - | open |
@@ -40,4 +40,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 20/35 closed
+**Summary:** 21/35 closed
