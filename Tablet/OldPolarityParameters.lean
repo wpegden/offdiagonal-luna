@@ -8,7 +8,7 @@ theorem OldPolarityParameters
     (K : Type) [Field K] [Fintype K]
     (t q : Nat) (ht : 2 ≤ t) (hqpow : IsPrimePow q) (hq : 16 ≤ q)
     (hK : Fintype.card K = q) :
-    let G := PolarityGraph K t
+    let G := PolarityGraph K t ht
     letI : Fintype G.vertex := G.fintype
     letI : DecidableRel G.adj := G.decidableAdj
     (∀ (a b : Fin (t + 2) → G.vertex),

@@ -6,7 +6,7 @@ open scoped LinearAlgebra.Projectivization
 
 -- [TABLET NODE: PolarityGraph]
 noncomputable def PolarityGraph (K : Type) [Field K] [Fintype K]
-    (t : Nat) : LoopGraph := by
+    (t : Nat) (ht : 2 ≤ t) : LoopGraph := by
 -- BODY
   classical
   exact {
