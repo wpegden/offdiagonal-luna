@@ -35,11 +35,11 @@
 | RandomPermutationReduction | proof | - | open |
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | open |
-| ThmClose | proof | - | closed |
-| ThmKCk | proof | - | closed |
-| ThmMain | proof | - | closed |
+| ThmClose | proof | - | open |
+| ThmKCk | proof | - | open |
+| ThmMain | proof | - | open |
 | ThmMulticolor | proof | - | closed |
-| ThmOffDiagonalGeneral | proof | - | closed |
+| ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 26/37 closed
+**Summary:** 22/37 closed

@@ -34,11 +34,11 @@
 | RandomPermutationReduction | lemma | proof | open | - | - | CliqueWitness, ForwardIndependentCount, IndependentSetCount, TransitiveTournament |
 | RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
 | SamplingDeletion | lemma | proof | open | - | - | CliqueWitness, IndependentSetCount, RamseyNumber |
-| ThmClose | theorem | proof | closed | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
-| ThmKCk | theorem | proof | closed | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
-| ThmMain | theorem | proof | closed | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
+| ThmClose | theorem | proof | open | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
+| ThmKCk | theorem | proof | open | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
+| ThmMain | theorem | proof | open | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
 | ThmMulticolor | theorem | proof | closed | - | - | F2ForwardIndependentBound, MulticolorRamseyNumber, RandomHomomorphismColoring |
-| ThmOffDiagonalGeneral | theorem | proof | closed | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
+| ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 37 nodes | **Closed:** 26 | **Open:** 11
+**Total:** 37 nodes | **Closed:** 22 | **Open:** 15

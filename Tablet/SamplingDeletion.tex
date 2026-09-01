@@ -1,6 +1,9 @@
 \begin{lemma}
-Let $G$ be a loopless $K_s$-free graph on $n$ vertices, let $k\geq1$, and
-let $p\in[0,1]$.  If $p^k i_k(G)\leq1$, then
+Let $G$ be a loopless graph with finite vertex type $G.vertex$, let
+$n=|G.vertex|=\texttt{@Fintype.card G.vertex G.fintype}$, and let $s,k\in\mathbb N$.
+Assume that $G$ is $K_s$-free, that $1\leq k$, and let $p\in\mathbb R$
+with $0\leq p$ and $p\leq1$.  If
+$p^k\,i_k(G)\leq1$ (where $i_k(G)$ is regarded as a real number), then
 \[
  r(s,k)>pn-1.
 \]
