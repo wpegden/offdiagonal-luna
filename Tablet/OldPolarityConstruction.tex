@@ -4,9 +4,15 @@ $s\geq L$ and $k\geq Ls$, one can choose a power of two $q$ satisfying
 \[
  q\leq\frac{\delta}{200}\frac{k/s}{\log(k/s)}\leq2q.
 \]
-For the polarity graph $G=G(s-2,q)$, let
-$D=\mathcal D(G)$ be the old pair digraph of
-\noderef{OldPairDigraph}.  Then $D$ is $T_s$-free,
+The choice can be made with $q\geq16$, so $q$ is a prime power.  One can
+then choose a finite field $K$ with $|K|=q$ and put $t=s-2$, with
+$t\geq2$.  Let
+$G=G_K(t)=\operatorname{PolarityGraph}(K,t)$ be the polarity graph of
+\noderef{PolarityGraph}, and let $D=\mathcal D(G)$ be the old pair digraph
+of \noderef{OldPairDigraph}.  The graph $G$ has no two-row triangular
+configuration of length $s$: there are no pairs $(a_i,b_i)_{i=1}^s$ with
+$a_i b_i\notin E(G)$ and $a_i b_j\in E(G)$ for every $i<j$.  Moreover,
+$D$ is $T_s$-free,
 \[
  |V(D)|\geq\frac{q^{2(s-2)}}2,
 \]
@@ -21,20 +27,22 @@ of the choice of $G$; this is the hypothesis used by
 \end{lemma}
 \begin{proof}
 Choose the least power of two in the indicated interval.  For $L$ large
-the interval contains such a power and $q$ is large.  Put $t=s-2$ and take
-the polarity graph $G(t,q)$ on the one-dimensional subspaces of
-$\mathbb F_q^{t+1}$.  Its orthogonality relation has the triangular
-obstruction: there are no pairs $(a_i,b_i)_{i=1}^{t+2}$ with
-$a_i b_i\notin E(G)$ and $a_i b_j\in E(G)$ for every $i<j$.
+the interval contains such a power and $q\geq16$.  A power of two is a
+prime power, and the finite-field existence theorem supplies a finite field
+$K$ with exactly $q$ elements.  Put $t=s-2$; increasing $L$ if necessary
+ensures $t\geq2$.  Let $G=G_K(t)$ be the projective polarity graph and put
+$D=\mathcal D(G)$.
 
-Apply the construction of \noderef{OldPairDigraph} to this $G$.  The
-obstruction and \noderef{OldPairDigraphProperties}, with $s=t+2$, give
-looplessness and the absence of $T_{t+2}=T_s$.  The exact point and degree
-counts recorded in \noderef{OldPolarityParameters} for the polarity graph give
-$|V(D)|\geq q^{2t}/2$.
+Apply \noderef{OldPolarityParameters} with this $K$, its field and finite
+type structures, $h_K=|K|=q$, and the hypotheses $q\geq16$ and $t\geq2$.
+It supplies the triangular obstruction for $G$ at length $t+2=s$ and the
+ordered nonedge count for the actual graph $G$.  The obstruction and
+\noderef{OldPairDigraphProperties} give looplessness and the absence of
+$T_{t+2}=T_s$ in the actual old pair digraph $D$.  The same parameter
+package gives $|V(D)|\geq q^{2t}/2$.
 
-It remains to count forward-independent tuples.  By the definition in
-\noderef{OldPairDigraph}, such a tuple is exactly a coherent tuple
+It remains to count forward-independent tuples in this same $D$.  By the
+definition in \noderef{OldPairDigraph}, such a tuple is exactly a coherent tuple
 \[
  (a_1,b_1,\ldots,a_k,b_k),\qquad
  a_i b_i\notin E(G),\quad a_i b_j\notin E(G)\ (i<j).
@@ -55,9 +63,9 @@ $|B^\sigma|$ by at least the factor $1-d/(2n)$.  Since
 $w=32tq\log q$, the polarity estimates $n\leq2q^t$ and
 $d\geq q^{t-1}/2$ show that a root path has at most $w$ unmarked steps.
 
-The coherent-tree estimate \noderef{OldCoherentTreeCount}, which is the
-application of \noderef{RootedTreeCounting} to these marked extensions,
-therefore yields
+The coherent-tree estimate \noderef{OldCoherentTreeCount}, applied to the
+parameter package for this $K$ and $G$ and to the displayed mixing
+inequality, therefore yields
 \[
  \operatorname{fwi}_k(D)\leq
  8^k(\lambda^2/d^2)^{k-w}n^{2k}.
