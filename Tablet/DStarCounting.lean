@@ -10,7 +10,7 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
         ∀ k : Nat, C * q * (Nat.log q) ^ 2 ≤ k →
           ∃ D : LooplessDigraph,
             ¬ Nonempty (TransitiveTournament D (t + 1)) ∧
-            2 ^ (2 * t - 1) / 4 ≤
+            (q ^ (2 * t - 1) / 4 : Nat) ≤
               @Fintype.card D.vertex D.fintype ∧
             (ForwardIndependentCount D k : ℝ) ≤
               (C * q ^ t : ℝ) ^ k := by
