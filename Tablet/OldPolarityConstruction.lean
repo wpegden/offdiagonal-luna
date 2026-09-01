@@ -3,6 +3,9 @@ import Tablet.OldPairDigraphProperties
 import Tablet.OldPolarityParameters
 import Tablet.OldCoherentTreeCount
 import Tablet.AlonRodlBound
+import Tablet.ExpanderMixing
+import Tablet.ForwardIndependentTuple
+import Tablet.ForwardIndependentCount
 
 -- [TABLET NODE: OldPolarityConstruction]
 theorem OldPolarityConstruction (delta : ℝ) (hdelta : 0 < delta) :

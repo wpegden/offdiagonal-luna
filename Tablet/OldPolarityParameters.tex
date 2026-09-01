@@ -13,7 +13,19 @@ Write $G=G_K(t)$ below.
 If $a=(q^{t-1}-1)/(q-1)$ is the common-neighbour parameter for distinct
 points, its nonprincipal spectral parameter is
 $\lambda=\sqrt{d-a}$, in the sense of
-\noderef{NonprincipalSpectralBound}.  In particular,
+\noderef{NonprincipalSpectralBound}.  In particular, the same spectral
+calculation gives, for all real functions $x,y$ on $V(G)$,
+\[
+ \left|\sum_{u\in V(G)}\sum_{v\in V(G)}
+ x(u)[uv\in E(G)]y(v)
+ -\frac dn\left(\sum_{u\in V(G)}x(u)\right)
+        \left(\sum_{v\in V(G)}y(v)\right)\right|
+ \leq \lambda
+ \sqrt{\left(\sum_{u\in V(G)}x(u)^2\right)
+             \left(\sum_{v\in V(G)}y(v)^2\right)}.
+\]
+This is the bilinear spectral inequality used by
+\noderef{ExpanderMixing} to obtain the ordered subset estimate.
 \[
  q^t/2\leq n\leq2q^t,\qquad
  q^{t-1}/2\leq d\leq2q^{t-1},\qquad
@@ -48,6 +60,17 @@ $A^2=aJ_n+(d-a)I_n$.  If $v$ and $\mu$ satisfy the eigen-equations in
 $J_nv=0$, and applying $A$ once more gives $\mu^2v=(d-a)v$.  Since $v\ne0$,
 $\mu^2=d-a$, so $|\mu|=\sqrt{d-a}=\lambda$.  Also $0\leq a\leq d$, hence
 $\lambda\leq\sqrt d\leq2\sqrt d$.
+
+It remains to justify the displayed bilinear form.  The adjacency operator is
+symmetric and $d$-regular, so the constant vector is a $d$-eigenvector and
+the zero-sum subspace is its orthogonal complement.  Decompose arbitrary
+$x$ and $y$ into constant and zero-sum parts.  Regularity cancels the two
+mixed terms and the constant--constant term is exactly
+$d(\sum x)(\sum y)/n$.  On the zero-sum subspace, the eigenvalue calculation
+above and the spectral theorem give operator norm at most $\lambda$.
+Cauchy--Schwarz therefore bounds the remaining pairing by
+$\lambda\|x_0\|_2\|y_0\|_2$, which is at most the displayed product of the
+full norms.  This proves the stated bilinear inequality, including loops.
 
 For the triangular assertion, choose nonzero representatives $x_i,y_i$.
 If a nontrivial relation among the $y_i$ has first nonzero coefficient at

@@ -25,8 +25,8 @@
 | OldCoherentTreeCount | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, ForwardIndependentTuple, OldPairDigraph, OldPolarityParameters, RootedTreeCounting |
 | OldPairDigraph | definition | definition | closed | - | - | LoopGraph, LooplessDigraph |
 | OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
-| OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
-| OldPolarityParameters | lemma | proof | open | - | - | NonprincipalSpectralBound, OldPairDigraph, PolarityGraph |
+| OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
+| OldPolarityParameters | lemma | proof | open | - | - | ExpanderMixing, NonprincipalSpectralBound, OldPairDigraph, PolarityGraph |
 | PolarityGraph | definition | definition | closed | - | - | LoopGraph |
 | Preamble | preamble | preamble | closed | - | - | - |
 | RamseyNumber | definition | definition | closed | - | - | CliqueWitness, IndependentWitness, LoopGraph, Preamble |

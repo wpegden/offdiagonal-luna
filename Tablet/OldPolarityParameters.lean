@@ -1,6 +1,7 @@
 import Tablet.OldPairDigraph
 import Tablet.NonprincipalSpectralBound
 import Tablet.PolarityGraph
+import Tablet.ExpanderMixing
 import Mathlib.Algebra.IsPrimePow
 
 -- [TABLET NODE: OldPolarityParameters]
@@ -23,6 +24,10 @@ theorem OldPolarityParameters
         lambda = Real.sqrt ((d : ℝ) -
           ((((q ^ (t - 1) - 1) / (q - 1) : Nat) : ℝ))) ∧
         NonprincipalSpectralBound G lambda ∧
+      (∀ x y : G.vertex → ℝ,
+        |(∑ u, ∑ v, x u * (if G.adj u v then 1 else 0) * y v) -
+            (d : ℝ) / n * (∑ u, x u) * (∑ v, y v)| ≤
+          lambda * Real.sqrt ((∑ u, (x u) ^ 2) * (∑ v, (y v) ^ 2))) ∧
       (q : ℝ) ^ t / 2 ≤ n ∧ (n : ℝ) ≤ 2 * (q : ℝ) ^ t ∧
       (q : ℝ) ^ (t - 1) / 2 ≤ d ∧
         (d : ℝ) ≤ 2 * (q : ℝ) ^ (t - 1) ∧

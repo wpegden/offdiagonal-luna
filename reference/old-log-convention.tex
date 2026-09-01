@@ -1,0 +1,36 @@
+\paragraph{Old logarithm convention.}
+The affected node is \texttt{OldCoherentTreeCount}.  The prior tablet
+encoding used the threshold
+\[
+ 32tq\,\operatorname{Nat.log}(2,q),
+\]
+although the reference paper uses the natural logarithm in
+$w=32tq\log q$.  For powers of two these quantities differ by the factor
+$1/\log 2$, so the prior encoding cannot be used with the construction's
+$\delta/200$ interval to prove $w\leq\delta k/5$.
+
+The repaired Lean statement uses
+\[
+ 32tq\,\operatorname{Nat.ceil}(\operatorname{Real.log}q).
+\]
+This is the natural-logarithm threshold rounded upward to an integer, which
+is the appropriate exponent convention for natural $k$.  The coherent-tree
+decay proof remains valid with this larger integer threshold.  In the
+construction, if $x=k/s$ and
+$q\leq(\delta/200)x/\log x$, then for sufficiently large $x$,
+\[
+ \operatorname{Nat.ceil}(\log q)
+ \leq \log q+1
+ \leq \log x+1
+ \leq \frac54\log x.
+\]
+Consequently,
+\[
+ 32tq\,\operatorname{Nat.ceil}(\log q)
+ \leq \frac{\delta}{5}\frac{t}{s}k
+ \leq \frac{\delta}{5}k.
+\]
+Thus the repaired threshold invokes the old counting estimate and returns
+to the paper's stated forward-independent bound with the same
+$32q^{2t-(t-1)(1-\delta/5)}$ conclusion.  No paper target or final
+construction exponent is changed.

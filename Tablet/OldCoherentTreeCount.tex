@@ -31,8 +31,12 @@ for all vertex subsets $A,B$:
 \]
 Finally let $k\in\mathbb N$ satisfy $1\leq n$, $1\leq d$, and
 \[
- w:=32tq\,\operatorname{Nat.log}(2,q)\leq k.
+ w:=32tq\,\left\lceil\log q\right\rceil\leq k,
 \]
+where the ceiling is the natural-number ceiling in the Lean statement,
+namely $\operatorname{Nat.ceil}(\operatorname{Real.log}q)$.  This is the
+paper's natural-logarithm threshold rounded upward so that $k-w$ is an
+integer exponent.
 Then
 \[
  \operatorname{fwi}_k(D)\leq
@@ -40,7 +44,7 @@ Then
 \]
 \end{lemma}
 \begin{proof}
-Write $L=\operatorname{Nat.log}(2,q)$ and
+Write $L=\left\lceil\log q\right\rceil$ and
 $w=32tqL$.  The graph in the statement is the projective orthogonality
 graph supplied by \noderef{PolarityGraph}, and its exact parameter package is
 the one recorded in \noderef{OldPolarityParameters}.  The ordered nonedge
@@ -137,11 +141,11 @@ $[0,1]$, and $w+1\geq w-1$ yield
 \[
  |B^\sigma|\leq n(1-r)^{w-1}. \tag{5}
 \]
-The integer $L=\operatorname{Nat.log}(2,q)$ satisfies the floor-log facts
+The ceiling definition gives
 \[
- 2^L\leq q<2^{L+1}.
+\log q\leq L<\log q+1.
 \]
-Since $q\geq16=2^4$, monotonicity gives $L\geq4$.  Also $w=32tqL\geq2$,
+Since $q\geq16$, we have $L\geq1$.  Also $w=32tqL\geq2$,
 so $w-1\geq w/2=16tqL$.  Using $1-x\leq\exp(-x)$ for $0\leq x\leq1$,
 the bounds in (2), and the size estimate $n\leq2q^t$, (5) gives
 \[
@@ -152,20 +156,13 @@ the bounds in (2), and the size estimate $n\leq2q^t$, (5) gives
  \end{aligned}
 \]
 For completeness, the last expression is strictly smaller than $1$ with
-the floor logarithm used here.  The inequality $q<2^{L+1}$ implies
+the ceiling of the natural logarithm used here.  Since $\log q\leq L$,
+monotonicity of the exponential gives
 \[
- 2q^t<2\,2^{t(L+1)}.
+2q^t\exp(-2tL)\leq2\exp(-tL).
 \]
-The elementary inequality $2<\exp(1)$, raised to the positive integer
-$t(L+1)$, gives
-$2^{t(L+1)}<\exp(t(L+1))$.  Hence, since $t\geq2$ and $L\geq4$,
-\[
- 2q^t\exp(-2tL)
- <2\exp\bigl(-t(L-1)\bigr)
- \leq2\exp(-6)<1. \tag{7}
-\]
-The final inequality follows from
-$\exp(6)\geq1+6>2$.  Thus (6) says $|B^\sigma|<1$, forcing
+Since $q\geq16$ implies $L\geq\log16>2$ and $t\geq2$, we have
+$tL>\log2$, so $2\exp(-tL)<1$.  Thus (6) says $|B^\sigma|<1$, forcing
 $B^\sigma=\varnothing$.  But coherence puts the final second coordinate
 $b_m$ in $B^\sigma$: it is nonadjacent to $a_m$ by vertex membership and
 to every earlier $a_i$ by the cross conditions.  This contradiction proves

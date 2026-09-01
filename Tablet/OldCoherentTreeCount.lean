@@ -32,10 +32,10 @@ theorem OldCoherentTreeCount
             (d : ℝ) / n * A.card * B.card| ≤
           lambda * Real.sqrt (A.card * B.card)) →
       0 < n → 0 < d →
-      32 * t * q * Nat.log 2 q ≤ k →
+      32 * t * q * Nat.ceil (Real.log (q : ℝ)) ≤ k →
       (ForwardIndependentCount (OldPairDigraph G) k : ℝ) ≤
         (8 : ℝ) ^ k * (lambda ^ 2 / d ^ 2) ^
-            (k - 32 * t * q * Nat.log 2 q) *
+            (k - 32 * t * q * Nat.ceil (Real.log (q : ℝ))) *
           (n : ℝ) ^ (2 * k) := by
 -- BODY
   sorry

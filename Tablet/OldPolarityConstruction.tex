@@ -26,55 +26,173 @@ of the choice of $G$; this is the hypothesis used by
 \noderef{OldPairDigraphProperties}.
 \end{lemma}
 \begin{proof}
-Choose the least power of two in the indicated interval.  For $L$ large
-the interval contains such a power and $q\geq16$.  A power of two is a
-prime power, and the finite-field existence theorem supplies a finite field
-$K$ with exactly $q$ elements.  Put $t=s-2$; increasing $L$ if necessary
-ensures $t\geq2$.  Let $G=G_K(t)$ be the projective polarity graph and put
-$D=\mathcal D(G)$.
-
-Apply \noderef{OldPolarityParameters} with this $K$, its field and finite
-type structures, $h_K=|K|=q$, and the hypotheses $q\geq16$ and $t\geq2$.
-It supplies the triangular obstruction for $G$ at length $t+2=s$ and the
-ordered nonedge count for the actual graph $G$.  The obstruction and
-\noderef{OldPairDigraphProperties} give looplessness and the absence of
-$T_{t+2}=T_s$ in the actual old pair digraph $D$.  The same parameter
-package gives $|V(D)|\geq q^{2t}/2$.
-
-It remains to count forward-independent tuples in this same $D$.  By the
-definition in \noderef{OldPairDigraph}, such a tuple is exactly a coherent tuple
+Put $x=k/s$.  Choose $L$ sufficiently large, depending only on $\delta$,
+so that for every $x\geq L$ the following hold: $\log x>4$,
+$(\delta/200)/\log x<1$, the interval
 \[
- (a_1,b_1,\ldots,a_k,b_k),\qquad
- a_i b_i\notin E(G),\quad a_i b_j\notin E(G)\ (i<j).
+[B/2,B],\qquad B:=\frac{\delta}{200}\frac{x}{\log x},
 \]
-The coherent tuples form the rooted tree obtained by appending one pair.
-For a partial tuple $\sigma$, let
-$B^\sigma=V(G)\setminus\bigcup_iN_G(a_i)$ and let
-$A^\sigma$ consist of vertices having at most
-$d|B^\sigma|/(2n)$ neighbours in $B^\sigma$.  The Alon--R\"odl estimate
-\noderef{AlonRodlBound} gives
-\[
- |A^\sigma||B^\sigma|\leq4\lambda^2n^2/d^2.
-\]
-Mark the extensions from $A^\sigma\times B^\sigma$.  Each tree vertex has
-at most $\Delta=n^2$ children, and the displayed product bounds the marked
-children by $h=4\lambda^2n^2/d^2$.  Every unmarked extension shrinks
-$|B^\sigma|$ by at least the factor $1-d/(2n)$.  Since
-$w=32tq\log q$, the polarity estimates $n\leq2q^t$ and
-$d\geq q^{t-1}/2$ show that a root path has at most $w$ unmarked steps.
+contains a power of two, and $B\geq32$.  These are possible because
+$x/\log x\to\infty$.  The same choice of $L$ ensures the final fixed
+constant inequalities below.  Since $s\geq L>0$ and $k\geq Ls$, we have
+$x\geq L$ and all these conditions apply.
 
-The coherent-tree estimate \noderef{OldCoherentTreeCount}, applied to the
-parameter package for this $K$ and $G$ and to the displayed mixing
-inequality, therefore yields
+Choose a power of two $q$ in $[B/2,B]$.  Then
+$q\leq B\leq2q$ and $q\geq16$.  A power of two is a prime power, and the
+finite-field existence theorem supplies a field $K$ with exactly $q$
+elements.  Set $t=s-2$; increasing $L$ if necessary gives $t\geq2$.
+Let
+\[
+ G=\operatorname{PolarityGraph}(K,t),\qquad
+ D=\operatorname{OldPairDigraph}(G).
+\]
+
+Apply \noderef{OldPolarityParameters} to $K$, its field and finite type
+structures, $t$, $q$, the power-of-two prime-power witness, and the
+hypotheses $q\geq16$ and $t\geq2$.  It supplies the exact order and degree
+parameters $n,d$, the parameter $\lambda$, the bounds
+\[
+ q^t/2\leq n\leq2q^t,\qquad
+ q^{t-1}/2\leq d\leq2q^{t-1},
+\]
+the triangular obstruction for $G$ at length $t+2=s$, and the lower bound
+\[
+ |V(D)|\geq q^{2t}/2. \tag{1}
+\]
+The parameter package also supplies the bilinear spectral inequality, in
+the exact form required by \noderef{ExpanderMixing}.  Apply
+\noderef{ExpanderMixing} with adjacency relation $G.adj$, order $n$, degree
+$d$, parameter $\lambda$, the supplied cardinality equality, and that
+bilinear inequality.  This yields for every pair of vertex subsets $A,B$
+the ordered estimate
+\[
+ \left|e_G(A,B)-\frac dn|A||B|\right|
+ \leq\lambda\sqrt{|A||B|}. \tag{2}
+\]
+Thus the all-subsets mixing hypothesis required by
+\noderef{AlonRodlBound} and \noderef{OldCoherentTreeCount} has been
+derived explicitly, rather than being imported from a proof of either
+node.
+
+The triangular obstruction from \noderef{OldPolarityParameters}, together
+with the actual definition of $D$ in \noderef{OldPairDigraph}, is exactly
+the hypothesis of \noderef{OldPairDigraphProperties} at $s=t+2$.  Hence $D$
+is loopless and contains no $T_{t+2}=T_s$, and (1) is the required vertex
+lower bound.
+
+It remains to prove the forward-independent estimate.  By
+\noderef{OldPairDigraph}, a vertex of $D$ is an ordered nonedge $(a,b)$ of
+$G$, and $(a,b)\to(a',b')$ precisely when $ab'\in E(G)$.  Therefore the
+definition of forward independence in \noderef{ForwardIndependentTuple}
+identifies a forward-independent $m$-tuple in $D$ with a coherent tuple
+\[
+ (a_1,b_1,\ldots,a_m,b_m)\in V(G)^{2m}
+\]
+satisfying $a_i b_i\notin E(G)$ for every $i$ and
+$a_i b_j\notin E(G)$ for every $i<j$.  This equivalence is reversible and
+allows repeated entries, because both sides use the same ordered
+conditions.  By the cardinality definition in
+\noderef{ForwardIndependentCount}, the level-$m$ coherent tuples are
+counted by $\operatorname{fwi}_m(D)$.
+
+For completeness, the marking argument behind the invoked estimate is as
+follows.  Form the rooted tree whose root is the empty tuple and whose
+children append one coherent pair.  For a coherent partial tuple
+$\sigma=(a_1,b_1,\ldots,a_m,b_m)$ put
+\[
+ B^\sigma=V(G)\setminus\bigcup_{i=1}^mN_G(a_i),\qquad
+ A^\sigma=\left\{a:|N_G(a)\cap B^\sigma|
+       \leq\frac{d}{2n}|B^\sigma|\right\}.
+\]
+The already derived estimate (2) supplies the explicit mixing premise of
+\noderef{AlonRodlBound}; applying that node to $A^\sigma,B^\sigma$ gives
+\[
+ |A^\sigma||B^\sigma|\leq H,\qquad
+ H:=\frac{4\lambda^2n^2}{d^2}. \tag{3}
+\]
+Mark exactly the children whose appended pair belongs to
+$A^\sigma\times B^\sigma$.  There are at most $n^2$ children and, by (3),
+at most $\lfloor H\rfloor$ marked children.
+
+If $(a,b)$ is any coherent extension, then $b\in B^\sigma$, because all
+the conditions $a_i b\notin E(G)$ hold.  Consequently an unmarked
+extension has $a\notin A^\sigma$, and hence removes strictly more than
+$d|B^\sigma|/(2n)$ vertices from the next forbidden set.  More precisely,
+\[
+ B^{\sigma\mathbin{\smallfrown}(a,b)}=B^\sigma\setminus N_G(a),
+ \qquad
+ |B^{\sigma\mathbin{\smallfrown}(a,b)}|
+ <\left(1-\frac d{2n}\right)|B^\sigma|. \tag{4}
+\]
+The first identity also shows that marked extensions never increase the
+forbidden-set cardinality.  Induction along a path therefore gives
+\[
+ |B^\sigma|\leq n\left(1-\frac d{2n}\right)^u, \tag{5}
+\]
+where $u$ is the number of unmarked extensions on the path.
+
+Let $L_q=\lceil\log q\rceil$ and
+$w=32tqL_q$.  Since $q\leq B\leq x$, we have
+$\log q\leq\log x$.  The choice $\log x>4$ gives
+\[
+ L_q\leq\log q+1\leq\log x+1\leq\frac54\log x.
+\]
+It follows that
+\[
+ w\leq32t\frac{\delta}{200}\frac{x}{\log x}
+          \frac54\log x
+   =\frac{\delta}{5}\frac{t}{s} k
+   \leq\frac{\delta}{5}k. \tag{6}
+\]
+In particular, $w\leq k$, as required below.
+
+The parameter bounds give
+\[
+ \frac1{4q}\leq\frac dn\leq\frac4q,
+ \qquad 0\leq\frac d{2n}\leq\frac2q\leq1. \tag{7}
+\]
+If a path had more than $w$ unmarked vertices, (5), (7), and
+$w-1\geq w/2=16tqL_q$ would give
+\[
+ |B^\sigma|
+ \leq 2q^t\exp(-2tL_q). \tag{8}
+\]
+Here we used $1-y\leq\exp(-y)$ and the weaker exponent obtained from
+$d/(2n)\geq1/(8q)$; retaining the sharper bound only improves (8).
+Since $\log q\leq L_q$, we have $q^t\leq\exp(tL_q)$, so the right side of
+(8) is at most $2\exp(-tL_q)<1$ for $q\geq16$ and $t\geq2$.  Thus
+$B^\sigma$ would be empty, contradicting that the final second coordinate
+$b_m$ lies in it.  Every root-to-level-$k$ path consequently has at most
+$w$ unmarked extensions.
+
+We can now apply \noderef{OldCoherentTreeCount} to the exact parameter
+package from \noderef{OldPolarityParameters}, the mixing estimate (2), the
+positive values $n,d$, and the threshold $w=32tq\operatorname{Nat.ceil}
+(\operatorname{Real.log}q)\leq k$ established in (6).  It gives
 \[
  \operatorname{fwi}_k(D)\leq
- 8^k(\lambda^2/d^2)^{k-w}n^{2k}.
+ 8^k\left(\frac{\lambda^2}{d^2}\right)^{k-w}n^{2k}. \tag{9}
 \]
-Finally $\lambda\leq2\sqrt d$, the selected value of $q$, and
-$w\leq\delta k/5$ imply, after increasing $L$ to absorb fixed factors,
+
+Finally, write $a=(q^{t-1}-1)/(q-1)$.  The exact formulas in
+\noderef{OldPolarityParameters} give $\lambda^2=d-a\leq d$,
+$d\geq q^{t-1}$, and, since $q\geq16$,
 \[
- 8^k(\lambda^2/d^2)^{k-w}n^{2k}
- \leq\left(32q^{\,2t-(t-1)(1-\delta/5)}\right)^k.
+ n=1+q+\cdots+q^t\leq\frac{16}{15}q^t. \tag{10}
 \]
-Substituting $t=s-2$ proves the lemma.
+Using (6), (9), and (10), and noting that
+$8(16/15)^2<32$, we obtain
+\[
+\begin{aligned}
+ \operatorname{fwi}_k(D)
+ &\leq 8^k d^{-(k-w)}n^{2k} \\
+ &\leq
+ \left(8\left(\frac{16}{15}\right)^2
+ q^{\,2t-(t-1)(1-w/k)}\right)^k \\
+ &\leq
+ \left(32q^{\,2t-(t-1)(1-\delta/5)}\right)^k.
+\end{aligned}
+\]
+Substituting $t=s-2$ gives the asserted exponent
+$2(s-2)-(s-3)(1-\delta/5)$ and completes the proof.
 \end{proof}
