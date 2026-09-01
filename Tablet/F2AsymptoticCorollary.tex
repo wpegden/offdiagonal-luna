@@ -11,24 +11,82 @@ Equivalently, there is an error function $e=o(s)$ for which the left side
 is at most $2^{\frac32s^2+as-\frac52s+e}$ eventually.
 \end{lemma}
 \begin{proof}
-Write $t=s-j$.  Then
-$\binom{s+a}{t}=\binom{s+a}{j+a}$, and the standard estimate
-$\binom uv\leq(eu/v)^v$ gives
+All estimates below are understood for sufficiently large values of the
+parameter, and all logarithms in the proof of the estimate are to base $2$.
+Put $k=s+a$ and write $t=s-j$.  For $1\leq t\leq s-1$ we have
+$1\leq j\leq s-1$ and
+$\binom{s+a}{t}=\binom{s+a}{j+a}$.  Since $j+a\geq a+1$, the standard
+estimate $\binom uv\leq(eu/v)^v$ gives, with
+$B=e(s+a)/(a+1)$,
 \[
  \binom{s+a}{s-j}2^{(s-1)(s-j+s+a)-\binom{s-j+1}{2}}
  \leq
- \left(\frac{e(s+a)}{a+1}\right)^{j+a}
+ B^{j+a}
  2^{s^2/2+s(s+a)-3s/2-(s+a)+3j/2-j^2/2}.
 \]
-The exponent depending on $j$ is a concave quadratic.  Its maximum is at
-$j=\log_2(e(s+a)/(a+1))+3/2$, up to an additive constant, so uniformly in
-$t$ each summand is at most
+We now justify the asymptotic contribution of the prefactor.  Set
+$u=a/s$.  The hypothesis $a=o(s)$ says that $u\to0$, so eventually
+$0\leq u\leq1$ and $s+a\leq2s$.  If $a=0$, then
+$a\log_2((s+a)/(a+1))=0$.  If $a>0$, then
 \[
- \left(\frac{e(s+a)}{a+1}\right)^a
- 2^{s^2/2+s(s+a)-3s/2-(s+a)+O((\log s)^2)}.
+ \frac{s+a}{a+1}\leq\frac{s+a}{a}=\frac{1+u}{u}\leq\frac2u,
+ \qquad
+ 0\leq \frac{a}{s}\log_2\frac{s+a}{a+1}
+ \leq u\log_2\frac2u.
 \]
-Since $a=o(s)$, the first factor is $2^{o(s)}$, and the $s$ summands absorb
-the remaining $O(\log s)$ term into $2^{o(s)}$.  Substituting $k=s+a$
-leaves the exponent
-$\frac32s^2+as-\frac52s+o(s)$, as claimed.
+The last expression tends to $0$ as $u\to0^+$ (the elementary limit
+$x\log(2/x)\to0$), and therefore
+\[
+ a\log_2 B
+ =a\log_2 e+a\log_2\frac{s+a}{a+1}=o(s).
+\]
+This proves explicitly that $B^a=2^{o(s)}$ from the given little-$o$
+hypothesis.
+
+For the remaining dependence on $j$, let
+\[
+ A=\frac{s^2}{2}+s(s+a)-\frac{3s}{2}-(s+a),
+ \qquad L=\log_2 B.
+\]
+Eventually $B>1$ and $B\leq2es$, so $L=O(\log s)$.  The exponent that
+depends on $j$ is exactly
+\[
+ jL+\frac{3j}{2}-\frac{j^2}{2}
+ =\frac12\left(L+\frac32\right)^2
+  -\frac12\left(j-L-\frac32\right)^2
+ \leq \frac12\left(L+\frac32\right)^2
+ =O((\log s)^2).
+\]
+Consequently, uniformly for every integer $t$ with $1\leq t\leq s-1$,
+\[
+ M_t\leq
+ 2^{A+a\log_2B+C(\log s)^2}
+\]
+for one fixed constant $C$ and all sufficiently large parameters.  There
+are at most $s$ such summands, so
+\[
+ \sum_{t=1}^{s-1}M_t
+ \leq
+ 2^{A+a\log_2B+C(\log s)^2+\log_2s}.
+\]
+
+Define $e(n)$, on the eventual range just used, by
+\[
+ e=-a+a\log_2B+C(\log s)^2+\log_2s,
+\]
+and define it arbitrarily before that range.  We have $a=o(s)$,
+$a\log_2B=o(s)$ by the explicit estimate above, and
+$(\log s)^2=o(s)$ and $\log s=o(s)$ because $s\to\infty$.  Hence
+$e=o(s)$.  Finally,
+\[
+ A=\frac32s^2+as-\frac52s-a,
+\]
+so the preceding bound is exactly
+\[
+ \sum_{t=1}^{s-1}\binom kt
+ 2^{(s-1)(t+k)-\binom{t+1}{2}}
+ \leq
+ 2^{\frac32s^2+as-\frac52s+e}
+\]
+eventually.  This is the asserted form of the estimate.
 \end{proof}
