@@ -6,7 +6,7 @@
 | CliqueWitness | definition | definition | closed | - | - | LoopGraph |
 | CompleteColoring | definition | definition | closed | - | - | Preamble |
 | DStarCounting | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, RootedTreeCounting, TransitiveTournament |
-| ExpanderMixing | lemma | proof | open | - | - | Preamble |
+| ExpanderMixing | lemma | proof | closed | - | - | Preamble |
 | F2AsymptoticCorollary | lemma | proof | open | - | - | F2RankSequenceBound |
 | F2ForwardIndependentBound | lemma | proof | open | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
 | F2PairDigraph | definition | definition | closed | - | - | OldPairDigraph |
@@ -39,4 +39,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 15 | **Open:** 20
+**Total:** 35 nodes | **Closed:** 16 | **Open:** 19
