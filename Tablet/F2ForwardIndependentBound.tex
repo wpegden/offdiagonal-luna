@@ -1,43 +1,43 @@
 \begin{lemma}
-For integers $4\leq s\leq k$, there is a loopless $T_s$-free digraph $D$
-with
+For integers $4\leq s\leq k$, let $D_2(s)$ be the specialized old pair
+digraph from \noderef{F2PairDigraph}.  It is loopless and $T_s$-free, has
 \[
  N=2^{2s-3}-2^{s-1}-2^{s-2}+1
 \]
-vertices and
+vertices, and satisfies
 \[
- \operatorname{fwi}_k(D)\leq
- \sum_{t=1}^{s-1}\binom kt,2^{(s-1)(t+k)-\binom{t+1}{2}}.
+ \operatorname{fwi}_k(D_2(s))\leq
+ \sum_{t=1}^{s-1}\binom kt
+ 2^{(s-1)(t+k)-\binom{t+1}{2}}.
 \]
 The sum intentionally counts ambient vector tuples, so it may overcount
 projective points and nonzero representatives.
 \end{lemma}
 \begin{proof}
-Put $p=s-1$, identify the points of $G(s-2,2)$ with the nonzero vectors of
-$\mathbb F_2^p$, and let $D$ have vertices $(x,y)$ with
-$\langle x,y\rangle=1$, with an arc $(x,y)\to(x',y')$ exactly when
-$\langle x,y'\rangle=0$.  The polarity count gives
-$|V(D)|=(2^p-1)(2^{p-1}-1)=N$, and the triangular orthogonality obstruction
-makes $D$ loopless and $T_s$-free.
+Put $p=s-1$ and use the construction of
+\noderef{F2PairDigraph}, which is the old pair construction at
+$G(s-2,2)$.  The loopless and triangular-freeness assertions and the exact
+vertex count are supplied by \noderef{F2PairDigraphProperties}.
 
-Write a forward-independent $k$-tuple as
-$(a_1,b_1,\ldots,a_k,b_k)$.  It is represented by an ambient, possibly zero,
-vector tuple satisfying
-$\langle a_j,b_i\rangle=1$ whenever $j\leq i$; counting these ambient tuples
-is an upper bound and is the deliberate overcount in the statement.  Let
-$r_i=\dim\operatorname{span}(a_1,\ldots,a_i)$ and $r_0=0$.  A realizable rank
-sequence has $r_1=1$, each increment is either $0$ or $1$, and its final value
-is some $t\leq p$.  There are at most $\binom kt$ such sequences.
-
-Fix one with final rank $t$.  Whenever the rank increases from $i-1$ to $i$,
-there are at most $2^p$ choices for $a_i$ and at most $2^{p-i}$ choices for
-$b_i$.  Whenever it does not increase, there are at most $2^i$ choices for
-$a_i$ and at most $2^{p-i}$ choices for $b_i$.  Multiplying in the order of
-the rank increases gives at most
+It remains to count tuples.  A forward-independent $k$-tuple in $D_2(s)$
+gives an ambient tuple
+$(\mathbf a_1,\mathbf b_1,\ldots,\mathbf a_k,\mathbf b_k)$ in
+$(\mathbb F_2^p)^{2k}$ satisfying
 \[
- \left(\prod_{i=1}^t2^{2p-i}\right)2^{p(k-t)}
- =2^{pt+pk-\binom{t+1}{2}}
+ \langle\mathbf a_i,\mathbf b_j\rangle=1\quad(i\leq j).
 \]
-tuples with this rank sequence.  Summing over the at most $\binom kt$ valid
-sequences and then over $1\leq t\leq p=s-1$ gives the displayed bound.
+We deliberately forget the nonzero and projective restrictions.  Thus the
+number of desired tuples is at most the ambient number counted by
+\noderef{F2RankSequenceBound}.
+
+For completeness, that count uses the rank sequence
+$r_0=0$ and
+$r_i=\dim\operatorname{span}(\mathbf a_1,\ldots,\mathbf a_i)$.  The
+diagonal equation gives $r_1=1$, each increment is zero or one, and a final
+rank $t$ has at most $\binom kt$ possible increment sets.  For a fixed
+sequence, a rank increase contributes at most $2^p$ choices for
+$\mathbf a_i$ and $2^{p-r_i}$ for $\mathbf b_i$; a non-increase contributes
+at most $2^{r_i}$ and $2^{p-r_i}$.  Multiplication gives
+$2^{pt+pk-\binom{t+1}{2}}$.  Summing over $1\leq t\leq p=s-1$ gives the
+displayed inequality.
 \end{proof}

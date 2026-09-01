@@ -14,8 +14,8 @@ Equivalently, this is
 \end{theorem}
 \begin{proof}
 Take $s$ and $a$ along the given sequences and put $k=s+a$.  Eventually
-$4\leq s\leq k$, so \noderef{F2ForwardIndependentBound} gives a loopless
-$T_s$-free digraph on
+$4\leq s\leq k$, so \noderef{F2ForwardIndependentBound} gives the explicit
+digraph $D=D_2(s)$, which is loopless and $T_s$-free, on
 \[
  N=2^{2s-3}-2^{s-1}-2^{s-2}+1=(1+o(1))2^{2s-3}
 \]
@@ -24,10 +24,9 @@ vertices and
  \operatorname{fwi}_k(D)\leq
  2^{3s^2/2+as-5s/2+o(s)}.
 \]
-The $o(s)$ estimate follows directly from its rank sum: writing $t=s-j$, use
-$\binom{s+a}{j+a}\leq(e(s+a)/(a+1))^{j+a}$, maximize the resulting quadratic
-in $j$, and use $a=o(s)$ to obtain
-$(e(s+a)/(a+1))^a=2^{o(s)}$.
+The $o(s)$ estimate is the separate arithmetic corollary
+\noderef{F2AsymptoticCorollary}, applied to the exact rank sum in
+\noderef{F2ForwardIndependentBound}.
 
 Apply \noderef{RandomPermutationReduction}.  The resulting $K_s$-free graph
 $G$ has

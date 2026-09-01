@@ -1,4 +1,5 @@
 import Tablet.F2ForwardIndependentBound
+import Tablet.F2AsymptoticCorollary
 import Tablet.RandomPermutationReduction
 import Tablet.SamplingDeletion
 

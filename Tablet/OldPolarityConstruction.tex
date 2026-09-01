@@ -2,43 +2,71 @@
 For every $\delta>0$ there is an integer $L>0$ such that whenever
 $s\geq L$ and $k\geq Ls$, one can choose a power of two $q$ satisfying
 \[
- q\leq\frac{\delta}{200}\frac{k/s}{\log(k/s)}\leq2q,
+ q\leq\frac{\delta}{200}\frac{k/s}{\log(k/s)}\leq2q.
 \]
-and the old polarity-pair digraph $D=D(s-2,q)$ is $T_s$-free,
+For the polarity graph $G=G(s-2,q)$, let
+$D=\mathcal D(G)$ be the old pair digraph of
+\noderef{OldPairDigraph}.  Then $D$ is $T_s$-free,
 \[
  |V(D)|\geq\frac{q^{2(s-2)}}2,
 \]
 and
 \[
  \operatorname{fwi}_k(D)\leq
- \left(32q^{,2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+ \left(32q^{\,2(s-2)-(s-3)(1-\delta/5)}\right)^k.
 \]
+The statement records the polarity graph's triangular obstruction as part
+of the choice of $G$; this is the hypothesis used by
+\noderef{OldPairDigraphProperties}.
 \end{lemma}
 \begin{proof}
-Choose the least power of two in the interval specified in the statement;
-for $L$ large the interval contains such a power and $q$ is large.  Put
-$t=s-2$ and take the polarity graph $G(t,q)$, whose vertices are the
-one-dimensional subspaces of $\mathbb F_q^{t+1}$.  The pair digraph has
-vertices $(a,b)$ with $a b$ a nonedge and an arc $(a,b)\to(a',b')$ exactly
-when $a b'$ is an edge.  The triangular orthogonality obstruction makes it
-$T_{t+2}=T_s$-free, and the exact point and degree counts give
+Choose the least power of two in the indicated interval.  For $L$ large
+the interval contains such a power and $q$ is large.  Put $t=s-2$ and take
+the polarity graph $G(t,q)$ on the one-dimensional subspaces of
+$\mathbb F_q^{t+1}$.  Its orthogonality relation has the triangular
+obstruction: there are no pairs $(a_i,b_i)_{i=1}^{t+2}$ with
+$a_i b_i\notin E(G)$ and $a_i b_j\in E(G)$ for every $i<j$.
+
+Apply the construction of \noderef{OldPairDigraph} to this $G$.  The
+obstruction and \noderef{OldPairDigraphProperties}, with $s=t+2$, give
+looplessness and the absence of $T_{t+2}=T_s$.  The exact point and degree
+counts recorded in \noderef{OldPolarityParameters} for the polarity graph give
 $|V(D)|\geq q^{2t}/2$.
 
-The forward-independent tuples form the rooted coherent-pair tree.  Set
-$h=4\lambda^2n^2/d^2$ and $\Delta=n^2$, where $n,d,\lambda$ are the
-polarity graph's order, degree, and second-eigenvalue parameters.  The
-Alon--Roedl product estimate of \noderef{AlonRodlBound} marks at most $h$
-children at each step.  Every
-path has at most $w=32tq\log q$ unmarked steps, because each unmarked step
-shrinks the remaining common-neighbour set by the factor
-$1-d/(2n)$ and after $w$ steps that set would have cardinality less than one.
-The rooted-tree estimate of \noderef{RootedTreeCounting} gives
+It remains to count forward-independent tuples.  By the definition in
+\noderef{OldPairDigraph}, such a tuple is exactly a coherent tuple
+\[
+ (a_1,b_1,\ldots,a_k,b_k),\qquad
+ a_i b_i\notin E(G),\quad a_i b_j\notin E(G)\ (i<j).
+\]
+The coherent tuples form the rooted tree obtained by appending one pair.
+For a partial tuple $\sigma$, let
+$B^\sigma=V(G)\setminus\bigcup_iN_G(a_i)$ and let
+$A^\sigma$ consist of vertices having at most
+$d|B^\sigma|/(2n)$ neighbours in $B^\sigma$.  The Alon--R\"odl estimate
+\noderef{AlonRodlBound} gives
+\[
+ |A^\sigma||B^\sigma|\leq4\lambda^2n^2/d^2.
+\]
+Mark the extensions from $A^\sigma\times B^\sigma$.  Each tree vertex has
+at most $\Delta=n^2$ children, and the displayed product bounds the marked
+children by $h=4\lambda^2n^2/d^2$.  Every unmarked extension shrinks
+$|B^\sigma|$ by at least the factor $1-d/(2n)$.  Since
+$w=32tq\log q$, the polarity estimates $n\leq2q^t$ and
+$d\geq q^{t-1}/2$ show that a root path has at most $w$ unmarked steps.
+
+The coherent-tree estimate \noderef{OldCoherentTreeCount}, which is the
+application of \noderef{RootedTreeCounting} to these marked extensions,
+therefore yields
 \[
  \operatorname{fwi}_k(D)\leq
  8^k(\lambda^2/d^2)^{k-w}n^{2k}.
 \]
-The polarity estimates $n\asymp q^t$, $d\asymp q^{t-1}$, and
-$\lambda\leq2\sqrt d$, together with the selected value of $q$ and the
-large-$L$ inequalities, reduce this to the displayed bound.  All constants
-are absorbed by the factor $32$ and by increasing $L$.
+Finally $\lambda\leq2\sqrt d$, the selected value of $q$, and
+$w\leq\delta k/5$ imply, after increasing $L$ to absorb fixed factors,
+\[
+ 8^k(\lambda^2/d^2)^{k-w}n^{2k}
+ \leq\left(32q^{\,2t-(t-1)(1-\delta/5)}\right)^k.
+\]
+Substituting $t=s-2$ proves the lemma.
 \end{proof}

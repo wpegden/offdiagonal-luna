@@ -1,0 +1,11 @@
+\begin{definition}
+Let $G$ be a finite loop-aware undirected graph.  Its old pair digraph
+$\mathcal D(G)$ has vertex set
+\[
+ \{(a,b)\in V(G)^2:ab\notin E(G)\}
+\]
+and has an arc $(a,b)\to(a',b')$ exactly when $ab'\in E(G)$.  The ordered
+pair is part of the vertex, so $(a,b)$ and $(b,a)$ are generally different.
+The construction is loopless: a loop at $(a,b)$ would simultaneously say
+$ab\in E(G)$ and $ab\notin E(G)$.
+\end{definition}

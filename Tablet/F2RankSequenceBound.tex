@@ -1,0 +1,43 @@
+\begin{lemma}
+Let $p\geq1$.  The number of ambient vector tuples
+\[
+ (\mathbf a_1,\mathbf b_1,\ldots,\mathbf a_k,\mathbf b_k)
+ \in(\mathbb F_2^p)^{2k}
+\]
+such that
+$\langle\mathbf a_i,\mathbf b_j\rangle=1$ whenever $i\leq j$ is at most
+\[
+ \sum_{t=1}^{p}\binom kt,2^{pt+pk-\binom{t+1}{2}}.
+\]
+Consequently, the forward-independent $k$-tuple count in
+$D_2(s)$ is bounded by this sum with $p=s-1$.  The ambient count is an
+intentional overcount: it includes zero vectors and does not quotient by
+the projective equivalence relation.
+\end{lemma}
+\begin{proof}
+For an ambient tuple define $r_0=0$ and
+$r_i=\dim\operatorname{span}(\mathbf a_1,\ldots,\mathbf a_i)$.  The first
+diagonal equation forces $r_1=1$, and each subsequent rank is either the
+previous rank or one larger.  If the final rank is $t$, the set of indices
+at which the rank rises has at most $\binom kt$ choices.
+
+Fix one such rank sequence.  At a rank-raising index there are at most
+$2^p$ choices for $\mathbf a_i$, and the equations against the span give at
+most $2^{p-r_i}$ choices for $\mathbf b_i$.  At a non-raising index there
+are at most $2^{r_i}$ choices for $\mathbf a_i$, and again at most
+$2^{p-r_i}$ choices for $\mathbf b_i$.  Reading the raising indices in
+increasing order, their contribution is
+\[
+ \prod_{i=1}^{t}2^{2p-i},
+\]
+and every other index contributes $2^p$.  Thus this rank sequence gives at
+most
+\[
+ \left(\prod_{i=1}^{t}2^{2p-i}\right)2^{p(k-t)}
+ =2^{pt+pk-\binom{t+1}{2}}
+\]
+tuples.  Summing over the at most $\binom kt$ sequences and over
+$1\leq t\leq p$ proves the formula.  The forward-independent tuples in
+\noderef{F2PairDigraph} satisfy these equations, so the ambient count is an
+upper bound for the desired projective count.
+\end{proof}

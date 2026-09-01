@@ -1,0 +1,24 @@
+\begin{lemma}
+For every $s\geq4$, the specialized digraph $D_2(s)$ of
+\noderef{F2PairDigraph} is loopless and $T_s$-free, and its exact number of
+vertices is
+\[
+ |V(D_2(s))|=(2^{s-1}-1)(2^{s-2}-1)
+ =2^{2s-3}-2^{s-1}-2^{s-2}+1.
+\]
+\end{lemma}
+\begin{proof}
+Write $p=s-1$.  A vertex is a pair of nonzero vectors $(x,y)$ with
+$\langle x,y\rangle=1$.  An arc from a pair to itself would require the
+same inner product to be zero, so the digraph is loopless.  The triangular
+orthogonality obstruction used for the old pair construction says that
+there are no $s$ pairs with diagonal inner products one and all strictly
+forward inner products zero.  By
+\noderef{OldPairDigraphProperties}, this makes $D_2(s)$ $T_s$-free.
+
+For the count, there are $2^p-1$ choices for $x$.  The nonzero solutions of
+$\langle x,y\rangle=1$ form an affine hyperplane of size $2^{p-1}$, so after
+the projective identification used in the paper the ordered nonedge-pair
+count is
+$(2^p-1)(2^{p-1}-1)$.  Expanding this product gives the stated formula.
+\end{proof}

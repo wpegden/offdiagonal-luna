@@ -1,0 +1,42 @@
+\begin{lemma}
+Let $G$ be the graph in the old polarity construction and let
+$D=\mathcal D(G)$.  Fix $t,q,k,n,h$ with $t\geq2$ and
+$32tq\log q\leq k$.  Suppose the coherent-pair tree is partitioned by
+binary signatures $z\in\{0,1\}^k$, with $c(z)$ paths of signature $z$, so
+that
+\[
+ c(z)\leq(n^2)^{|z|}h^{k-|z|},\qquad
+ c(z)>0\Longrightarrow |z|\leq32tq\log q,
+\]
+and that the sum of the signature counts is
+$\operatorname{fwi}_k(D)$.  If $h\leq n^2$, then
+\[
+ \operatorname{fwi}_k(D)\leq
+ 2^k(n^2)^{32tq\log q}
+ h^{k-32tq\log q}.
+\]
+For the polarity graph, the marking argument supplies these hypotheses
+with $n=|V(G)|$ and $h$ bounded by $4\lambda^2n^2/d^2$.
+\end{lemma}
+\begin{proof}
+The first displayed inequality bounds the number of paths having a fixed
+signature: an unmarked step has at most $n^2$ choices and a marked step at
+most $h$ choices.  The second inequality says that every nonzero signature
+has at most $32tq\log q$ unmarked steps.  Therefore the sum over all
+signatures is bounded by
+\[
+ \sum_{|z|\leq32tq\log q}(n^2)^{|z|}h^{k-|z|}.
+\]
+There are at most $2^k$ signatures, and $h\leq n^2$, so every summand is
+at most the term with exponent $32tq\log q$.  This proves the claimed
+bound.  In the old polarity argument, the children marked by
+$A^\sigma\times B^\sigma$ are bounded by
+\[
+ |A^\sigma||B^\sigma|\leq4\lambda^2n^2/d^2
+\]
+using \noderef{AlonRodlBound}; the coherent tuples are the tree paths by
+\noderef{OldPairDigraph}.  Thus the abstract signature hypotheses are
+exactly the interface delivered by the coherent-tree analysis, whose final
+count is also the rooted-tree estimate of
+\noderef{RootedTreeCounting}.
+\end{proof}

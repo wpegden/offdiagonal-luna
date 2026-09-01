@@ -1,0 +1,20 @@
+\begin{lemma}
+Let $G$ be a finite loop-aware graph with no vertices
+$a_1,b_1,\ldots,a_s,b_s$ satisfying
+\[
+ a_i b_i\notin E(G)\quad(1\leq i\leq s),
+ \qquad a_i b_j\in E(G)\quad(i<j).
+\]
+Then the old pair digraph $\mathcal D(G)$ of
+\noderef{OldPairDigraph} is loopless and contains no copy of $T_s$.
+\end{lemma}
+\begin{proof}
+The loop assertion follows directly from the construction: a pair $(a,b)$
+is a vertex only when $ab$ is a nonedge, whereas a loop at $(a,b)$ would
+require $ab$ to be an edge.  For the tournament assertion, suppose that
+$(a_i,b_i)$, $1\leq i\leq s$, form a transitive tournament in their displayed
+order.  Vertex membership gives $a_i b_i\notin E(G)$, and the arc condition
+in $\noderef{OldPairDigraph}$ gives $a_i b_j\in E(G)$ whenever $i<j$.
+These are exactly the forbidden two-row triangular incidences, a
+contradiction.  Thus both conclusions hold.
+\end{proof}

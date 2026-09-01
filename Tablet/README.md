@@ -9,7 +9,11 @@
 | CompleteColoring | definition | - | closed |
 | DStarCounting | proof | - | open |
 | ExpanderMixing | proof | - | open |
+| F2AsymptoticCorollary | proof | - | open |
 | F2ForwardIndependentBound | proof | - | open |
+| F2PairDigraph | definition | - | closed |
+| F2PairDigraphProperties | proof | - | open |
+| F2RankSequenceBound | proof | - | open |
 | FiniteRamseyPositivity | proof | - | open |
 | ForwardIndependentCount | definition | - | closed |
 | ForwardIndependentTuple | definition | - | closed |
@@ -19,7 +23,11 @@
 | LooplessDigraph | definition | - | closed |
 | MonochromaticClique | definition | - | closed |
 | MulticolorRamseyNumber | definition | - | closed |
+| OldCoherentTreeCount | proof | - | open |
+| OldPairDigraph | definition | - | closed |
+| OldPairDigraphProperties | proof | - | open |
 | OldPolarityConstruction | proof | - | open |
+| OldPolarityParameters | proof | - | open |
 | RamseyNumber | definition | - | closed |
 | RandomHomomorphismColoring | proof | - | open |
 | RandomPermutationReduction | proof | - | open |
@@ -32,4 +40,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 12/27 closed
+**Summary:** 14/35 closed

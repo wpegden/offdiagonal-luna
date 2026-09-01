@@ -1,0 +1,34 @@
+\begin{lemma}
+Let $s=s(n)\to\infty$ and let $a=a(n)\geq0$ satisfy $a=o(s)$.  With
+$k=s+a$, the exact sum in
+\noderef{F2RankSequenceBound} satisfies
+\[
+ \sum_{t=1}^{s-1}\binom kt
+  2^{(s-1)(t+k)-\binom{t+1}{2}}
+ \leq 2^{\frac32s^2+as-\frac52s+o(s)}.
+\]
+Equivalently, there is an error function $e=o(s)$ for which the left side
+is at most $2^{\frac32s^2+as-\frac52s+e}$ eventually.
+\end{lemma}
+\begin{proof}
+Write $t=s-j$.  Then
+$\binom{s+a}{t}=\binom{s+a}{j+a}$, and the standard estimate
+$\binom uv\leq(eu/v)^v$ gives
+\[
+ \binom{s+a}{s-j}2^{(s-1)(s-j+s+a)-\binom{s-j+1}{2}}
+ \leq
+ \left(\frac{e(s+a)}{a+1}\right)^{j+a}
+ 2^{s^2/2+s(s+a)-3s/2-(s+a)+3j/2-j^2/2}.
+\]
+The exponent depending on $j$ is a concave quadratic.  Its maximum is at
+$j=\log_2(e(s+a)/(a+1))+3/2$, up to an additive constant, so uniformly in
+$t$ each summand is at most
+\[
+ \left(\frac{e(s+a)}{a+1}\right)^a
+ 2^{s^2/2+s(s+a)-3s/2-(s+a)+O((\log s)^2)}.
+\]
+Since $a=o(s)$, the first factor is $2^{o(s)}$, and the $s$ summands absorb
+the remaining $O(\log s)$ term into $2^{o(s)}$.  Substituting $k=s+a$
+leaves the exponent
+$\frac32s^2+as-\frac52s+o(s)$, as claimed.
+\end{proof}
