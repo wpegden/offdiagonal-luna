@@ -4,7 +4,7 @@
 
 | Name | Kind | Title | Status |
 |------|------|-------|--------|
-| AlonRodlBound | proof | - | open |
+| AlonRodlBound | proof | - | closed |
 | CliqueWitness | definition | - | closed |
 | CompleteColoring | definition | - | closed |
 | DStarCounting | proof | - | open |
@@ -40,4 +40,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 14/35 closed
+**Summary:** 15/35 closed

@@ -2,7 +2,7 @@
 
 | Name | Env | Kind | Status | Labels | Title | Imports |
 |------|-----|------|--------|--------|-------|---------|
-| AlonRodlBound | lemma | proof | open | - | - | ExpanderMixing |
+| AlonRodlBound | lemma | proof | closed | - | - | ExpanderMixing |
 | CliqueWitness | definition | definition | closed | - | - | LoopGraph |
 | CompleteColoring | definition | definition | closed | - | - | Preamble |
 | DStarCounting | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, RootedTreeCounting, TransitiveTournament |
@@ -39,4 +39,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 14 | **Open:** 21
+**Total:** 35 nodes | **Closed:** 15 | **Open:** 20
