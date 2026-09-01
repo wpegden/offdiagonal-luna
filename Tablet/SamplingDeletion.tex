@@ -9,19 +9,89 @@ $p^k\,i_k(G)\leq1$ (where $i_k(G)$ is regarded as a real number), then
 \]
 \end{lemma}
 \begin{proof}
-Retain each vertex independently with probability $p$, and call the induced
-graph $G'$.  It remains loopless and $K_s$-free.  For each fixed vertex the
-probability of retention is $p$, while for each fixed $k$-set the probability
-that all its vertices are retained is $p^k$.  Hence
+If $s=0$, the map from the empty indexing set to $V(G)$ is injective and
+has vacuously adjacent distinct images, so \noderef{CliqueWitness} gives a
+clique witness of order $0$, contrary to the $K_s$-free hypothesis.  Thus we
+may assume $s\geq1$; together with $1\leq k$, this puts both Ramsey
+parameters in the positive range.
+
+Let $U$ be obtained by retaining each vertex independently with probability
+$p$, and put $G'=G[U]$.  Because $G'$ is induced, the loopless condition is
+inherited from $G$.  Also, a clique witness in $G'$ would, by the injectivity
+and distinct-vertex adjacency in \noderef{CliqueWitness}, be a clique witness
+in $G$; hence the hypothesis that $G$ is $K_s$-free implies that $G'$ is
+$K_s$-free.
+
+For the expectation, write $n=|V(G)|$ and use indicators.  Each vertex
+$v$ contributes $1$ to $|V(G')|$ exactly when it is retained, so its expected
+contribution is $p$, and summing over the $n$ vertices gives
+$\mathbb E|V(G')|=pn$.  By the definition of $i_k$ in
+\noderef{IndependentSetCount}, the independent $k$-sets of $G$ form a finite
+list in which each set occurs once.  A listed set $S$ is an independent
+$k$-set of $G'$ exactly when every vertex of $S$ is retained: inducedness
+preserves all the required nonadjacencies, and no other vertices can enter
+$S$.  Since $|S|=k$ and the vertex-retention events are independent, the
+indicator of this event has expectation $p^k$.  Linearity of expectation
+therefore gives
 \[
- \mathbb E\bigl(|V(G')|-i_k(G')\bigr)=pn-p^k i_k(G)\geq pn-1.
+ \mathbb E\bigl(|V(G')|-i_k(G')\bigr)=pn-p^k i_k(G)\geq pn-1,
 \]
-Some outcome $F$ therefore satisfies $|V(F)|-i_k(F)\geq pn-1$.  Delete one
-vertex from each independent $k$-set of $F$, processing the sets one at a
-time.  Deletions cannot create a clique and each deletion destroys the set
-currently being processed, so at most $i_k(F)$ vertices are deleted.  The
-remaining graph is loopless, $K_s$-free, and has no independent set of size
-$k$, with at least $pn-1$ vertices.  By the defining universal property of
-the Ramsey number in \noderef{RamseyNumber}, this says that its order is
-strictly below $r(s,k)$, proving the claim.
+where the final inequality is exactly the assumed count bound.  Since the
+sample space is finite, an average cannot exceed every one of its values.
+Thus there is an outcome, denoted by $F$, for which
+\[
+ |V(F)|-i_k(F)\geq pn-1.
+\]
+
+We now remove the independent $k$-sets of $F$ carefully.  By the finite-set
+definition in \noderef{IndependentSetCount}, enumerate the finite list counted
+by $i_k(F)$, and process its members in that order.  At a
+given stage, skip a listed set if one of its vertices has already been
+deleted.  Otherwise all of its $k$ vertices are still present.  The
+hypothesis $1\leq k$ implies that a set of cardinality $k$ is nonempty, so
+we may choose one of its vertices and delete it.  This deletes the set being
+processed, and at most one vertex is deleted for each member of the list;
+hence the total number of deleted vertices is at most $i_k(F)$.  Deleting
+vertices cannot create a clique: any clique witness in the remaining induced
+graph would also be a clique witness in $F$, so the remaining graph is still
+$K_s$-free by \noderef{CliqueWitness}.  It is also loopless because looplessness
+is inherited by induced subgraphs.
+
+Call the final graph $H$ and let $m=|V(H)|$.  Every independent $k$-set of
+$H$ in the finite-set sense of \noderef{IndependentSetCount} is an independent
+$k$-set of $F$, because $H$ is induced.  It was
+therefore one of the listed sets.  If it had not been destroyed, then it
+would still have all of its vertices at the stage when it was processed, and
+the procedure would have deleted one of them.  This contradiction proves
+that $H$ has no independent set of size $k$.  Moreover,
+\[
+ m\geq |V(F)|-i_k(F)\geq pn-1.
+\]
+
+For completeness, spell out the Ramsey-number step.  Let
+\[
+\mathcal R_{s,k}=\{N\in\mathbb N:\text{ every loopless finite graph of
+ order }N\text{ has a clique witness of order }s\text{ or an independent
+ witness of order }k\}.
+\]
+This is the set whose natural infimum defines $r(s,k)$ in
+\noderef{RamseyNumber}.  The finite Ramsey theorem shows that
+$\mathcal R_{s,k}$ is nonempty, since $s,k\geq1$.  By well-ordering of
+$\mathbb N$, this nonempty set has a least element $R$, and its natural
+infimum is attained at that element: $r(s,k)=R$ and
+$R\in\mathcal R_{s,k}$.
+
+Suppose for contradiction that $m\geq r(s,k)=R$.  Choose $R$ vertices of
+$H$ and let $H_0$ be the induced graph on them.  Then $H_0$ is loopless,
+has order $R$, and is still $K_s$-free, because any clique witness in $H_0$
+would be one in $H$.  It also has no independent set of size $k$, because
+any such set in $H_0$ would be one in $H$.  Thus $H_0$ is a loopless graph of
+order $R$ with neither of the two witnesses required by the defining
+property of $\mathcal R_{s,k}$, contradicting $R\in\mathcal R_{s,k}$.
+Consequently $m<r(s,k)$.  Combining this strict inequality with
+$m\geq pn-1$ yields
+\[
+ r(s,k)>pn-1,
+\]
+as claimed.
 \end{proof}
