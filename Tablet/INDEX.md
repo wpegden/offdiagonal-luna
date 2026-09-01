@@ -30,7 +30,7 @@
 | RamseyNumber | definition | definition | closed | - | - | CliqueWitness, IndependentWitness, LoopGraph, Preamble |
 | RandomHomomorphismColoring | lemma | proof | open | - | - | CompleteColoring, ForwardIndependentCount, MonochromaticClique, TransitiveTournament |
 | RandomPermutationReduction | lemma | proof | open | - | - | CliqueWitness, ForwardIndependentCount, IndependentSetCount, TransitiveTournament |
-| RootedTreeCounting | lemma | proof | open | - | - | Preamble |
+| RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
 | SamplingDeletion | lemma | proof | open | - | - | CliqueWitness, IndependentSetCount, RamseyNumber |
 | ThmClose | theorem | proof | open | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmKCk | theorem | proof | open | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
@@ -39,4 +39,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 16 | **Open:** 19
+**Total:** 35 nodes | **Closed:** 17 | **Open:** 18

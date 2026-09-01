@@ -31,7 +31,7 @@
 | RamseyNumber | definition | - | closed |
 | RandomHomomorphismColoring | proof | - | open |
 | RandomPermutationReduction | proof | - | open |
-| RootedTreeCounting | proof | - | open |
+| RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | open |
 | ThmClose | proof | - | open |
 | ThmKCk | proof | - | open |
@@ -40,4 +40,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 16/35 closed
+**Summary:** 17/35 closed
