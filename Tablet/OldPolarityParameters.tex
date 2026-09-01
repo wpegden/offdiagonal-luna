@@ -1,34 +1,64 @@
 \begin{lemma}
-For $t\geq2$ and sufficiently large prime powers $q$, the polarity graph
-$G(t,q)$ has order $n$, degree $d$, and nontrivial spectral parameter
-$\lambda$ satisfying
+Let $K$ be a finite field, let $q=|K|$ be a prime power with $q\geq16$,
+and let $t\geq2$.  The polarity graph $G_K(t)$ of
+\noderef{PolarityGraph} has order
+\[
+ n=\frac{q^{t+1}-1}{q-1}
+\]
+and is $d$-regular with
+\[
+ d=\frac{q^t-1}{q-1}.
+\]
+Write $G=G_K(t)$ below.
+If $a=(q^{t-1}-1)/(q-1)$ is the common-neighbour parameter for distinct
+points, its nonprincipal spectral parameter is
+$\lambda=\sqrt{d-a}$, in the sense of
+\noderef{NonprincipalSpectralBound}.  In particular,
 \[
  q^t/2\leq n\leq2q^t,\qquad
  q^{t-1}/2\leq d\leq2q^{t-1},\qquad
  \lambda\leq2\sqrt d.
 \]
-Its orthogonality relation has no two-row triangular configuration of length
+The orthogonality relation has no two-row triangular configuration of length
 $t+2$: there are no $(a_i,b_i)_{i=1}^{t+2}$ with
 $a_i b_i\notin E(G)$ and $a_i b_j\in E(G)$ for all $i<j$.  Moreover, the
 old pair digraph $\mathcal D(G)$ has at least $q^{2t}/2$ vertices.
 \end{lemma}
 \begin{proof}
-The points of $G(t,q)$ are the one-dimensional subspaces of
-$\mathbb F_q^{t+1}$, so their number is
-$(q^{t+1}-1)/(q-1)$, which lies between $q^t/2$ and $2q^t$ for large $q$.
-The nonzero solutions of one nontrivial orthogonality equation form a
-codimension-one subspace.  After quotienting by nonzero scalar multiples,
-this gives degree $(q^t-1)/(q-1)$, between $q^{t-1}/2$ and $2q^{t-1}$.
-The common-neighbour calculation for two distinct points gives the usual
-identity for the square of the adjacency matrix, so every nonprincipal
-eigenvalue has absolute value at most $2\sqrt d$ once $q$ is large.
+Fix representatives for the points using the projectivization in
+\noderef{PolarityGraph}.  There are $q^{t+1}-1$ nonzero vectors and every
+one-dimensional subspace has exactly $q-1$ nonzero representatives.  Hence
+the order is exactly $n=(q^{t+1}-1)/(q-1)$.  Expanding this quotient as the
+geometric sum $1+q+\cdots+q^t$ gives $q^t\leq n$ and
+$n\leq q^t/(1-1/q)\leq2q^t$, since $q\geq16$.  For a fixed nonzero vector
+$x$,
+the equation $\langle x,y\rangle=0$ is a nontrivial linear equation, so its
+solution space has $q^t$ elements and has $q^t-1$ nonzero elements.  Dividing
+by the $q-1$ representatives of each point shows that every vertex has
+exactly $d=(q^t-1)/(q-1)$ neighbours, with a loop counted once when present.
+The same geometric-sum expansion gives $q^{t-1}\leq d\leq2q^{t-1}$, so the
+displayed order and degree inequalities follow.
+
+For distinct points, independent representatives impose two independent
+linear equations on $y$.  Their common orthogonal space therefore has
+$q^{t-1}-1$ nonzero vectors, so the common-neighbour parameter is
+$a=(q^{t-1}-1)/(q-1)$.  Thus the adjacency matrix satisfies
+$A^2=aJ_n+(d-a)I_n$.  If $v$ and $\mu$ satisfy the eigen-equations in
+\noderef{NonprincipalSpectralBound}, then the coordinate-sum condition gives
+$J_nv=0$, and applying $A$ once more gives $\mu^2v=(d-a)v$.  Since $v\ne0$,
+$\mu^2=d-a$, so $|\mu|=\sqrt{d-a}=\lambda$.  Also $0\leq a\leq d$, hence
+$\lambda\leq\sqrt d\leq2\sqrt d$.
 
 For the triangular assertion, choose nonzero representatives $x_i,y_i$.
 If a nontrivial relation among the $y_i$ has first nonzero coefficient at
 $i$, taking its inner product with $x_i$ leaves only the nonzero diagonal
 term $\langle x_i,y_i\rangle$, a contradiction.  Thus $t+2$ vectors would
-be independent in the $(t+1)$-dimensional ambient space.  Finally, the
-ordered nonedge-pair count in the definition of
-\noderef{OldPairDigraph}, together with the preceding point and degree
-counts, is at least $q^{2t}/2$ for large $q$.
+be independent in the $(t+1)$-dimensional ambient space, a contradiction.
+Finally, by the ordered nonedge-pair definition in
+\noderef{OldPairDigraph}, the old pair digraph has one vertex for each
+ordered nonedge.  Counting the complement of the $d$ neighbours in each
+first-coordinate fibre, and using the exact values of $n$ and $d$ above, gives
+exactly $n(n-d)=nq^t$ ordered nonedges, because $n-d=q^t$.  Since
+$n\geq q^t$, this is at least $q^{2t}$, and therefore at least
+$q^{2t}/2$ as required.
 \end{proof}

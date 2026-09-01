@@ -21,11 +21,13 @@
 | LooplessDigraph | definition | definition | closed | - | - | Preamble |
 | MonochromaticClique | definition | definition | closed | - | - | CompleteColoring |
 | MulticolorRamseyNumber | definition | definition | closed | - | - | CompleteColoring, MonochromaticClique, Preamble |
+| NonprincipalSpectralBound | definition | definition | closed | - | - | LoopGraph |
 | OldCoherentTreeCount | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, OldPairDigraph, RootedTreeCounting |
 | OldPairDigraph | definition | definition | closed | - | - | LoopGraph, LooplessDigraph |
 | OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
 | OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
-| OldPolarityParameters | lemma | proof | open | - | - | OldPairDigraph |
+| OldPolarityParameters | lemma | proof | open | - | - | NonprincipalSpectralBound, OldPairDigraph, PolarityGraph |
+| PolarityGraph | definition | definition | closed | - | - | LoopGraph |
 | Preamble | preamble | preamble | closed | - | - | - |
 | RamseyNumber | definition | definition | closed | - | - | CliqueWitness, IndependentWitness, LoopGraph, Preamble |
 | RandomHomomorphismColoring | lemma | proof | open | - | - | CompleteColoring, ForwardIndependentCount, MonochromaticClique, TransitiveTournament |
@@ -39,4 +41,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 21 | **Open:** 14
+**Total:** 37 nodes | **Closed:** 23 | **Open:** 14

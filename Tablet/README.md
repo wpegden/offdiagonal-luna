@@ -23,11 +23,13 @@
 | LooplessDigraph | definition | - | closed |
 | MonochromaticClique | definition | - | closed |
 | MulticolorRamseyNumber | definition | - | closed |
+| NonprincipalSpectralBound | definition | - | closed |
 | OldCoherentTreeCount | proof | - | open |
 | OldPairDigraph | definition | - | closed |
 | OldPairDigraphProperties | proof | - | closed |
 | OldPolarityConstruction | proof | - | open |
 | OldPolarityParameters | proof | - | open |
+| PolarityGraph | definition | - | closed |
 | RamseyNumber | definition | - | closed |
 | RandomHomomorphismColoring | proof | - | open |
 | RandomPermutationReduction | proof | - | open |
@@ -40,4 +42,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 21/35 closed
+**Summary:** 23/37 closed
