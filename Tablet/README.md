@@ -34,10 +34,10 @@
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | open |
 | ThmClose | proof | - | open |
-| ThmKCk | proof | - | open |
+| ThmKCk | proof | - | closed |
 | ThmMain | proof | - | open |
 | ThmMulticolor | proof | - | open |
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 17/35 closed
+**Summary:** 18/35 closed

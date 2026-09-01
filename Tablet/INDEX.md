@@ -33,10 +33,10 @@
 | RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
 | SamplingDeletion | lemma | proof | open | - | - | CliqueWitness, IndependentSetCount, RamseyNumber |
 | ThmClose | theorem | proof | open | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
-| ThmKCk | theorem | proof | open | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
+| ThmKCk | theorem | proof | closed | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmMain | theorem | proof | open | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
 | ThmMulticolor | theorem | proof | open | - | - | F2ForwardIndependentBound, MulticolorRamseyNumber, RandomHomomorphismColoring |
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 17 | **Open:** 18
+**Total:** 35 nodes | **Closed:** 18 | **Open:** 17
