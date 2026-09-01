@@ -1,18 +1,23 @@
 \begin{lemma}
-Let $p\geq1$ and $k\geq1$.  The number of ambient vector tuples
+Let $p,k$ be natural numbers with $p\geq1$ and $k\geq1$.  The number of
+ambient vector tuples
 \[
  (\mathbf a_1,\mathbf b_1,\ldots,\mathbf a_k,\mathbf b_k)
  \in(\mathbb F_2^p)^{2k}
 \]
 such that
-$\langle\mathbf a_i,\mathbf b_j\rangle=1$ whenever $i\leq j$ is at most
 \[
- \sum_{t=1}^{p}\binom kt\,2^{pt+pk-\binom{t+1}{2}}.
+ \langle\mathbf a_i,\mathbf b_j\rangle=1
+ \qquad\text{for all }1\leq i\leq j\leq k
 \]
-Consequently, the forward-independent $k$-tuple count in
-$D_2(s)$ is bounded by this sum with $p=s-1$.  The ambient count is an
-intentional overcount: it includes zero vectors and does not quotient by
-the projective equivalence relation.
+is at most
+\[
+ \sum_{t=1}^{p}\binom kt\cdot
+ 2^{p(t+k)-\binom{t+1}{2}}.
+\]
+This is an intentional overcount in the application to projective
+vectors: it includes zero vectors and does not quotient by the projective
+equivalence relation.
 \end{lemma}
 \begin{proof}
 Because $k\geq1$, the first diagonal equation is present.  For an ambient
@@ -38,7 +43,5 @@ most
  =2^{pt+pk-\binom{t+1}{2}}
 \]
 tuples.  Summing over the at most $\binom kt$ sequences and over
-$1\leq t\leq p$ proves the formula.  The forward-independent tuples in
-\noderef{F2PairDigraph} satisfy these equations, so the ambient count is an
-upper bound for the desired projective count.
+$1\leq t\leq p$ proves the formula.
 \end{proof}
