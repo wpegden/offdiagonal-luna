@@ -35,9 +35,9 @@
 | SamplingDeletion | proof | - | open |
 | ThmClose | proof | - | open |
 | ThmKCk | proof | - | closed |
-| ThmMain | proof | - | open |
+| ThmMain | proof | - | closed |
 | ThmMulticolor | proof | - | open |
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 18/35 closed
+**Summary:** 19/35 closed
