@@ -2,6 +2,10 @@ import Tablet.ForwardIndependentCount
 import Tablet.AlonRodlBound
 import Tablet.RootedTreeCounting
 import Tablet.TransitiveTournament
+import Tablet.PolarityGraph
+import Tablet.OldPolarityParameters
+import Tablet.ExpanderMixing
+import Tablet.ForwardIndependentTuple
 
 -- [TABLET NODE: DStarCounting]
 theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :

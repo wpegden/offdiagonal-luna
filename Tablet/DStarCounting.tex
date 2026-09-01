@@ -1,52 +1,354 @@
 \begin{lemma}
 For every integer $t\geq2$ there is a constant $C=C(t)$ such that, for every
-sufficiently large power of two $q$ and every $k\geq Cq(\log q)^2$, there is
-a loopless digraph $D$ (the paper's improved pair digraph $D^*(t,q)$) that is
-$T_{t+1}$-free, has at least $q^{2t-1}/4$ vertices, and satisfies
+sufficiently large power of two $q$ and every $k\geq Cq(\operatorname{Nat.log}q)^2$,
+there is a loopless digraph $D$ (the paper's improved pair digraph
+$D^*(t,q)$) that is $T_{t+1}$-free, has at least $q^{2t-1}/4$ vertices, and
+satisfies
 \[
  \operatorname{fwi}_k(D^*(t,q))\leq(Cq^t)^k.
 \]
+Here $\operatorname{Nat.log}$ is the base-two natural-number logarithm used
+by the Lean threshold; for powers of two it is converted to the paper's
+natural logarithm explicitly in the proof.
 \end{lemma}
 \begin{proof}
-Take the polarity graph $G(t,q)$ on the one-dimensional subspaces of
-$\mathbb F_q^{t+1}$, with adjacency given by orthogonality, and let
-$D^*(t,q)$ have vertices $(a,b)$ with $a\perp b$, with an arc from $(a,b)$ to
-$(a',b')$ exactly when $a\perp b'$ and $a'\not\perp b$.  The standard count of
-$1$-spaces gives $|V(G)|\sim q^t$ and $|V(D^*)|\sim q^{2t-1}$; increasing the
-threshold for $q$ makes the latter at least $q^{2t-1}/4$.
+Fix $t\geq2$.  We choose one constant $C=C(t)$ sufficiently large below;
+in particular, it is at least $16$ and all later lower bounds on $q$ are
+absorbed into $q\geq C$.  Let $q\geq C$ be a power of two, write
+$q=2^m$, and suppose
+\[
+        k\geq Cq(\operatorname{Nat.log}q)^2.                 \tag{1}
+\]
+Since $q\geq2$, $\operatorname{Nat.log}q=m$; put $L=m$.  Thus the exact
+conversion between the two logarithms is
+\[
+        q=2^L,\qquad \log q=L\log2.
+                                                               \tag{2}
+\]
+Consequently a bound $O_t(q\log q)$ in the paper is also $O_t(qL)$, with
+the fixed factor $\log2$ absorbed into its constant.
 
-If $(a_i,b_i)_{i=1}^{t+1}$ formed a transitive tournament in $D^*$, choose
-nonzero representatives $x_i,y_i$.  Then $\langle x_i,y_i\rangle=0$, and for
-$i<j$, $\langle x_i,y_j\rangle=0$ and $\langle x_j,y_i\rangle\ne0$.  If a
-shortest nontrivial linear relation among the $y_i$ began at index $i$, 
-pairing it with $x_{i+1}$ would leave only
-$\alpha_i\langle x_{i+1},y_i\rangle=0$, a contradiction.  Thus the
-$t+1$ vectors $y_i$ are independent in a $(t+1)$-dimensional space.  But
-$x_1$ is nonzero and is orthogonal to $y_1$ because $(a_1,b_1)$ is a vertex,
-and to every $y_j$ with $j>1$ because the tournament has the arc from the
-first vertex to the $j$-th vertex.  Thus $x_1$ is orthogonal to a basis and
-must be zero, a contradiction.  Hence $D^*$ is $T_{t+1}$-free.
+Choose a field $K$ of order $q$ (for example, take the quotient of
+$\mathbb F_2[X]$ by an irreducible polynomial of degree $m$).  Let
+$G=G_K(t)$ be the projective polarity graph from
+\noderef{PolarityGraph}: its vertices are the one-dimensional subspaces of
+$K^{t+1}$ and $a\sim b$ means $a\perp b$.  The exact order, degree, and
+spectral package supplied for this graph by
+\noderef{OldPolarityParameters} is
+\[
+ n=|V(G)|=\frac{q^{t+1}-1}{q-1},\qquad
+ d=\frac{q^t-1}{q-1},\qquad
+ \lambda\leq2\sqrt d,
+                                                               \tag{3}
+\]
+as well as
+\[
+ q^t/2\leq n\leq2q^t,\qquad
+ q^{t-1}/2\leq d\leq2q^{t-1}.                                 \tag{4}
+\]
+The same node supplies the bilinear spectral inequality with these $n,d,
+\lambda$ and the cardinality equality $|V(G)|=n$.  Applying
+\noderef{ExpanderMixing} to that bilinear inequality and the indicator
+vectors of arbitrary subsets gives the ordered estimate
+\[
+ \left|e_G(X,Y)-\frac dn|X||Y|\right|
+ \leq\lambda\sqrt{|X||Y|}                                    \tag{5}
+\]
+for every pair of subsets $X,Y\subseteq V(G)$.  We will use (5) with its
+ordered convention, including possible loops.
 
-For the tuple count, expose a forward-independent tuple one pair at a time.
-For a partial tuple $\sigma$ and a projective point $y$, let $W^\sigma(y)$ be
-spanned by those previously chosen second coordinates whose first coordinate
-is orthogonal to $y$, and write $r(y)=\dim W^\sigma(y)$.  A possible next first
-coordinate lies in $W^\sigma(b)^\perp$, so for fixed $b$ there are at most
-$2q^{t-r(b)}$ choices.  Partition the possible $b$'s by the value of $r(b)$.
-At each level mark children with popular $b$ or poor first coordinate.
-Double-counting incidences between a level and the subspaces $W^\sigma(y)$
-bounds popular children by $O_t(q^t)$.  Applying the expander-mixing estimate
-and its poor-set product consequence to the polarity graph bounds poor
-children by $O_t(q^t)$ as well, using the product estimate of
-\noderef{AlonRodlBound}.
+Define the witness digraph explicitly.  Its vertex set is
+\[
+ V(D^*)=\{(a,b)\in V(G)^2:a\perp b\},
+\]
+and, for two such ordered pairs, put
+\[
+ ((a,b),(a',b'))\in A(D^*)\quad\Longleftrightarrow\quad
+ a\perp b'\ \text{ and }\ a'\not\perp b.                    \tag{6}
+\]
+This is the improved pair digraph described in the paper, rather than an
+arbitrary existential digraph.  For each of the $n$ choices of $a$, the
+number of choices of $b$ with $a\perp b$ is exactly $d$, including a
+possible loop of $G$.  Therefore
+\[
+ |V(D^*)|=nd
+ =\frac{q^{t+1}-1}{q-1}\frac{q^t-1}{q-1}.                    \tag{7}
+\]
+The geometric sums in (3) give $n\geq q^t$ and $d\geq q^{t-1}$, while
+(4) gives the estimate needed uniformly below:
+\[
+ q^{2t-1}\leq |V(D^*)|\leq4q^{2t-1}.                         \tag{8}
+\]
+In particular, the required lower bound $q^{2t-1}/4$ holds, and the
+quantity $4q^{2t-1}$, not $q^{2t-1}$, is a valid upper bound for the number
+of children in the tuple tree.
 
-Every unmarked extension raises the dimension of one of the subspaces in a
-fixed level and decreases its available set by a factor
-$1-1/(32tq)$.  Since each available set initially has at most $2q^t$ points,
-there can be only $O_t(q\log q)$ unmarked extensions on a path.  The rooted
-signature count of \noderef{RootedTreeCounting}, with at most $O_t(q^t)$ marked
-children and at most $q^{2t-1}$ total children, now gives
-$\operatorname{fwi}_k(D^*)\leq2^kq^{O_t(q\log q)}(O_t(q^t))^k$.
-The assumed lower bound on $k$ absorbs the first two factors into the
-constant, yielding $(Cq^t)^k$ after enlarging $C$.
+The digraph is loopless directly from (6).  A loop at $(a,b)$ would require
+both the vertex condition $a\perp b$ and the second arc condition
+$a\not\perp b$, which is impossible.  Thus (6) defines a witness of the
+loopless type used by \noderef{ForwardIndependentTuple} and
+\noderef{ForwardIndependentCount}.
+
+We next prove that $D^*$ is $T_{t+1}$-free.  Suppose that
+$(a_i,b_i)_{i=1}^{t+1}$ were the image of a copy of the transitive
+tournament in the sense of \noderef{TransitiveTournament}.  Choose nonzero
+representatives $x_i,y_i\in K^{t+1}$ for $a_i,b_i$.  The vertex condition
+and (6) give
+\[
+ \langle x_i,y_i\rangle=0,\qquad
+ \langle x_i,y_j\rangle=0,
+ \quad\langle x_j,y_i\rangle\neq0 \quad(i<j).                \tag{9}
+\]
+We claim that $y_1,\ldots,y_{t+1}$ are linearly independent.  If a nonzero
+relation $\sum_i c_i y_i=0$ exists, let $i_0$ be its first index with
+$c_{i_0}\neq0$.  If $i_0<t+1$, pair the relation with $x_{i_0+1}$.  All
+terms with index below $i_0$ vanish by the choice of $i_0$; the diagonal
+term at $i_0+1$ vanishes by (9); every term with index larger than
+$i_0+1$ vanishes by the forward orthogonality in (9).  The only remaining
+term is
+\[
+ c_{i_0}\langle x_{i_0+1},y_{i_0}\rangle,
+\]
+which is nonzero by the reverse nonorthogonality in (9), a contradiction.
+If the first nonzero coefficient is instead at the final index $i_0=t+1$,
+the relation is $c_{t+1}y_{t+1}=0$, impossible because
+$c_{t+1}\neq0$ and the representative $y_{t+1}$ is nonzero.  This final-index
+case is essential because there is no $x_{i_0+1}$ available.  Hence the
+$y_i$ form a basis of $K^{t+1}$.
+
+Now $x_1$ is orthogonal to $y_1$ by the vertex condition and to every
+$y_j$ with $j>1$ by the forward arc condition in (9).  It is therefore
+orthogonal to a basis.  The dot product on $K^{t+1}$ is nondegenerate, so
+$x_1=0$, contradicting its choice as a representative.  This proves the
+$T_{t+1}$-freeness asserted in the lemma.
+
+It remains to count forward-independent tuples.  By the definitions in
+\noderef{ForwardIndependentTuple} and
+\noderef{ForwardIndependentCount}, a forward-independent tuple in $D^*$ is
+equivalently a sequence
+\[
+ \sigma=(a_1,b_1,\ldots,a_m,b_m)
+\]
+with $a_i\perp b_i$ for every $i$ and, for every $i<j$,
+\[
+ a_i\perp b_j\ \Longrightarrow\ a_j\perp b_i.               \tag{10}
+\]
+Indeed, (10) is exactly the negation of the conjunction in the arc rule
+(6).  This equivalence is reversible and also handles repeated entries,
+because both sides use the same ordered conditions.
+
+Form a rooted tree whose root is the empty sequence and whose children
+append one pair satisfying (10).  Its level-$k$ vertices are counted by
+$\operatorname{fwi}_k(D^*)$.  Fix a partial consistent sequence $\sigma$.
+For each projective point $y$ define the linear subspace and its dimension
+\[
+ W^\sigma(y)=\mathop{\mathrm{span}}\{b_i:a_i\perp y\},\qquad
+ r^\sigma(y)=\dim W^\sigma(y).                                \tag{11}
+\]
+If $(a,b)$ is a child of $\sigma$, then $a\perp b$.  Moreover, whenever
+$a_i\perp b$, (10) gives $a\perp b_i$, so $a$ is orthogonal to all of
+$W^\sigma(b)$.  The orthogonal complement has dimension $t+1-r(b)$;
+therefore the number of possible first coordinates for a fixed $b$ is at
+most
+\[
+ \frac{q^{t+1-r(b)}-1}{q-1}\leq2q^{t-r(b)}                 \tag{12}
+\]
+when $r(b)\leq t$, and is zero when $r(b)=t+1$.
+
+For $0\leq r\leq t+1$, put
+\[
+ U_r^\sigma=\{y:r^\sigma(y)\leq r\},\qquad
+ Z_r^\sigma=U_r^\sigma\setminus U_{r-1}^\sigma,\qquad
+ U_{-1}^\sigma=\varnothing.                                  \tag{13}
+\]
+For each $0\leq r\leq t$ with $|U_r^\sigma|>0$, choose
+$\ell=\ell_r^\sigma\in[0,r]$ for which $|Z_\ell^\sigma|$ is maximal.
+Since the $Z_j^\sigma$ for $0\leq j\leq r$ partition $U_r^\sigma$,
+\[
+ |Z_\ell^\sigma|\geq\frac{|U_r^\sigma|}{r+1}
+ \geq\frac{|U_r^\sigma|}{2t}.                                 \tag{14}
+\]
+
+Call $u\in Z_r^\sigma$ popular at level $r$ if it is contained in at
+least $|Z_\ell^\sigma|/(16q)$ of the subspaces
+$W^\sigma(y)$ with $y\in Z_\ell^\sigma$.  Each such subspace has dimension
+$\ell$, hence contains
+\[
+ \frac{q^\ell-1}{q-1}\leq2q^{\ell-1}
+\]
+projective points (with the inequality trivial when $\ell=0).  Double
+counting incidences $(u,y)$ with $u\subseteq W^\sigma(y)$, $u\in Z_r^\sigma$,
+and $y\in Z_\ell^\sigma$, gives
+\[
+ \#\{\text{popular }u\}\,\frac{|Z_\ell^\sigma|}{16q}
+ \leq |Z_\ell^\sigma|\,2q^{\ell-1},
+ \qquad\text{so}\qquad
+ \#\{\text{popular }u\}\leq32q^\ell.                         \tag{15}
+\]
+Mark every child whose second coordinate $b$ is popular for the level
+$r=r(b)$.  By (12), (15), and $\ell_r^\sigma\leq r$, the number of marked
+children of this type is at most
+\[
+ \sum_{r=0}^t 32q^{\ell_r^\sigma}\,2q^{t-r}
+ \leq64(t+1)q^t\leq128tq^t.                                   \tag{16}
+\]
+
+Call a first coordinate $a$ poor at level $r$ if
+\[
+ |N_G(a)\cap Z_\ell^\sigma|
+ \leq\frac{|Z_\ell^\sigma|}{8q},\qquad
+ \ell=\ell_r^\sigma,                                          \tag{17}
+\]
+and let $P_r$ be the poor set.  The definition gives the first incidence
+bound
+\[
+ e_G(P_r,Z_\ell^\sigma)\leq
+ \frac{|P_r|\,|Z_\ell^\sigma|}{8q}.                             \tag{18}
+\]
+We also need the product bound in precisely the form of
+\noderef{AlonRodlBound}.  From (4),
+\[
+ \frac dn\geq\frac1{4q},
+\]
+so (17) implies, for every $a\in P_r$,
+\[
+ |N_G(a)\cap Z_\ell^\sigma|\leq
+ \frac d{2n}|Z_\ell^\sigma|.                                  \tag{19}
+\]
+The graph order and degree are positive, and (5) is exactly the all-subset
+mixing premise required by \noderef{AlonRodlBound}.  Applying that node to
+$A=P_r$ and $B=Z_\ell^\sigma$, with (19), yields
+\[
+ |P_r|\,|Z_\ell^\sigma|
+ \leq\frac{4\lambda^2n^2}{d^2}.                               \tag{20}
+\]
+Using $\lambda^2\leq4d$, $n\leq2q^t$, and
+$d\geq q^{t-1}/2$, the right side is at most $128q^{t+1}$; we retain the
+weaker convenient estimate
+\[
+ |P_r|\,|Z_\ell^\sigma|\leq1024q^{t+1}.                        \tag{21}
+\]
+This is the Alon--Rodl product estimate, with its exact mixing hypotheses
+made explicit rather than inferred from a proof of the cited node.
+
+Since $|Z_r^\sigma|\leq|Z_\ell^\sigma|$, (5) and (21) give the second
+incidence estimate
+\[
+\begin{aligned}
+ e_G(P_r,Z_r^\sigma)
+ &\leq\frac dn|P_r|\,|Z_r^\sigma|
+       +\lambda\sqrt{|P_r|\,|Z_r^\sigma|}\\
+ &\leq\frac4q\,1024q^{t+1}
+       +4q^{(t-1)/2}\sqrt{1024q^{t+1}}\\
+ &\leq5000q^t.                                                 \tag{22}
+\end{aligned}
+\]
+Here $\lambda\leq2\sqrt d\leq4q^{(t-1)/2}$ follows from (3) and (4).
+Mark every child with poor first coordinate $a$ at the level
+$r=r(b)$.  A child also has $a\perp b$, and $r(b)=r$ puts
+$b\in Z_r^\sigma$, so these children are counted by the ordered edges in
+$e_G(P_r,Z_r^\sigma)$.  Summing (22) over $r$ marks at most
+$5000(t+1)q^t\leq10000tq^t$ children of this second type.
+
+Choose $A=A(t)$ large enough that it dominates the constants in (16) and
+(22), and mark the root as well.  Every tree vertex then has at most
+\[
+                         h=Aq^t                              \tag{23}
+\]
+marked children.
+
+We now prove the required bound on unmarked vertices on a path.  Suppose
+that $(a,b)$ extends $\sigma$ and its child $\sigma'$ is unmarked.  Put
+$r=r^\sigma(b)$ and $\ell=\ell_r^\sigma$.  The child exists only when
+$r\leq t$, and $b\in Z_r^\sigma$.  Since $a$ is not poor, at least
+$|Z_\ell^\sigma|/(8q)$ points $y\in Z_\ell^\sigma$ satisfy $a\perp y$.
+Since $b$ is not popular, at most
+$|Z_\ell^\sigma|/(16q)$ of these have $b\subseteq W^\sigma(y)$.
+Consequently at least
+\[
+                         \frac{|Z_\ell^\sigma|}{16q}             \tag{24}
+\]
+points $y$ satisfy both $a\perp y$ and
+$b\not\subseteq W^\sigma(y)$.  For each of them, (11) gives
+\[
+ W^{\sigma'}(y)=W^\sigma(y)+\langle b\rangle,\qquad
+ r^{\sigma'}(y)=\ell+1.                                      \tag{25}
+\]
+Thus
+\[
+ |U_\ell^{\sigma'}|
+ \leq |U_\ell^\sigma|-\frac{|Z_\ell^\sigma|}{16q}.             \tag{26}
+\]
+By (14), $|U_\ell^\sigma|\leq|U_r^\sigma|\leq2t|Z_\ell^\sigma|$.
+Therefore every unmarked extension satisfies the quantitative decay
+\[
+ |U_\ell^{\sigma'}|\leq
+ \left(1-\frac1{32tq}\right)|U_\ell^\sigma|.                  \tag{27}
+\]
+Record $\psi(\sigma')=\ell$.  Notice also that this record implies
+$|U_\ell^\sigma|\geq|Z_\ell^\sigma|>0$, so the set being decreased was
+nonempty immediately before every recorded decrease.
+
+Consider a path
+\[
+ \sigma_0,\sigma_1,\ldots,\sigma_m
+\]
+from the root, and suppose it contains more than $w$ unmarked vertices
+among $\sigma_1,\ldots,\sigma_m$.  Put
+\[
+                         w=AqL.                               \tag{28}
+\]
+By the pigeonhole principle, some $\ell\in[0,t]$ occurs as
+$\psi(\sigma_i)$ for at least $w/(t+1)$ of those unmarked indices.  The
+sets $U_\ell^{\sigma_i}$ are nonincreasing along the path, because adding
+a pair can only enlarge each span in (11).  If $i^*$ is the last index
+with this value of $\ell$, then (27), the preceding occurrences, and
+$n\leq2q^t$ give
+\[
+ |U_\ell^{\sigma_{i^*-1}}|
+ \leq n\left(1-\frac1{32tq}\right)^{w/(t+1)-1}.                \tag{29}
+\]
+Increase $A$ and $C$ if necessary.  Since $t+1\leq2t$, $q\geq C$, and
+$w=AqL$, the elementary inequality $1-x\leq e^{-x}$ gives
+\[
+ \left(1-\frac1{32tq}\right)^{w/(t+1)-1}
+ \leq \exp\left(-\frac{w}{100t^2q}\right)
+ <\frac1{4q^t}.                                                \tag{30}
+\]
+The last inequality is ensured by taking $A>100t^2(t+1)$ and then taking
+$C$ large enough that the harmless subtractive $1$ in the exponent is
+absorbed.  Equations (29)--(30) imply
+$|U_\ell^{\sigma_{i^*-1}}|<1$, hence this integer set is empty.  This
+contradicts the nonemptiness recorded immediately before the unmarked
+extension $\sigma_{i^*-1}\to\sigma_{i^*}$.  Thus every root-to-vertex path
+has at most $w=AqL$ unmarked vertices.
+
+Finally set
+\[
+ \Delta=4q^{2t-1},\qquad h=Aq^t,\qquad w=AqL.                  \tag{31}
+\]
+By (8), every tree vertex has at most $\Delta$ children.  By increasing
+$C$ so that $q^{t-1}\geq A/4$, we have $h\leq\Delta$; by $L\geq1$ and
+$C\geq A$, (1) gives $w\leq k$.  Let $\operatorname{count}(z)$ be the
+number of level-$k$ paths whose Boolean signature records an unmarked
+extension by true.  A signature with $j$ true entries has at most
+$\Delta^j h^{k-j}$ paths, and (28)--(30) make this count zero for $j>w$.
+The rooted-tree estimate of \noderef{RootedTreeCounting} therefore applies
+with exactly the parameters in (31):
+\[
+ \operatorname{fwi}_k(D^*)
+ \leq2^k\Delta^w h^{k-w}.                                     \tag{32}
+\]
+Because $q\geq4$, $4q^{2t-1}\leq q^{2t}$, and $h\geq1$, so
+\[
+ \operatorname{fwi}_k(D^*)
+ \leq2^k q^{2tw}(Aq^t)^k.                                     \tag{33}
+\]
+The exact logarithm conversion (2) now gives
+\[
+ q^{2tw}=(2^L)^{2tAqL}=2^{2tAqL^2}\leq2^k,                   \tag{34}
+\]
+provided $C\geq2tA$, by (1).  Hence (33) is at most
+$(4Aq^t)^k$, which is at most $(Cq^t)^k$ once $C\geq4A$.
+This proves the forward-independent bound and completes the proof.
 \end{proof}
