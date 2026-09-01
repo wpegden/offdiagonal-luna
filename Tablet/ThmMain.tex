@@ -1,0 +1,39 @@
+\begin{theorem}
+For any $s\geq3$, there is a positive constant $c_s$ such that for every
+$k\geq2$,
+\[
+ r(s,k)\geq c_s\frac{k^{s-1}}{(\log k)^{2s-4}}.
+\]
+\end{theorem}
+\begin{proof}
+Fix $s\geq3$.  We first treat sufficiently large $k$.  Put $t=s-1$, and
+let $C=C(t)$ be supplied by \noderef{DStarCounting}.  Choose a power of two
+$q$ with
+\[
+ Cq(\log q)^2\leq k\leq4Cq(\log q)^2.
+\]
+For large $k$ such a power exists, and $q\asymp_s k/(\log k)^2$.
+The cited lemma supplies a loopless $T_s$-free digraph $D$ with
+$|V(D)|\geq q^{2t-1}/4$ and
+$\operatorname{fwi}_k(D)\leq(Cq^t)^k$.
+
+Apply \noderef{RandomPermutationReduction} to obtain a loopless $K_s$-free
+graph $G$ on the same vertex set.  Thus
+\[
+ i_k(G)\leq(e/k)^k(Cq^t)^k.
+\]
+Set $p=k/(eCq^t)$.  The relation between $k$ and $q$, with $t\geq2$, makes
+$0<p\leq1$ for large $k$, and the last display gives $p^ki_k(G)\leq1$.
+The sampling lemma \noderef{SamplingDeletion} now yields
+\[
+ r(s,k)>p|V(G)|-1\geq\frac{kq^{t-1}}{4eC}-1.
+\]
+Since $q\geq c'_s k/(\log k)^2$, reducing a positive constant depending only
+on $s$ gives the required bound for all sufficiently large $k$.
+
+There are only finitely many integers $k\geq2$ below this threshold.  By
+\noderef{FiniteRamseyPositivity}, all corresponding $r(s,k)$ are positive.
+Choose $c_s$ smaller than the finitely many ratios
+$r(s,k)(\log k)^{2s-4}/k^{s-1}$ and than the large-$k$ constant.  This
+simultaneously proves the displayed inequality for every $k\geq2$.
+\end{proof}

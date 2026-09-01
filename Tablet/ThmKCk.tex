@@ -1,0 +1,47 @@
+\begin{theorem}
+Let $C>1$ be fixed.  Interpret the paper's integer $Cs$ as
+$k_s=\lceil Cs\rceil$.  Then, for all sufficiently large $s$,
+\[
+ r(s,k_s)\geq\left(2^{1-1/(2C)}\right)^s.
+\]
+The ceiling changes only a bounded rounding error and is the precise integer
+convention used here.
+\end{theorem}
+\begin{proof}
+Fix $C>1$ and put $k=k_s=\lceil Cs\rceil$.  For large $s$ we have
+$4\leq s\leq k$, so \noderef{F2ForwardIndependentBound} supplies a loopless
+$T_s$-free digraph $D$ on
+\[
+ N=2^{2s-3}-2^{s-1}-2^{s-2}+1=(1+o(1))2^{2s-3}
+\]
+vertices and with forward-tuple count bounded by
+\[
+ \sum_{t=1}^{s-1}\binom kt
+ 2^{(s-1)(t+k)-\binom{t+1}{2}}.
+\]
+The quadratic exponent is maximized at $t=s-3/2$.  Bounding the sum by
+$2^k$ times the largest exponential factor gives
+\[
+ \operatorname{fwi}_k(D)\leq2^{sk+s^2/2}
+\]
+for all sufficiently large $s$; the ceiling contributes only $O(1)$ to the
+linear terms.
+
+Use \noderef{RandomPermutationReduction} and call the resulting graph $G$.
+Then $i_k(G)\leq(e/k)^k2^{sk+s^2/2}$.  If $i_k(G)=0$, the graph itself
+already has at least $N$ vertices and is sufficient.  Otherwise put
+$p=i_k(G)^{-1/k}$; then $0<p\leq1$ and $p^ki_k(G)=1$.  By
+\noderef{SamplingDeletion},
+\[
+ r(s,k)>N i_k(G)^{-1/k}-1
+ \geq(1+o(1))2^{2s-3}\frac{s}{e}
+ 2^{-(sk+s^2/2)/k}-1.
+\]
+Since $k/s\to C$, the logarithm base $2$ of the right side is
+$(2-1/(2C))s+o(s)$; the polynomial factor $s/e$ absorbs the fixed losses.
+Consequently, after increasing the threshold on $s$,
+\[
+ r(s,k_s)\geq2^{(1-1/(2C))s},
+\]
+which is the stated claim.
+\end{proof}

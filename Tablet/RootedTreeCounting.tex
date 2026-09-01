@@ -1,0 +1,28 @@
+\begin{lemma}
+In signature form, suppose a rooted tree has at most $\Delta$ children at
+each vertex, at most $h$ marked children at each vertex, and at most $w$
+unmarked vertices on every root-to-vertex path.  If $k\geq w$ and
+$h\leq\Delta$, let $\operatorname{count}(z)$ be the number of level-$k$
+paths with binary signature $z$.  Thus
+$\operatorname{count}(z)\leq\Delta^j h^{k-j}$ for a signature with $j$
+unmarked positions, and it is zero for $j>w$.  Then the total number of
+root-to-level-$k$ paths is at most
+\[
+ 2^k\Delta^w h^{k-w}.
+\]
+Equivalently, after recording each path by its binary marked/unmarked
+signature, the number of paths with a signature containing $j$ unmarked
+positions is at most $\Delta^j h^{k-j}$, and only signatures with
+$j\leq w$ can occur.
+\end{lemma}
+\begin{proof}
+Fix a binary signature $z$ and let $j$ be its number of unmarked positions.
+Read a path from the root.  At an unmarked position there are at most
+$\Delta$ choices, and at a marked position at most $h$ choices.  Induction
+on the length of the path therefore bounds the number of paths with this
+signature by $\Delta^j h^{k-j}$.  The path hypothesis makes this number zero
+when $j>w$.  Summing over the at most $2^k$ binary signatures and using
+$h\leq\Delta$ gives, for every $j\leq w$,
+$\Delta^j h^{k-j}\leq\Delta^w h^{k-w}$; hence the total is at most
+$2^k\Delta^w h^{k-w}$.
+\end{proof}

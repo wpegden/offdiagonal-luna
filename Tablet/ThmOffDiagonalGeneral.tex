@@ -1,0 +1,44 @@
+\begin{theorem}
+For every $\delta>0$, there is a constant $L$ such that for all positive
+integers $s\geq L$ and $k\geq Ls$,
+\[
+ r(s,k)\geq\left(\frac{k}{s}\right)^{(1-\delta)s}.
+\]
+\end{theorem}
+\begin{proof}
+Fix $\delta>0$ and enlarge the threshold so that $0<\delta<1/10$ may be
+assumed in the estimates below.  Apply \noderef{OldPolarityConstruction} to
+obtain $L$, and take $s\geq L$, $k\geq Ls$.  It supplies a power of two $q$
+with
+\[
+ q\leq\frac{\delta}{200}\frac{k/s}{\log(k/s)}\leq2q,
+\]
+and a loopless $T_s$-free digraph $D$ satisfying
+\[
+ |V(D)|\geq q^{2(s-2)}/2,\qquad
+ \operatorname{fwi}_k(D)\leq
+ \left(32q^{2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+\]
+
+The random-permutation reduction \noderef{RandomPermutationReduction} gives a
+loopless $K_s$-free graph $G$ on $|V(D)|$ vertices and
+\[
+ i_k(G)\leq
+ \left(\frac{32e}{k}
+ q^{2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+\]
+For $L$ sufficiently large, set
+$p=q^{(s-3)(1-\delta/5)-2(s-2)}k/(32e)$; then $p\leq1$ and
+$p^ki_k(G)\leq1$.  By \noderef{SamplingDeletion},
+\[
+ r(s,k)>p|V(G)|-1
+ \geq\frac{k}{64e}q^{(s-3)(1-\delta/5)}-1.
+\]
+The choice of $q$ gives $q\geq(k/s)^{1-\delta/2}$ once $L$ is large, while
+$k/s\geq L$.  Substitution into the preceding inequality, followed by
+increasing $L$ to absorb the fixed factors and the $-1$, gives
+\[
+ r(s,k)\geq(k/s)^{(1-\delta)s}.
+\]
+All choices of thresholds depend only on $\delta$, as required.
+\end{proof}

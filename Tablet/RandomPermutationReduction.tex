@@ -1,0 +1,40 @@
+\begin{lemma}
+Let $D$ be a finite loopless digraph with no copy of $T_s$, and let $k\geq
+1$.  There is a loopless graph $G$ on the same number of labelled vertices,
+containing no clique of order $s$, such that
+\[
+ i_k(G)\leq \left(\frac{e}{k}\right)^k\operatorname{fwi}_k(D).
+\]
+Here the tuple count is the ordered forward-independent count of
+\noderef{ForwardIndependentCount}, while $i_k$ is the unordered independent
+set count of \noderef{IndependentSetCount}.
+\end{lemma}
+\begin{proof}
+Choose a uniformly random permutation $\pi$ of $V(D)$.  Define an undirected
+graph on the same vertex set by putting an edge $\{u,v\}$, for $u\ne v$,
+whenever one of the two directed arcs between $u$ and $v$ points forward in
+the order $\pi$; equivalently, include the arc $(u,v)$ when
+$\pi(u)<\pi(v)$ and forget its orientation.  This is a loopless symmetric
+graph, and it has exactly the same number of vertices as $D$.
+
+If this graph contained a clique $u_1,\ldots,u_s$, list those vertices in
+increasing order of their $\pi$-values.  For every $i<j$, the edge between
+$u_i$ and $u_j$ was created by an arc $(u_i,u_j)$, so the ordered vertices
+would form a copy of $T_s$, contradicting the assumed $T_s$-freeness.
+
+Fix an ordered forward-independent $k$-tuple of distinct vertices.  The
+probability that its entries occur in increasing $\pi$-order is $1/k!$.
+Whenever this happens, the entries form an independent $k$-set of the
+random graph: every possible forward arc is absent by forward independence.
+Conversely, every independent $k$-set has at most one increasing ordering,
+so linearity of expectation gives
+\[
+ \mathbb E i_k(G)\leq \frac{\operatorname{fwi}_k(D)}{k!}.
+\]
+Repeated entries are counted by the ordered convention of
+\noderef{ForwardIndependentCount} but can never be an increasing ordering of
+a set counted by \noderef{IndependentSetCount}, which explains the inequality.
+Finally,
+$k!\geq(k/e)^k$ gives $1/k!\leq(e/k)^k$.  Therefore some permutation has
+the displayed bound, and the associated graph is the required $G$.
+\end{proof}

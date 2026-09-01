@@ -1,0 +1,44 @@
+\begin{lemma}
+For every $\delta>0$ there is an integer $L>0$ such that whenever
+$s\geq L$ and $k\geq Ls$, one can choose a power of two $q$ satisfying
+\[
+ q\leq\frac{\delta}{200}\frac{k/s}{\log(k/s)}\leq2q,
+\]
+and the old polarity-pair digraph $D=D(s-2,q)$ is $T_s$-free,
+\[
+ |V(D)|\geq\frac{q^{2(s-2)}}2,
+\]
+and
+\[
+ \operatorname{fwi}_k(D)\leq
+ \left(32q^{,2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+\]
+\end{lemma}
+\begin{proof}
+Choose the least power of two in the interval specified in the statement;
+for $L$ large the interval contains such a power and $q$ is large.  Put
+$t=s-2$ and take the polarity graph $G(t,q)$, whose vertices are the
+one-dimensional subspaces of $\mathbb F_q^{t+1}$.  The pair digraph has
+vertices $(a,b)$ with $a b$ a nonedge and an arc $(a,b)\to(a',b')$ exactly
+when $a b'$ is an edge.  The triangular orthogonality obstruction makes it
+$T_{t+2}=T_s$-free, and the exact point and degree counts give
+$|V(D)|\geq q^{2t}/2$.
+
+The forward-independent tuples form the rooted coherent-pair tree.  Set
+$h=4\lambda^2n^2/d^2$ and $\Delta=n^2$, where $n,d,\lambda$ are the
+polarity graph's order, degree, and second-eigenvalue parameters.  The
+Alon--Roedl product estimate of \noderef{AlonRodlBound} marks at most $h$
+children at each step.  Every
+path has at most $w=32tq\log q$ unmarked steps, because each unmarked step
+shrinks the remaining common-neighbour set by the factor
+$1-d/(2n)$ and after $w$ steps that set would have cardinality less than one.
+The rooted-tree estimate of \noderef{RootedTreeCounting} gives
+\[
+ \operatorname{fwi}_k(D)\leq
+ 8^k(\lambda^2/d^2)^{k-w}n^{2k}.
+\]
+The polarity estimates $n\asymp q^t$, $d\asymp q^{t-1}$, and
+$\lambda\leq2\sqrt d$, together with the selected value of $q$ and the
+large-$L$ inequalities, reduce this to the displayed bound.  All constants
+are absorbed by the factor $32$ and by increasing $L$.
+\end{proof}

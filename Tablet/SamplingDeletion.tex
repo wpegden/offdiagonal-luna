@@ -1,0 +1,24 @@
+\begin{lemma}
+Let $G$ be a loopless $K_s$-free graph on $n$ vertices, let $k\geq1$, and
+let $p\in[0,1]$.  If $p^k i_k(G)\leq1$, then
+\[
+ r(s,k)>pn-1.
+\]
+\end{lemma}
+\begin{proof}
+Retain each vertex independently with probability $p$, and call the induced
+graph $G'$.  It remains loopless and $K_s$-free.  For each fixed vertex the
+probability of retention is $p$, while for each fixed $k$-set the probability
+that all its vertices are retained is $p^k$.  Hence
+\[
+ \mathbb E\bigl(|V(G')|-i_k(G')\bigr)=pn-p^k i_k(G)\geq pn-1.
+\]
+Some outcome $F$ therefore satisfies $|V(F)|-i_k(F)\geq pn-1$.  Delete one
+vertex from each independent $k$-set of $F$, processing the sets one at a
+time.  Deletions cannot create a clique and each deletion destroys the set
+currently being processed, so at most $i_k(F)$ vertices are deleted.  The
+remaining graph is loopless, $K_s$-free, and has no independent set of size
+$k$, with at least $pn-1$ vertices.  By the defining universal property of
+the Ramsey number in \noderef{RamseyNumber}, this says that its order is
+strictly below $r(s,k)$, proving the claim.
+\end{proof}

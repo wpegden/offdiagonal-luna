@@ -1,0 +1,43 @@
+\begin{lemma}
+For integers $4\leq s\leq k$, there is a loopless $T_s$-free digraph $D$
+with
+\[
+ N=2^{2s-3}-2^{s-1}-2^{s-2}+1
+\]
+vertices and
+\[
+ \operatorname{fwi}_k(D)\leq
+ \sum_{t=1}^{s-1}\binom kt,2^{(s-1)(t+k)-\binom{t+1}{2}}.
+\]
+The sum intentionally counts ambient vector tuples, so it may overcount
+projective points and nonzero representatives.
+\end{lemma}
+\begin{proof}
+Put $p=s-1$, identify the points of $G(s-2,2)$ with the nonzero vectors of
+$\mathbb F_2^p$, and let $D$ have vertices $(x,y)$ with
+$\langle x,y\rangle=1$, with an arc $(x,y)\to(x',y')$ exactly when
+$\langle x,y'\rangle=0$.  The polarity count gives
+$|V(D)|=(2^p-1)(2^{p-1}-1)=N$, and the triangular orthogonality obstruction
+makes $D$ loopless and $T_s$-free.
+
+Write a forward-independent $k$-tuple as
+$(a_1,b_1,\ldots,a_k,b_k)$.  It is represented by an ambient, possibly zero,
+vector tuple satisfying
+$\langle a_j,b_i\rangle=1$ whenever $j\leq i$; counting these ambient tuples
+is an upper bound and is the deliberate overcount in the statement.  Let
+$r_i=\dim\operatorname{span}(a_1,\ldots,a_i)$ and $r_0=0$.  A realizable rank
+sequence has $r_1=1$, each increment is either $0$ or $1$, and its final value
+is some $t\leq p$.  There are at most $\binom kt$ such sequences.
+
+Fix one with final rank $t$.  Whenever the rank increases from $i-1$ to $i$,
+there are at most $2^p$ choices for $a_i$ and at most $2^{p-i}$ choices for
+$b_i$.  Whenever it does not increase, there are at most $2^i$ choices for
+$a_i$ and at most $2^{p-i}$ choices for $b_i$.  Multiplying in the order of
+the rank increases gives at most
+\[
+ \left(\prod_{i=1}^t2^{2p-i}\right)2^{p(k-t)}
+ =2^{pt+pk-\binom{t+1}{2}}
+\]
+tuples with this rank sequence.  Summing over the at most $\binom kt$ valid
+sequences and then over $1\leq t\leq p=s-1$ gives the displayed bound.
+\end{proof}

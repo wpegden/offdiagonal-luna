@@ -1,0 +1,28 @@
+\begin{lemma}
+Let $G$ be an $(n,d,\lambda)$-graph and let $B$ be a vertex subset.  If
+$A$ is any subset for which every $u\in A$ satisfies
+\[
+ |N_G(u)\cap B|\leq \frac{d|B|}{2n},
+\]
+then
+\[
+ |A||B|\leq \frac{4\lambda^2}{d^2}n^2.
+\]
+The $(n,d,\lambda)$ premise is used through the expander-mixing inequality
+$|e_G(X,Y)-d|X||Y|/n|\leq\lambda\sqrt{|X||Y|}$ for all $X,Y$, and the
+Lean statement takes this inequality as its explicit hypothesis.
+This is the product estimate used to mark cheap extensions in the tuple
+trees.
+\end{lemma}
+\begin{proof}
+Apply the expander-mixing estimate of \noderef{ExpanderMixing} to $A$ and
+$B$.  The hypothesis on every vertex of $A$ gives
+$e_G(A,B)\leq d|A||B|/(2n)$.  Thus the main term in the mixing estimate is
+at least $d|A||B|/(2n)$, and consequently
+\[
+ \frac d{2n}|A||B|\leq \lambda\sqrt{|A||B|}.
+\]
+If $|A||B|=0$ the conclusion is immediate.  Otherwise divide by its square
+root and square; since $d>0$, this yields
+$|A||B|\leq4\lambda^2n^2/d^2$, exactly as claimed.
+\end{proof}

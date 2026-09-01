@@ -1,0 +1,41 @@
+\begin{theorem}
+For every fixed integer $\ell\geq3$,
+\[
+ r(s;\ell)=\Omega\!\left(2^{(\ell-1)s/2}\right).
+\]
+That is, there are constants $c_\ell>0$ and $S_\ell$ such that the displayed
+lower bound with factor $c_\ell$ holds for every $s\geq S_\ell$.
+\end{theorem}
+\begin{proof}
+Fix $\ell\geq3$.  For large $s$, use
+\noderef{F2ForwardIndependentBound} with $k=s$ to obtain a loopless
+$T_s$-free digraph $D$ on
+\[
+ N=(1+o(1))2^{2s-3}
+\]
+vertices and
+\[
+ \operatorname{fwi}_s(D)\leq2^{3s^2/2-5s/2+o(s)}.
+\]
+Choose $n=2^{\lfloor(s/2-4)(\ell-1)\rfloor}$.  The floor changes $n$ by only
+a factor depending on the fixed $\ell$.
+
+For sufficiently large $s$,
+\[
+ \binom ns\left(\frac{\operatorname{fwi}_s(D)}{N^s}\right)^{\ell-1}<1:
+\]
+indeed, use $\binom ns\leq n^s$, the displayed tuple bound, and
+$N\geq2^{2s-4}$; the base-$2$ exponent is at most
+\[
+ s\lfloor(s/2-4)(\ell-1)\rfloor+
+ (-s^2/2+4s+o(s))(\ell-1)<0.
+\]
+The random-homomorphism lemma \noderef{RandomHomomorphismColoring} therefore
+provides an $\ell$-coloring of $K_n$ with no monochromatic $K_s$.  By the
+definition of \noderef{MulticolorRamseyNumber}, its Ramsey number is larger
+than $n$.
+
+Finally, for fixed $\ell$, the rounding and the constant $4(\ell-1)$ are
+absorbed into a positive constant $c_\ell$, giving
+$r(s;\ell)\geq c_\ell2^{(\ell-1)s/2}$ for every sufficiently large $s$.
+\end{proof}

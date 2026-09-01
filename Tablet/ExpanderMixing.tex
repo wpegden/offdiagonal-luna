@@ -1,0 +1,23 @@
+\begin{lemma}
+Let $G$ be an $(n,d,\lambda)$-graph, allowing loops, and assume that its
+adjacency operator has nontrivial spectral norm at most $\lambda$.  Then for
+all vertex subsets $A,B$,
+\[
+ \left|e_G(A,B)-\frac d n|A||B|\right|
+ \leq \lambda\sqrt{|A||B|}.
+\]
+The edge count is ordered, so a loop is counted when its endpoint lies in
+both sets.  In the Lean interface, the spectral-norm hypothesis is written
+as the displayed bilinear inequality for arbitrary real vectors, and the
+conclusion is obtained by substituting the indicator vectors of $A$ and
+$B$.
+\end{lemma}
+\begin{proof}
+Let $1_A$ and $1_B$ be the two indicator vectors.  Substitute them into the
+bilinear spectral inequality in the statement.  The bilinear term is exactly
+the number of ordered adjacent pairs from $A$ to $B$, namely $e_G(A,B)$.
+The two linear sums are $|A|$ and $|B|$, and the two squared Euclidean norms
+are $|A|$ and $|B|$.  The resulting inequality is precisely the displayed
+expander-mixing estimate.  No step uses irreflexivity, so the same argument
+also covers allowed loops.
+\end{proof}

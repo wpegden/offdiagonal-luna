@@ -1,0 +1,53 @@
+\begin{theorem}
+Let $s\to\infty$ through positive integers and let $a\geq0$ be an integer
+sequence with $a=o(s)$.  In the standard eventual sense, for every
+$\varepsilon>0$ and all sufficiently large indices,
+\[
+ r(s,s+a)\geq(1-\varepsilon)\frac{s}{e}
+  2^{(s+a-1)/2-a^2/(2s)}.
+\]
+Equivalently, this is
+\[
+ r(s,s+a)\geq(1+o(1))\frac{s}{e}
+ 2^{(s+a-1)/2-a^2/(2s)}.
+\]
+\end{theorem}
+\begin{proof}
+Take $s$ and $a$ along the given sequences and put $k=s+a$.  Eventually
+$4\leq s\leq k$, so \noderef{F2ForwardIndependentBound} gives a loopless
+$T_s$-free digraph on
+\[
+ N=2^{2s-3}-2^{s-1}-2^{s-2}+1=(1+o(1))2^{2s-3}
+\]
+vertices and
+\[
+ \operatorname{fwi}_k(D)\leq
+ 2^{3s^2/2+as-5s/2+o(s)}.
+\]
+The $o(s)$ estimate follows directly from its rank sum: writing $t=s-j$, use
+$\binom{s+a}{j+a}\leq(e(s+a)/(a+1))^{j+a}$, maximize the resulting quadratic
+in $j$, and use $a=o(s)$ to obtain
+$(e(s+a)/(a+1))^a=2^{o(s)}$.
+
+Apply \noderef{RandomPermutationReduction}.  The resulting $K_s$-free graph
+$G$ has
+\[
+ i_k(G)\leq(e/k)^k
+ 2^{3s^2/2+as-5s/2+o(s)}.
+\]
+If this count is zero, then $r(s,k)\geq N$, which is stronger than the
+claimed estimate.  Otherwise choose $p=i_k(G)^{-1/k}$.  This lies in
+$[0,1]$ and satisfies the hypothesis of \noderef{SamplingDeletion}, so
+\[
+ r(s,k)>N i_k(G)^{-1/k}-1.
+\]
+Substitute the preceding count and $N=(1+o(1))2^{2s-3}$.  Since $k=s+a$,
+the exponent simplifies as
+\[
+ 2s-3-\frac{3s^2/2+as-5s/2+o(s)}{s+a}
+ =\frac{s+a-1}{2}-\frac{a^2}{2s}+o(1),
+\]
+where $a=o(s)$ makes the discarded terms $o(1)$ after division by $s+a$.
+The factor $k/e$ is $(1+o(1))s/e$, and the $-1$ is negligible.  Thus the
+eventual $(1-\varepsilon)$ inequality follows for every $\varepsilon>0$.
+\end{proof}

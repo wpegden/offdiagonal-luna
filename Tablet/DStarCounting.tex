@@ -1,0 +1,52 @@
+\begin{lemma}
+For every integer $t\geq2$ there is a constant $C=C(t)$ such that, for every
+sufficiently large power of two $q$ and every $k\geq Cq(\log q)^2$, there is
+a loopless digraph $D$ (the paper's improved pair digraph $D^*(t,q)$) that is
+$T_{t+1}$-free, has at least $q^{2t-1}/4$ vertices, and satisfies
+\[
+ \operatorname{fwi}_k(D^*(t,q))\leq(Cq^t)^k.
+\]
+\end{lemma}
+\begin{proof}
+Take the polarity graph $G(t,q)$ on the one-dimensional subspaces of
+$\mathbb F_q^{t+1}$, with adjacency given by orthogonality, and let
+$D^*(t,q)$ have vertices $(a,b)$ with $a\perp b$, with an arc from $(a,b)$ to
+$(a',b')$ exactly when $a\perp b'$ and $a'\not\perp b$.  The standard count of
+$1$-spaces gives $|V(G)|\sim q^t$ and $|V(D^*)|\sim q^{2t-1}$; increasing the
+threshold for $q$ makes the latter at least $q^{2t-1}/4$.
+
+If $(a_i,b_i)_{i=1}^{t+1}$ formed a transitive tournament in $D^*$, choose
+nonzero representatives $x_i,y_i$.  Then $\langle x_i,y_i\rangle=0$, and for
+$i<j$, $\langle x_i,y_j\rangle=0$ and $\langle x_j,y_i\rangle\ne0$.  If a
+shortest nontrivial linear relation among the $y_i$ began at index $i$, 
+pairing it with $x_{i+1}$ would leave only
+$\alpha_i\langle x_{i+1},y_i\rangle=0$, a contradiction.  Thus the
+$t+1$ vectors $y_i$ are independent in a $(t+1)$-dimensional space.  But
+$x_1$ is nonzero and is orthogonal to $y_1$ because $(a_1,b_1)$ is a vertex,
+and to every $y_j$ with $j>1$ because the tournament has the arc from the
+first vertex to the $j$-th vertex.  Thus $x_1$ is orthogonal to a basis and
+must be zero, a contradiction.  Hence $D^*$ is $T_{t+1}$-free.
+
+For the tuple count, expose a forward-independent tuple one pair at a time.
+For a partial tuple $\sigma$ and a projective point $y$, let $W^\sigma(y)$ be
+spanned by those previously chosen second coordinates whose first coordinate
+is orthogonal to $y$, and write $r(y)=\dim W^\sigma(y)$.  A possible next first
+coordinate lies in $W^\sigma(b)^\perp$, so for fixed $b$ there are at most
+$2q^{t-r(b)}$ choices.  Partition the possible $b$'s by the value of $r(b)$.
+At each level mark children with popular $b$ or poor first coordinate.
+Double-counting incidences between a level and the subspaces $W^\sigma(y)$
+bounds popular children by $O_t(q^t)$.  Applying the expander-mixing estimate
+and its poor-set product consequence to the polarity graph bounds poor
+children by $O_t(q^t)$ as well, using the product estimate of
+\noderef{AlonRodlBound}.
+
+Every unmarked extension raises the dimension of one of the subspaces in a
+fixed level and decreases its available set by a factor
+$1-1/(32tq)$.  Since each available set initially has at most $2q^t$ points,
+there can be only $O_t(q\log q)$ unmarked extensions on a path.  The rooted
+signature count of \noderef{RootedTreeCounting}, with at most $O_t(q^t)$ marked
+children and at most $q^{2t-1}$ total children, now gives
+$\operatorname{fwi}_k(D^*)\leq2^kq^{O_t(q\log q)}(O_t(q^t))^k$.
+The assumed lower bound on $k$ absorbs the first two factors into the
+constant, yielding $(Cq^t)^k$ after enlarging $C$.
+\end{proof}
