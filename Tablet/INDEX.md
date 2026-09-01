@@ -23,7 +23,7 @@
 | MulticolorRamseyNumber | definition | definition | closed | - | - | CompleteColoring, MonochromaticClique, Preamble |
 | OldCoherentTreeCount | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, OldPairDigraph, RootedTreeCounting |
 | OldPairDigraph | definition | definition | closed | - | - | LoopGraph, LooplessDigraph |
-| OldPairDigraphProperties | lemma | proof | open | - | - | OldPairDigraph, TransitiveTournament |
+| OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
 | OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
 | OldPolarityParameters | lemma | proof | open | - | - | OldPairDigraph |
 | Preamble | preamble | preamble | closed | - | - | - |
@@ -39,4 +39,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 35 nodes | **Closed:** 19 | **Open:** 16
+**Total:** 35 nodes | **Closed:** 20 | **Open:** 15

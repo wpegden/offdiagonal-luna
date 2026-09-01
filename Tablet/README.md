@@ -25,7 +25,7 @@
 | MulticolorRamseyNumber | definition | - | closed |
 | OldCoherentTreeCount | proof | - | open |
 | OldPairDigraph | definition | - | closed |
-| OldPairDigraphProperties | proof | - | open |
+| OldPairDigraphProperties | proof | - | closed |
 | OldPolarityConstruction | proof | - | open |
 | OldPolarityParameters | proof | - | open |
 | RamseyNumber | definition | - | closed |
@@ -40,4 +40,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 19/35 closed
+**Summary:** 20/35 closed

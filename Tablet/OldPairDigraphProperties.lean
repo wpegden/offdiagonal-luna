@@ -11,4 +11,15 @@ theorem OldPairDigraphProperties
         ¬ (OldPairDigraph G).arc u u) ∧
       ¬ Nonempty (TransitiveTournament (OldPairDigraph G) s) := by
 -- BODY
-  sorry
+  constructor
+  · intro u
+    exact u.2
+  · intro ht
+    rcases ht with ⟨t⟩
+    let a : Fin s → G.vertex := fun i => (t.vertex i).1.1
+    let b : Fin s → G.vertex := fun i => (t.vertex i).1.2
+    apply htri a b
+    · intro i
+      exact (t.vertex i).2
+    · intro i j hij
+      exact t.forwardArc hij
