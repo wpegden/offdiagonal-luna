@@ -8,19 +8,63 @@ vertices is
 \]
 \end{lemma}
 \begin{proof}
-Write $p=s-1$.  A vertex is a pair of nonzero vectors $(x,y)$ with
-$\langle x,y\rangle=1$.  An arc from a pair to itself would require the
-same inner product to be zero, so the digraph is loopless.  The triangular
-orthogonality obstruction used for the old pair construction says that
-there are no $s$ pairs with diagonal inner products one and all strictly
-forward inner products zero.  By
-\noderef{OldPairDigraphProperties}, this makes $D_2(s)$ $T_s$-free.
+Write $p=s-1$ and let $V=(\mathbb Z/2\mathbb Z)^p$, with inner product
+$\langle x,y\rangle=\sum_{r=1}^p x_r y_r$.  By the definition of
+\noderef{F2PairDigraph}, the graph used to form $D_2(s)$ has vertex set
+$V$, adjacency $x\mathrel{G}y$ exactly when $\langle x,y\rangle=0$, and
+$D_2(s)$ is its old pair digraph.  Consequently a pair $(x,y)$ is a
+vertex of $D_2(s)$ exactly when $\langle x,y\rangle\ne0$, hence exactly
+when $\langle x,y\rangle=1$.
+
+We now verify explicitly the hypothesis needed for
+\noderef{OldPairDigraphProperties}.  Suppose that
+$a,b:\{1,\ldots,s\}\to V$ satisfy
+\[
+ \langle a_i,b_i\rangle\ne0\quad(1\leq i\leq s),
+ \qquad \langle a_i,b_j\rangle=0\quad(1\leq i<j\leq s).
+\]
+The first condition says $\langle a_i,b_i\rangle=1$, since the field has
+only the two elements $0$ and $1$.  We claim that the vectors
+$a_1,\ldots,a_s$ are linearly independent.  If
+$\sum_{i=1}^s c_i a_i=0$ is a linear relation with some coefficient
+$c_i\ne0$, choose the largest index $j$ for which $c_j\ne0$.  Pairing the
+relation with $b_j$ gives
+\[
+ 0=\sum_{i=1}^s c_i\langle a_i,b_j\rangle.
+\]
+For $i<j$ the summands vanish by the forward orthogonality assumption;
+for $i>j$ they vanish because of the choice of $j$; and the $i=j$
+summand is $c_j\langle a_j,b_j\rangle=c_j$.  Thus $c_j=0$, a
+contradiction.  Hence all coefficients in a relation vanish.  But $V$
+has dimension $p=s-1$, so it cannot contain $s$ linearly independent
+vectors.  This contradiction proves the required triangular hypothesis.
+
+Applying \noderef{OldPairDigraphProperties} to this verified hypothesis
+gives both that $D_2(s)$ is loopless and that
+$\operatorname{Nonempty}(T_s(D_2(s)))$ is false.  In the latter statement,
+the ordered vertices and their forward arcs are precisely the data in the
+definition of \noderef{TransitiveTournament}, so this is the asserted
+$T_s$-freeness.  (Looplessness can also be seen directly: a loop at
+$(x,y)$ would require $\langle x,y\rangle=0$, while vertex membership
+requires $\langle x,y\rangle=1$.)
 
 For the count, there are $2^p-1$ choices for the nonzero vector $x$.  For
 each such $x$, the equation $\langle x,y\rangle=1$ defines an affine
-hyperplane with exactly $2^{p-1}$ solutions.  Every such solution is
-automatically nonzero, and over $\mathbb F_2$ there is no further choice of
-a nonzero representative for a projective point.  Thus the ordered
-nonedge-pair count is
-$(2^p-1)2^{p-1}=2^{2p-1}-2^{p-1}=2^{2s-3}-2^{s-2}$, as stated.
+hyperplane with exactly $2^{p-1}$ solutions: choose a coordinate $r$ with
+$x_r=1$, choose the other $p-1$ coordinates of $y$ freely, and then the
+equation uniquely determines $y_r$.  Every such $y$ is automatically
+nonzero, since the zero vector has inner product zero with $x$.  Conversely
+every vertex pair has this form, and the construction uses actual vectors,
+not projective equivalence classes.  Therefore the ordered nonedge-pair
+count is
+\[
+ (2^p-1)2^{p-1}=2^{2p-1}-2^{p-1}=2^{2s-3}-2^{s-2}.
+\]
+For clarity, the expression $(2^p-1)(2^{p-1}-1)$ sometimes printed for
+this construction counts the different set of ordered orthogonal pairs:
+for each nonzero $x$, it counts the nonzero vectors in the kernel
+$\langle x,y\rangle=0$.  The vertices here are nonedge pairs, for which
+$\langle x,y\rangle=1$, so the affine fiber has $2^{p-1}$ solutions and
+the displayed corrected count is the one relevant to $D_2(s)$, rather than
+the orthogonal-pair count.
 \end{proof}
