@@ -17,10 +17,12 @@ the order $\pi$; equivalently, include the arc $(u,v)$ when
 $\pi(u)<\pi(v)$ and forget its orientation.  This is a loopless symmetric
 graph, and it has exactly the same number of vertices as $D$.
 
-If this graph contained a clique $u_1,\ldots,u_s$, list those vertices in
-increasing order of their $\pi$-values.  For every $i<j$, the edge between
-$u_i$ and $u_j$ was created by an arc $(u_i,u_j)$, so the ordered vertices
-would form a copy of $T_s$, contradicting the assumed $T_s$-freeness.
+If this graph contained a clique $u_1,\ldots,u_s$ in the exact witness sense
+of \noderef{CliqueWitness}, list those vertices in increasing order of their
+$\pi$-values.  For every $i<j$, the edge between $u_i$ and $u_j$ was created by
+an arc $(u_i,u_j)$, so the ordered vertices would form a copy of the
+transitive tournament \noderef{TransitiveTournament}, contradicting the
+assumed $T_s$-freeness.
 
 Fix an ordered forward-independent $k$-tuple of distinct vertices.  The
 probability that its entries occur in increasing $\pi$-order is $1/k!$.
