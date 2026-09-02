@@ -12,7 +12,7 @@
 | F2AsymptoticCorollary | proof | - | open |
 | F2ForwardIndependentBound | proof | - | closed |
 | F2PairDigraph | definition | - | closed |
-| F2PairDigraphProperties | proof | - | open |
+| F2PairDigraphProperties | proof | - | closed |
 | F2RankSequenceBound | proof | - | open |
 | FiniteRamseyPositivity | proof | - | open |
 | ForwardIndependentCount | definition | - | closed |
@@ -42,4 +42,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 21/37 closed
+**Summary:** 22/37 closed
