@@ -11,7 +11,7 @@
 | F2ForwardIndependentBound | lemma | proof | closed | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
 | F2PairDigraph | definition | definition | closed | - | - | OldPairDigraph |
 | F2PairDigraphProperties | lemma | proof | closed | - | - | F2PairDigraph, OldPairDigraphProperties, TransitiveTournament |
-| F2RankSequenceBound | lemma | proof | open | - | - | F2PairDigraph |
+| F2RankSequenceBound | lemma | proof | closed | - | - | F2PairDigraph |
 | FiniteRamseyPositivity | lemma | proof | open | - | - | RamseyNumber |
 | ForwardIndependentCount | definition | definition | closed | - | - | LooplessDigraph, Preamble |
 | ForwardIndependentTuple | definition | definition | closed | - | - | LooplessDigraph |
@@ -41,4 +41,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 37 nodes | **Closed:** 22 | **Open:** 15
+**Total:** 37 nodes | **Closed:** 23 | **Open:** 14
