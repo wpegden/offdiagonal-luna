@@ -34,19 +34,62 @@ $G$ has
  i_k(G)\leq(e/k)^k
  2^{3s^2/2+as-5s/2+o(s)}.
 \]
-If this count is zero, then $r(s,k)\geq N$, which is stronger than the
-claimed estimate.  Otherwise choose $p=i_k(G)^{-1/k}$.  This lies in
-$[0,1]$ and satisfies the hypothesis of \noderef{SamplingDeletion}, so
+If $i_k(G)=0$, then $G$ has neither a clique of size $s$ nor an
+independent set of size $k$.  By the defining property of $r(s,k)$ in
+\noderef{RamseyNumber}, this implies $r(s,k)\geq N$: otherwise an induced
+subgraph of $G$ on $r(s,k)$ vertices would be a loopless graph of that
+order with neither required witness.  This is stronger than the claimed
+estimate because $N=2^{2s+o(s)}$, whereas the claimed right-hand side has
+exponential part $2^{s/2+o(s)}$.  Otherwise $i_k(G)$ is a positive integer,
+so choose
+$p=i_k(G)^{-1/k}$.  Then $0<p\leq1$ and $p^k i_k(G)=1\leq1$; together
+with $k\geq1$ and the looplessness and $K_s$-freeness supplied above, all
+hypotheses of \noderef{SamplingDeletion} hold, so
 \[
  r(s,k)>N i_k(G)^{-1/k}-1.
 \]
-Substitute the preceding count and $N=(1+o(1))2^{2s-3}$.  Since $k=s+a$,
-the exponent simplifies as
+Since $i_k(G)>0$, taking negative $k$-th powers in the preceding count
+gives
+\[
+ i_k(G)^{-1/k}\geq\frac{k}{e}\,
+ 2^{-(3s^2/2+as-5s/2+o(s))/(s+a)}.
+\]
+Substitute this inequality and $N=(1+o(1))2^{2s-3}$ into the sampling
+bound.  Since $k=s+a$, the exponent simplifies as
 \[
  2s-3-\frac{3s^2/2+as-5s/2+o(s)}{s+a}
- =\frac{s+a-1}{2}-\frac{a^2}{2s}+o(1),
+ =\frac{s+a-1}{2}-\frac{a^2+5a}{2(s+a)}+o(1),
 \]
-where $a=o(s)$ makes the discarded terms $o(1)$ after division by $s+a$.
-The factor $k/e$ is $(1+o(1))s/e$, and the $-1$ is negligible.  Thus the
-eventual $(1-\varepsilon)$ inequality follows for every $\varepsilon>0$.
+where $a=o(s)$ makes the discarded terms $o(1)$ after division by
+$s+a$.  We compare this exponent one-sidedly with the target exponent.
+For $s>0$ and $a\geq0$, the exact difference between the two main
+exponents is
+\[
+ \left(\frac{s+a-1}{2}-\frac{a^2+5a}{2(s+a)}\right)
+ -\left(\frac{s+a-1}{2}-\frac{a^2}{2s}\right)
+ =\frac{a(a^2-5s)}{2s(s+a)}.
+\]
+If $a^2\geq5s$, this difference is nonnegative, so the exponent just
+obtained is at least the target exponent.  If $a^2<5s$, its negative
+part has absolute value at most
+\[
+ \frac{a(5s-a^2)}{2s(s+a)}
+ \leq \frac{5a}{2(s+a)}=o(1),
+\]
+because $a=o(s)$ and $s+a\geq s$.  Including the preceding $o(1)$
+arithmetic error, in either case the total exponent is at least the
+target exponent minus $o(1)$, so replacing the exact exponent by the
+target exponent loses only a multiplicative $2^{-o(1)}$ factor.
+The factor $k/e$ is $(1+o(1))s/e$.  The main factor tends to infinity
+since its exponent is $s/2+o(s)$, so the subtracted $1$ is also
+negligible relative to it.  Therefore the lower bound is
+\[
+ r(s,k)\geq (1-o(1))\frac{s}{e}
+ 2^{(s+a-1)/2-a^2/(2s)}.
+\]
+By the definition of $r(s,k)$ in \noderef{RamseyNumber}, and since all
+preceding estimates hold eventually along the given sequences, this
+means that for every fixed $\varepsilon>0$ the displayed lower bound is
+at least $(1-\varepsilon)$ times the target expression at all sufficiently
+large indices.
 \end{proof}
