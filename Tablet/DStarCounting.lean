@@ -6,6 +6,9 @@ import Tablet.PolarityGraph
 import Tablet.OldPolarityParameters
 import Tablet.ExpanderMixing
 import Tablet.ForwardIndependentTuple
+import Mathlib.FieldTheory.Cardinality
+
+set_option maxHeartbeats 2000000
 
 -- [TABLET NODE: DStarCounting]
 theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
@@ -19,4 +22,236 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
             (ForwardIndependentCount D k : ℝ) ≤
               (C * q ^ t : ℝ) ^ k := by
 -- BODY
-  sorry
+  classical
+  let A : Nat := 128 * (t + 1)
+  let C : Nat := max 64 (max (2 * t * A) (4 * A))
+  have hC : 0 < C := by
+    dsimp [C]
+    omega
+  refine ⟨C, hC, ?_⟩
+  intro q hq hqpow k hk
+  obtain ⟨m, hqm⟩ := hqpow
+  have hqpos : 0 < q := by omega
+  have hq16 : 16 ≤ q := by omega
+  have hqprime : IsPrimePow q := by
+    subst q
+    have hmpos : 0 < m := by
+      by_contra hm0
+      have hm' : m = 0 := Nat.eq_zero_of_not_pos hm0
+      subst m
+      norm_num at hq16
+    exact (Nat.Prime.isPrimePow Nat.prime_two).pow hmpos.ne'
+  let K : Type := Fin q
+  let hfintype : Fintype K := inferInstance
+  have hKcard : @Fintype.card K hfintype = q := by
+    simpa [K] using Fintype.card_fin q
+  have hqcard : IsPrimePow (Fintype.card K) := by
+    simpa [K] using hqprime
+  let hfield : Field K := Classical.choice ((Fintype.nonempty_field_iff).mpr hqcard)
+  letI : Fintype K := hfintype
+  letI : Field K := hfield
+  letI : Mul K := hfield.toMul
+  letI : Add K := hfield.toAdd
+  have hp := OldPolarityParameters K t q ht hqprime hq16 hKcard
+  dsimp at hp
+  rcases hp with ⟨htri, n, d, lambda, hcard, hnform, hdform, hdeg,
+    hlam, hspectral, hbilinear, hnlow, hnhigh, hdlow, hdhigh, hlamhigh,
+    hpair⟩
+  let G : LoopGraph := PolarityGraph K t ht
+  letI : Fintype G.vertex := G.fintype
+  letI : DecidableEq G.vertex := Classical.decEq _
+  letI : DecidableRel G.adj := G.decidableAdj
+  let D : LooplessDigraph := {
+    vertex := {p : G.vertex × G.vertex // G.adj p.1 p.2}
+    fintype := inferInstance
+    arc := fun u v => G.adj u.1.1 v.1.2 ∧ ¬ G.adj v.1.1 u.1.2
+    decidableArc := inferInstance
+    loopless := by
+      intro u hu
+      exact hu.2 hu.1
+  }
+  have hDcard : @Fintype.card D.vertex D.fintype = n * d := by
+    let e : D.vertex ≃ Σ a : G.vertex, {b : G.vertex // G.adj a b} := {
+      toFun := fun x => ⟨x.1.1, ⟨x.1.2, x.2⟩⟩
+      invFun := fun x => ⟨(x.1, x.2.1), x.2.2⟩
+      left_inv := by intro x; rfl
+      right_inv := by intro x; rfl
+    }
+    rw [Fintype.card_congr e, Fintype.card_sigma]
+    have hdeg' : ∀ v : G.vertex, Fintype.card {u : G.vertex // G.adj v u} = d := by
+      simpa [G] using hdeg
+    simp_rw [hdeg']
+    have hcard' : Fintype.card G.vertex = n := by simpa [G] using hcard
+    simp [hcard']
+  have hDlower : (q ^ (2 * t - 1) / 4 : Nat) ≤
+      @Fintype.card D.vertex D.fintype := by
+    rw [hDcard]
+    have hnlowN : q ^ t ≤ 2 * n := by
+      have h : (q ^ t : ℝ) ≤ 2 * n := by nlinarith [hnlow]
+      exact_mod_cast h
+    have hdlowN : q ^ (t - 1) ≤ 2 * d := by
+      have h : (q ^ (t - 1) : ℝ) ≤ 2 * d := by nlinarith [hdlow]
+      exact_mod_cast h
+    apply (Nat.div_le_iff_le_mul_add_pred (by omega : 0 < 4)).2
+    have hbound : q ^ (2 * t - 1) ≤ n * d * 4 := by
+      calc
+        q ^ (2 * t - 1) = q ^ t * q ^ (t - 1) := by
+          rw [show 2 * t - 1 = t + (t - 1) by omega, pow_add]
+        _ ≤ (2 * n) * (2 * d) := Nat.mul_le_mul hnlowN hdlowN
+        _ = n * d * 4 := by ring
+    exact hbound.trans (by omega)
+  have hDfrees : ¬ Nonempty (TransitiveTournament D (t + 1)) := by
+    rintro ⟨tt⟩
+    let a : Fin (t + 1) → G.vertex := fun i => (tt.vertex i).1.1
+    let b : Fin (t + 1) → G.vertex := fun i => (tt.vertex i).1.2
+    have hdiag : ∀ i, G.adj (a i) (b i) := by
+      intro i
+      exact (tt.vertex i).2
+    have hforw : ∀ ⦃i j : Fin (t + 1)⦄, i.val < j.val →
+        G.adj (a i) (b j) := by
+      intro i j hij
+      have h := tt.forwardArc hij
+      change G.adj (a i) (b j) ∧ ¬ G.adj (a j) (b i) at h
+      exact h.1
+    have hback : ∀ ⦃i j : Fin (t + 1)⦄, i.val < j.val →
+        ¬ G.adj (a j) (b i) := by
+      intro i j hij
+      have h := tt.forwardArc hij
+      change G.adj (a i) (b j) ∧ ¬ G.adj (a j) (b i) at h
+      exact h.2
+    let xa : Fin (t + 1) → (Fin (t + 1) → K) := fun i => (a i).rep
+    let yb : Fin (t + 1) → (Fin (t + 1) → K) := fun i => (b i).rep
+    have hxa : ∀ i, xa i ≠ 0 := by
+      intro i
+      exact Projectivization.rep_nonzero _
+    have hyb : ∀ i, yb i ≠ 0 := by
+      intro i
+      exact Projectivization.rep_nonzero _
+    have hdotdiag : ∀ i, xa i ⬝ᵥ yb i = 0 := by
+      intro i
+      apply (Projectivization.orthogonal_mk (hxa i) (hyb i)).mp
+      have ha : Projectivization.mk K (xa i) (hxa i) = a i := by
+        simpa [xa] using (a i).mk_rep
+      have hb : Projectivization.mk K (yb i) (hyb i) = b i := by
+        simpa [yb] using (b i).mk_rep
+      rw [ha, hb]
+      simpa [G, PolarityGraph] using hdiag i
+    have hdotforw : ∀ ⦃i j : Fin (t + 1)⦄, i.val < j.val →
+        xa i ⬝ᵥ yb j = 0 := by
+      intro i j hij
+      apply (Projectivization.orthogonal_mk (hxa i) (hyb j)).mp
+      have ha : Projectivization.mk K (xa i) (hxa i) = a i := by
+        simpa [xa] using (a i).mk_rep
+      have hb : Projectivization.mk K (yb j) (hyb j) = b j := by
+        simpa [yb] using (b j).mk_rep
+      rw [ha, hb]
+      simpa [G, PolarityGraph] using hforw hij
+    have hdotback : ∀ ⦃i j : Fin (t + 1)⦄, i.val < j.val →
+        xa j ⬝ᵥ yb i ≠ 0 := by
+      intro i j hij hz
+      apply hback hij
+      change Projectivization.orthogonal (a j) (b i)
+      have ha : Projectivization.mk K (xa j) (hxa j) = a j := by
+        simpa [xa] using (a j).mk_rep
+      have hb : Projectivization.mk K (yb i) (hyb i) = b i := by
+        simpa [yb] using (b i).mk_rep
+      rw [← ha, ← hb]
+      apply (Projectivization.orthogonal_mk (hxa j) (hyb i)).mpr
+      simpa [xa, yb] using hz
+    have hlin : LinearIndependent K yb := by
+      rw [Fintype.linearIndependent_iff]
+      intro c hrel i
+      by_contra hci
+      let S : Finset (Fin (t + 1)) := Finset.univ.filter (fun j => c j ≠ 0)
+      have hS : S.Nonempty := by
+        exact ⟨i, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hci⟩⟩
+      let i0 : Fin (t + 1) := S.min' hS
+      have hi0S : i0 ∈ S := Finset.min'_mem S hS
+      have hi0nz : c i0 ≠ 0 := (Finset.mem_filter.mp hi0S).2
+      have hprior : ∀ l : Fin (t + 1), l.val < i0.val → c l = 0 := by
+        intro l hli
+        by_contra hcl
+        have hlS : l ∈ S := Finset.mem_filter.mpr ⟨Finset.mem_univ _, hcl⟩
+        have hle := Finset.min'_le S l hlS
+        omega
+      by_cases hlast : i0.val = t
+      · have hsum : (∑ l, c l • yb l) = c i0 • yb i0 := by
+          apply Finset.sum_eq_single i0
+          · intro l hl hli
+            have hlt : l.val < i0.val := by omega
+            simp [hprior l hlt]
+          · simp
+        have hzero : c i0 • yb i0 = 0 := by simpa [hrel] using hsum.symm
+        rcases Function.ne_iff.mp (hyb i0) with ⟨u, hu⟩
+        have hzero' := congrFun hzero u
+        have hprod : c i0 * yb i0 u = 0 := by simpa using hzero'
+        exact hi0nz ((mul_eq_zero.mp hprod).resolve_right hu)
+      · let j : Fin (t + 1) := ⟨i0.val + 1, by omega⟩
+        have hdot' : ∑ l, c l * (xa j ⬝ᵥ yb l) = 0 := by
+          calc
+            (∑ l, c l * (xa j ⬝ᵥ yb l)) =
+                ∑ l, xa j ⬝ᵥ (c l • yb l) := by
+                  apply Finset.sum_congr rfl
+                  intro l hl
+                  rw [dotProduct_smul]
+                  rfl
+            _ = xa j ⬝ᵥ (∑ l, c l • yb l) :=
+                  (dotProduct_sum (xa j) (Finset.univ) (fun l => c l • yb l)).symm
+            _ = 0 := by rw [hrel]; simp
+        have hsum : ∑ l, c l * (xa j ⬝ᵥ yb l) =
+            c i0 * (xa j ⬝ᵥ yb i0) := by
+          rw [Finset.sum_eq_single i0]
+          intro l hl hli
+          rcases lt_or_gt_of_ne hli with hlt | hgt
+          · rw [hprior l hlt, zero_mul]
+          · by_cases hlj : l = j
+            · subst l
+              rw [hdotdiag, mul_zero]
+            · have hlj' : l.val ≠ i0.val + 1 := by
+                intro he
+                apply hlj
+                apply Fin.ext
+                exact he
+              have hadj := hdotforw (i := j) (j := l) (by dsimp [j]; omega)
+              rw [hadj, mul_zero]
+          simp
+        have hback' : xa j ⬝ᵥ yb i0 ≠ 0 := hdotback (i := i0) (j := j) (by
+          dsimp [j]
+          omega)
+        have hprod : c i0 * (xa j ⬝ᵥ yb i0) = 0 := by rw [← hsum, hdot']
+        exact hi0nz ((mul_eq_zero.mp hprod).resolve_right hback')
+    have hspan : Submodule.span K (Set.range yb) = ⊤ := by
+      apply hlin.span_eq_top_of_card_eq_finrank
+      simp [Module.finrank_fin_fun]
+    have horth : ∀ v : (Fin (t + 1) → K), xa 0 ⬝ᵥ v = 0 := by
+      intro v
+      have hv : v ∈ Submodule.span K (Set.range yb) := by
+        rw [hspan]
+        exact Submodule.mem_top
+      induction hv using Submodule.span_induction with
+      | mem v hv =>
+          rcases hv with ⟨i, rfl⟩
+          by_cases hi : i = 0
+          · subst i
+            exact hdotdiag 0
+          · have hi0 : i.val ≠ 0 := by
+              intro hz
+              apply hi
+              apply Fin.ext
+              exact hz
+            have hlt : (0 : Nat) < i.val := by omega
+            exact hdotforw hlt
+      | zero => simp
+      | add x y hx hy ihx ihy =>
+          rw [dotProduct_add]
+          rw [ihx, ihy]
+          simp
+      | smul c x hx ih =>
+          change (xa 0) ⬝ᵥ (c • x) = 0
+          rw [dotProduct_smul, ih]
+          simp
+    have : xa 0 = 0 := (dotProduct_eq_zero_iff.mp horth)
+    exact hxa 0 this
+  have hcount : (ForwardIndependentCount D k : ℝ) ≤ (C * q ^ t : ℝ) ^ k := by
+    sorry
+  exact ⟨D, hDfrees, hDlower, hcount⟩
