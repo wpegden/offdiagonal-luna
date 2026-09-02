@@ -22,7 +22,7 @@
 | MonochromaticClique | definition | definition | closed | - | - | CompleteColoring |
 | MulticolorRamseyNumber | definition | definition | closed | - | - | CompleteColoring, MonochromaticClique, Preamble |
 | NonprincipalSpectralBound | definition | definition | closed | - | - | LoopGraph |
-| OldCoherentTreeCount | lemma | proof | open | - | - | AlonRodlBound, ForwardIndependentCount, ForwardIndependentTuple, OldPairDigraph, OldPolarityParameters, RootedTreeCounting |
+| OldCoherentTreeCount | lemma | proof | closed | - | - | AlonRodlBound, ForwardIndependentCount, ForwardIndependentTuple, OldPairDigraph, OldPolarityParameters, RootedTreeCounting |
 | OldPairDigraph | definition | definition | closed | - | - | LoopGraph, LooplessDigraph |
 | OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
 | OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
@@ -41,4 +41,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 37 nodes | **Closed:** 25 | **Open:** 12
+**Total:** 37 nodes | **Closed:** 26 | **Open:** 11

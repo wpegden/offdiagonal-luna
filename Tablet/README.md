@@ -24,7 +24,7 @@
 | MonochromaticClique | definition | - | closed |
 | MulticolorRamseyNumber | definition | - | closed |
 | NonprincipalSpectralBound | definition | - | closed |
-| OldCoherentTreeCount | proof | - | open |
+| OldCoherentTreeCount | proof | - | closed |
 | OldPairDigraph | definition | - | closed |
 | OldPairDigraphProperties | proof | - | closed |
 | OldPolarityConstruction | proof | - | open |
@@ -42,4 +42,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 25/37 closed
+**Summary:** 26/37 closed
