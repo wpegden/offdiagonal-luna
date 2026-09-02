@@ -1,0 +1,23 @@
+\begin{helper}
+Let $G$ be a finite ordered graph satisfying the bilinear mixing estimate.
+Let $q,t,n,d$ be natural numbers with $q\geq16$, $t\geq2$, $n>0$, and
+$d>0$.
+Suppose $P,Z_\ell,Z_r$ are finite vertex sets with
+$|Z_r|\leq|Z_\ell|$ and
+\[
+ |P|\,|Z_\ell|\leq1024q^{t+1},\qquad d/n\leq4/q,
+ \qquad \lambda\sqrt{|P||Z_r|}\leq128q^t.
+\]
+Then the number of ordered edges from $P$ to $Z_r$ is at most
+$5000q^t$.
+\end{helper}
+\begin{proof}
+Apply the mixing inequality to $P$ and $Z_r$.  The main term is at most
+\[
+ (4/q)|P||Z_r|\leq(4/q)|P||Z_\ell|
+ \leq4096q^t.
+\]
+ The error term is at most $128q^t$ by the displayed decay hypothesis.
+The sum is at most $4224q^t$, hence at most $5000q^t$.  This is precisely
+the estimate used after the product bound for the poor first coordinates.
+\end{proof}

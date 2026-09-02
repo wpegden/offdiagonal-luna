@@ -1,0 +1,18 @@
+\begin{helper}
+Let $W$ be a subspace of a finite-dimensional vector space over a field and
+let $v\notin W$.  Adjoining $v$ increases the span dimension by exactly one:
+\[
+ \dim\bigl(W+\langle v\rangle\bigr)=\dim W+1.
+\]
+\end{helper}
+\begin{proof}
+The line $\langle v\rangle$ has dimension one because $v\ne0$, which follows
+from $v\notin W$ and $0\in W$.  The intersection
+$W\cap\langle v\rangle$ is zero: a nonzero member of the line is a scalar
+multiple of $v$, and an inverse scalar would then put $v$ in $W$.  The
+dimension formula for a sum of finite-dimensional subspaces therefore gives
+\[
+ \dim(W+\langle v\rangle)=\dim W+1-\dim(W\cap\langle v\rangle)
+ =\dim W+1.
+\]
+\end{proof}

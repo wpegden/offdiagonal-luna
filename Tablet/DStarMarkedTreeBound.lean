@@ -4,6 +4,10 @@ import Tablet.RootedTreeCounting
 import Tablet.ForwardIndependentTuple
 import Tablet.PolarityGraph
 import Tablet.ExpanderMixing
+import Tablet.ProjectiveSpanPointBound
+import Tablet.OrthogonalComplementCardinality
+import Tablet.StrictSpanGrowth
+import Tablet.IncidenceDecayBound
 
 open scoped BigOperators LinearAlgebra.Projectivization
 
@@ -72,4 +76,24 @@ theorem DStarMarkedTreeBound
             if mark (i.val + 1) (takePrefix σ (i.val + 1) (by omega)) = false
             then 1 else 0) ≤ A * q * Nat.log 2 q) := by
 -- BODY
+  classical
+  have hspan_support :
+      ∀ s : Finset (Fin (t + 1) → K),
+        Nat.card (Projectivization K
+          (Submodule.span K (s : Set (Fin (t + 1) → K)))) ≤
+          Fintype.card K ^ s.card := by
+    intro s
+    exact ProjectiveSpanPointBound K (Fin (t + 1) → K) s
+  have horth_support :=
+    OrthogonalComplementCardinality (K := K) (V := Fin (t + 1) → K)
+  have hgrowth_support :
+      ∀ (W : Submodule K (Fin (t + 1) → K)) (v : Fin (t + 1) → K),
+        v ∉ W →
+          Module.finrank K
+              (↑(W ⊔ Submodule.span K ({v} : Set (Fin (t + 1) → K))) : Type) =
+            Module.finrank K W + 1 := by
+    intro W v hv
+    exact StrictSpanGrowth K (Fin (t + 1) → K) W v hv
+  have hincidence_support :=
+    IncidenceDecayBound (V := Fin (t + 1) → K)
   sorry

@@ -6,7 +6,7 @@
 | CliqueWitness | definition | definition | closed | - | - | LoopGraph |
 | CompleteColoring | definition | definition | closed | - | - | Preamble |
 | DStarCounting | lemma | proof | closed | - | - | AlonRodlBound, DStarMarkedTreeBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldPolarityParameters, PolarityGraph, RootedTreeCounting, TransitiveTournament |
-| DStarMarkedTreeBound | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, PolarityGraph, RootedTreeCounting |
+| DStarMarkedTreeBound | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, IncidenceDecayBound, OrthogonalComplementCardinality, PolarityGraph, ProjectiveSpanPointBound, RootedTreeCounting, StrictSpanGrowth |
 | ExpanderMixing | lemma | proof | closed | - | - | Preamble |
 | F2AsymptoticCorollary | lemma | proof | closed | - | - | F2RankSequenceBound |
 | F2ForwardIndependentBound | lemma | proof | closed | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
@@ -16,6 +16,7 @@
 | FiniteRamseyPositivity | lemma | proof | open | - | - | RamseyNumber |
 | ForwardIndependentCount | definition | definition | closed | - | - | LooplessDigraph, Preamble |
 | ForwardIndependentTuple | definition | definition | closed | - | - | LooplessDigraph |
+| IncidenceDecayBound | helper | proof | closed | - | - | Preamble |
 | IndependentSetCount | definition | definition | closed | - | - | LoopGraph, Preamble |
 | IndependentWitness | definition | definition | closed | - | - | LoopGraph |
 | LoopGraph | definition | definition | closed | - | - | Preamble |
@@ -28,13 +29,16 @@
 | OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
 | OldPolarityConstruction | lemma | proof | closed | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
 | OldPolarityParameters | lemma | proof | closed | - | - | ExpanderMixing, NonprincipalSpectralBound, OldPairDigraph, PolarityGraph |
+| OrthogonalComplementCardinality | helper | proof | closed | - | - | Preamble |
 | PolarityGraph | definition | definition | closed | - | - | LoopGraph |
 | Preamble | preamble | preamble | closed | - | - | - |
+| ProjectiveSpanPointBound | helper | proof | closed | - | - | Preamble |
 | RamseyNumber | definition | definition | closed | - | - | CliqueWitness, IndependentWitness, LoopGraph, Preamble |
 | RandomHomomorphismColoring | lemma | proof | open | - | - | CompleteColoring, ForwardIndependentCount, MonochromaticClique, TransitiveTournament |
 | RandomPermutationReduction | lemma | proof | open | - | - | CliqueWitness, ForwardIndependentCount, IndependentSetCount, TransitiveTournament |
 | RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
 | SamplingDeletion | lemma | proof | open | - | - | CliqueWitness, IndependentSetCount, RamseyNumber |
+| StrictSpanGrowth | helper | proof | closed | - | - | Preamble |
 | ThmClose | theorem | proof | open | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmKCk | theorem | proof | open | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmMain | theorem | proof | open | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
@@ -42,4 +46,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 38 nodes | **Closed:** 28 | **Open:** 10
+**Total:** 42 nodes | **Closed:** 32 | **Open:** 10

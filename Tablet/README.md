@@ -18,6 +18,7 @@
 | FiniteRamseyPositivity | proof | - | open |
 | ForwardIndependentCount | definition | - | closed |
 | ForwardIndependentTuple | definition | - | closed |
+| IncidenceDecayBound | proof | - | closed |
 | IndependentSetCount | definition | - | closed |
 | IndependentWitness | definition | - | closed |
 | LoopGraph | definition | - | closed |
@@ -30,12 +31,15 @@
 | OldPairDigraphProperties | proof | - | closed |
 | OldPolarityConstruction | proof | - | closed |
 | OldPolarityParameters | proof | - | closed |
+| OrthogonalComplementCardinality | proof | - | closed |
 | PolarityGraph | definition | - | closed |
+| ProjectiveSpanPointBound | proof | - | closed |
 | RamseyNumber | definition | - | closed |
 | RandomHomomorphismColoring | proof | - | open |
 | RandomPermutationReduction | proof | - | open |
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | open |
+| StrictSpanGrowth | proof | - | closed |
 | ThmClose | proof | - | open |
 | ThmKCk | proof | - | open |
 | ThmMain | proof | - | open |
@@ -43,4 +47,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 28/38 closed
+**Summary:** 32/42 closed

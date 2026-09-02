@@ -1,0 +1,25 @@
+\begin{helper}
+Let $B$ be a nondegenerate bilinear form on a finite-dimensional vector
+space $V$ over a finite field $K$, and let $W$ be a subspace.  Then
+\[
+ \dim W^{\perp}=\dim V-\dim W.
+\]
+Moreover, if $|K|\geq2$, the projective points of the orthogonal complement
+are bounded by
+\[
+ \left|\mathbb P(W^{\perp})\right|
+ \leq 2|K|^{\dim W^{\perp}-1},
+\]
+with the zero-dimensional case interpreted in the usual empty-projective-
+space sense.
+\end{helper}
+\begin{proof}
+Nondegeneracy gives the rank-nullity identity for the restriction map from
+$V$ to the dual of $W$.  Its kernel is $W^{\perp}$, and hence its nullity is
+$\dim V-\dim W$.  A vector space of dimension $r$ has
+$(|K|^r-1)/(|K|-1)$ one-dimensional subspaces.  For $r=0$ this is zero.  For
+$r\geq1$ and $|K|\geq2$, the numerator is at most $|K|^r$ and
+$|K|-1\geq |K|/2$, so the quotient is at most
+$2|K|^{r-1}$.  Applying this with $r=\dim W^{\perp}$ proves the second
+inequality.
+\end{proof}
