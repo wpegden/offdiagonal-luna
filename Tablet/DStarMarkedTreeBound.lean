@@ -80,8 +80,21 @@ theorem DStarMarkedTreeBound
   have hspan_support :
       ∀ s : Finset (Fin (t + 1) → K),
         Nat.card (Projectivization K
-          (Submodule.span K (s : Set (Fin (t + 1) → K)))) ≤
-          Fintype.card K ^ s.card := by
+          (Submodule.span K (s : Set (Fin (t + 1) → K)))) =
+            (Fintype.card K ^ Module.finrank K
+                (Submodule.span K (s : Set (Fin (t + 1) → K))) - 1) /
+              (Fintype.card K - 1) ∧
+          (Module.finrank K (Submodule.span K
+              (s : Set (Fin (t + 1) → K))) = 0 →
+            Nat.card (Projectivization K
+              (Submodule.span K (s : Set (Fin (t + 1) → K)))) = 0) ∧
+          (1 ≤ Module.finrank K
+              (Submodule.span K (s : Set (Fin (t + 1) → K))) →
+            Nat.card (Projectivization K
+              (Submodule.span K (s : Set (Fin (t + 1) → K)))) ≤
+              2 * Fintype.card K ^
+                (Module.finrank K
+                    (Submodule.span K (s : Set (Fin (t + 1) → K))) - 1)) := by
     intro s
     exact ProjectiveSpanPointBound K (Fin (t + 1) → K) s
   have horth_support :=
