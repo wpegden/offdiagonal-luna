@@ -8,40 +8,81 @@ The ceiling changes only a bounded rounding error and is the precise integer
 convention used here.
 \end{theorem}
 \begin{proof}
-Fix $C>1$ and put $k=k_s=\lceil Cs\rceil$.  For large $s$ we have
-$4\leq s\leq k$, so \noderef{F2ForwardIndependentBound} supplies the
-explicit loopless $T_s$-free digraph $D=D_2(s)$ on
+Fix $C>1$.  Since $k_s=\lceil Cs\rceil\geq Cs>s$, there is a threshold
+$S_0$ such that for every integer $s\geq S_0$ we have $4\leq s\leq
+k_s$.  Fix such an $s$ and abbreviate $k=k_s$.  By
+\noderef{F2ForwardIndependentBound}, there is a loopless $T_s$-free digraph
+$D=D_2(s)$ with
 \[
-N=2^{2s-3}-2^{s-2}=(1+o(1))2^{2s-3}
+N=2^{2s-3}-2^{s-2}
+  =\bigl(1-2^{-(s-1)}\bigr)2^{2s-3}
 \]
-vertices and with forward-tuple count bounded by
+vertices and
 \[
+ \operatorname{fwi}_k(D)\leq
  \sum_{t=1}^{s-1}\binom kt
  2^{(s-1)(t+k)-\binom{t+1}{2}}.
 \]
-The quadratic exponent is maximized at $t=s-3/2$.  Bounding the sum by
-$2^k$ times the largest exponential factor gives
-\[
- \operatorname{fwi}_k(D)\leq2^{sk+s^2/2}
-\]
-for all sufficiently large $s$; the ceiling contributes only $O(1)$ to the
-linear terms.
 
-Use \noderef{RandomPermutationReduction} and call the resulting graph $G$.
-Then $i_k(G)\leq(e/k)^k2^{sk+s^2/2}$.  If $i_k(G)=0$, the graph itself
-already has at least $N$ vertices and is sufficient.  Otherwise put
-$p=i_k(G)^{-1/k}$; then $0<p\leq1$ and $p^ki_k(G)=1$.  By
-\noderef{SamplingDeletion},
+For $1\leq t\leq s-1$, complete the square in the exponent:
 \[
- r(s,k)>N i_k(G)^{-1/k}-1
- \geq(1+o(1))2^{2s-3}\frac{s}{e}
- 2^{-(sk+s^2/2)/k}-1.
+(s-1)(t+k)-\binom{t+1}{2}
+ = (s-1)k+\frac12(s-\tfrac32)^2
+   -\frac12\bigl(t-(s-\tfrac32)\bigr)^2.
 \]
-Since $k/s\to C$, the logarithm base $2$ of the right side is
-$(2-1/(2C))s+o(s)$; the polynomial factor $s/e$ absorbs the fixed losses.
-Consequently, after increasing the threshold on $s$,
+Thus this exponent is at most $(s-1)k+\frac12(s-\tfrac32)^2$.
+Since $\sum_{t=1}^{s-1}\binom kt\leq2^k$, it follows that
 \[
- r(s,k_s)\geq2^{(1-1/(2C))s},
+ \operatorname{fwi}_k(D)\leq
+ 2^k2^{(s-1)k+\frac12(s-\frac32)^2}
+ \leq 2^{sk+s^2/2}.
 \]
-which is the stated claim.
+
+Apply \noderef{RandomPermutationReduction} to $D$.  It gives a loopless
+$K_s$-free graph $G$ on the same $N$ labelled vertices such that
+\[
+i_k(G)\leq\left(\frac ek\right)^k\operatorname{fwi}_k(D)
+ \leq\left(\frac ek\right)^k2^{sk+s^2/2}.
+\]
+If $i_k(G)=0$, then $G$ has neither a clique of order $s$ nor an
+independent set of order $k$.  Hence, by the defining property of
+\noderef{RamseyNumber}, $r(s,k)>N$, and this is enough because $N$ is
+eventually larger than $2^{(1-1/(2C))s}$.
+
+Suppose now that $i_k(G)>0$.  As an integer count, $i_k(G)\geq1$; put
+$p=i_k(G)^{-1/k}$.  Then $0<p\leq1$ and $p^ki_k(G)=1$, while $k\geq1$.
+Therefore all hypotheses of \noderef{SamplingDeletion} hold: $G$ is
+loopless and $K_s$-free by construction, $p$ lies in $[0,1]$, and the
+sampling count inequality holds with equality.  That node gives
+\[
+r(s,k)>pN-1.
+\]
+Taking the inverse $k$-th root of the preceding upper bound on $i_k(G)$
+gives
+\[
+p\geq \frac{k}{e}2^{-s-s^2/(2k)}.
+\]
+Consequently,
+\[
+pN\geq
+\bigl(1-2^{-(s-1)}\bigr)\frac{k}{e}
+ 2^{s-3-s^2/(2k)}.
+\]
+Let $T=2^{(1-1/(2C))s}$.  Because $k=\lceil Cs\rceil\geq Cs$,
+\[
+s-3-\frac{s^2}{2k}
+ =\left(1-\frac1{2C}\right)s-3
+   +\frac{s(k-Cs)}{2Ck}
+ \geq\left(1-\frac1{2C}\right)s-3.
+\]
+It follows that
+\[
+pN\geq
+T\,\bigl(1-2^{-(s-1)}\bigr)\frac{k}{8e}.
+\]
+The factor multiplying $T$ tends to infinity, because $k\geq Cs$ and
+$1-2^{-(s-1)}\to1$.  Increase $S_0$ so that for all $s\geq S_0$ this
+factor is at least $2$ and $T\geq1$.  Then $pN-1\geq2T-1\geq T$, so the
+sampling conclusion yields $r(s,k)>T$, and hence $r(s,k)\geq T$.
+Since $k=k_s$, this is exactly the stated assertion for every $s\geq S_0$.
 \end{proof}
