@@ -7,35 +7,101 @@ That is, there are constants $c_\ell>0$ and $S_\ell$ such that the displayed
 lower bound with factor $c_\ell$ holds for every $s\geq S_\ell$.
 \end{theorem}
 \begin{proof}
-Fix $\ell\geq3$.  For large $s$, use
-\noderef{F2ForwardIndependentBound} with $k=s$ to obtain the explicit
-digraph $D=D_2(s)$, which is loopless and $T_s$-free, on
+Fix an integer $\ell\geq3$.  For every sufficiently large integer $s$ we
+have $4\leq s\leq s$, so \noderef{F2ForwardIndependentBound} gives a
+digraph $D=D_2(s)$ which is loopless and $T_s$-free, with
 \[
- N=(1+o(1))2^{2s-3}
+ N=2^{2s-3}-2^{s-2}
 \]
 vertices and
 \[
- \operatorname{fwi}_s(D)\leq2^{3s^2/2-5s/2+o(s)}.
+ \operatorname{fwi}_s(D)\leq
+ F_s:=\sum_{t=1}^{s-1}\binom{s}{t}
+ 2^{(s-1)(t+s)-\binom{t+1}{2}}.
 \]
-Choose $n=2^{\lfloor(s/2-4)(\ell-1)\rfloor}$.  The floor changes $n$ by only
-a factor depending on the fixed $\ell$.
-
-For sufficiently large $s$,
+We now estimate this exact finite sum.  Put $L=\log_2 s$ and, in the
+summand indexed by $t$, put $u=s-t$.  Then $1\leq u\leq s-1$ and
 \[
- \binom ns\left(\frac{\operatorname{fwi}_s(D)}{N^s}\right)^{\ell-1}<1:
+ (s-1)(t+s)-\binom{t+1}{2}
+ =\frac32s^2-\frac52s+1-\binom{u-1}{2}.
 \]
-indeed, use $\binom ns\leq n^s$, the displayed tuple bound, and
-$N\geq2^{2s-4}$; the base-$2$ exponent is at most
+Consequently,
 \[
- s\lfloor(s/2-4)(\ell-1)\rfloor+
- (-s^2/2+4s+o(s))(\ell-1)<0.
+ F_s=2^{\frac32s^2-\frac52s+1}
+ \sum_{u=1}^{s-1}\binom{s}{u}2^{-\binom{u-1}{2}}.
 \]
-The random-homomorphism lemma \noderef{RandomHomomorphismColoring} therefore
-provides an $\ell$-coloring of $K_n$ with no monochromatic $K_s$.  By the
-definition of \noderef{MulticolorRamseyNumber}, its Ramsey number is larger
-than $n$.
+For $u<4L$, the elementary bound $\binom{s}{u}\leq s^u$ gives
+\[
+ \binom{s}{u}2^{-\binom{u-1}{2}}
+ \leq 2^{uL}\leq2^{4L^2}.
+\]
+For $u\geq4L$ and all sufficiently large $s$, we have
+\[
+ \binom{u-1}{2}=\frac{(u-1)(u-2)}2\geq uL,
+\]
+because $(u-1)(u-2)/(2u)=u/2-3/2+1/u\geq L$ in this range.
+Thus the same summand is at most $s^u2^{-uL}=1$.  There are fewer
+than $s$ summands, so
+\[
+ \sum_{u=1}^{s-1}\binom{s}{u}2^{-\binom{u-1}{2}}
+ \leq s\,2^{4L^2}=2^{L+4L^2}=2^{o(s)},
+\]
+using $(\log_2s)^2=o(s)$.  Absorbing the constant $1$ into the
+$o(s)$ term yields the required local specialization
+\[
+ \operatorname{fwi}_s(D)\leq
+ 2^{\frac32s^2-\frac52s+o(s)}.
+\]
 
-Finally, for fixed $\ell$, the rounding and the constant $4(\ell-1)$ are
-absorbed into a positive constant $c_\ell$, giving
-$r(s;\ell)\geq c_\ell2^{(\ell-1)s/2}$ for every sufficiently large $s$.
+The exact value of $N$ also gives the lower bound needed below: since
+$s\geq2$,
+\[
+ N=2^{2s-3}(1-2^{1-s})\geq2^{2s-4}>0.
+\]
+Choose
+\[
+ n=2^{\left\lfloor(s/2-4)(\ell-1)\right\rfloor}.
+\]
+For fixed $\ell$, this is at least $s$ for all sufficiently large $s$.
+Set
+\[
+ Q_s=\binom ns\left(\frac{\operatorname{fwi}_s(D)}{N^s}\right)^{\ell-1}.
+\]
+Using $\binom ns\leq n^s$ and the two displayed estimates, an upper bound
+for $Q_s$ has base-$2$ exponent at most
+\begin{align*}
+ &s\left\lfloor(s/2-4)(\ell-1)\right\rfloor
+ +\left(-\frac12s^2+\frac32s+o(s)\right)(\ell-1)\\
+ &\leq \left(-\frac52s+o(s)\right)(\ell-1)<0
+\end{align*}
+for all sufficiently large $s$.  Hence
+\[
+ Q_s<1.
+\]
+
+We may therefore apply \noderef{RandomHomomorphismColoring}.  Its
+positivity hypotheses hold because $s>0$ and $\ell>0$, while the finite
+order of $D$ is the positive integer $N$ above.  Its remaining graph
+hypotheses hold exactly because \noderef{F2ForwardIndependentBound}
+provided that $D$ is loopless and $T_s$-free, and its strict expected-count
+hypothesis is the last displayed inequality $Q_s<1$.  We obtain an
+$\ell$-coloring
+of the complete graph on $n$ vertices with no monochromatic clique of size
+$s$.
+
+By the definition of \noderef{MulticolorRamseyNumber}, if its least
+universal order were some $m\leq n$, restricting this coloring to any $m$
+vertices would give an $\ell$-coloring at that order with no monochromatic
+$K_s$, contradicting the universal property.  Therefore
+\[
+ r(s;\ell)>n.
+\]
+Finally,
+\[
+ n\geq 2^{(s/2-4)(\ell-1)-1}
+ =2^{-4(\ell-1)-1}2^{(\ell-1)s/2}.
+\]
+Thus the fixed positive constant
+$c_\ell=2^{-4(\ell-1)-1}$ and a suitable threshold $S_\ell$ give
+$r(s;\ell)\geq c_\ell2^{(\ell-1)s/2}$ for every $s\geq S_\ell$.
 \end{proof}
