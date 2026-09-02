@@ -6,18 +6,23 @@ integers $s\geq L$ and $k\geq Ls$,
 \]
 \end{theorem}
 \begin{proof}
-Fix $\delta>0$ and enlarge the threshold so that $0<\delta<1/10$ may be
-assumed in the estimates below.  Apply \noderef{OldPolarityConstruction} to
-obtain $L$, and take $s\geq L$, $k\geq Ls$.  It supplies a power of two $q$
+Fix $\delta>0$ and put
+\[
+ \delta_0=\min\{\delta,1/20\}.
+\]
+Then $0<\delta_0\leq\delta$ and $\delta_0\leq1/20$.  Apply
+\noderef{OldPolarityConstruction} with $\delta_0$.  Increasing the resulting
+threshold if necessary (which preserves the conclusion of that lemma), take
+$s\geq L$, $k\geq Ls$.  It supplies a power of two $q$
 with
 \[
- q\leq\frac{\delta}{200}\frac{k/s}{\log(k/s)}\leq2q,
+ q\leq\frac{\delta_0}{200}\frac{k/s}{\log(k/s)}\leq2q,
 \]
 and a loopless $T_s$-free digraph $D$ satisfying
 \[
  |V(D)|\geq q^{2(s-2)}/2,\qquad
  \operatorname{fwi}_k(D)\leq
- \left(32q^{2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+ \left(32q^{2(s-2)-(s-3)(1-\delta_0/5)}\right)^k.
 \]
 
 The random-permutation reduction \noderef{RandomPermutationReduction} gives a
@@ -25,18 +30,52 @@ loopless $K_s$-free graph $G$ on $|V(D)|$ vertices and
 \[
  i_k(G)\leq
  \left(\frac{32e}{k}
- q^{2(s-2)-(s-3)(1-\delta/5)}\right)^k.
+ q^{2(s-2)-(s-3)(1-\delta_0/5)}\right)^k.
 \]
+The construction also supplies $s-2\geq2$, so $s-3\geq1$.
 For $L$ sufficiently large, set
-$p=q^{(s-3)(1-\delta/5)-2(s-2)}k/(32e)$; then $p\leq1$ and
-$p^ki_k(G)\leq1$.  By \noderef{SamplingDeletion},
+$p=q^{(s-3)(1-\delta_0/5)-2(s-2)}k/(32e)$.
+The lower and upper bounds on $q$, together with $k/s\geq L$ and
+$s\geq L$, allow $L=L(\delta)$ to be chosen so that $0<p\leq1$ and
+$p^ki_k(G)\leq1$: indeed the latter follows by multiplying the displayed
+bound for $i_k(G)$ by $p^k$, and the former is the elementary inequality
+$k\leq32e\,q^{2(s-2)-(s-3)(1-\delta_0/5)}$ after increasing $L$.
+Also $L>0$ gives $1\leq s$ and hence $1\leq k$, so all hypotheses of
+\noderef{SamplingDeletion} are now explicit.  By that lemma,
 \[
  r(s,k)>p|V(G)|-1
- \geq\frac{k}{64e}q^{(s-3)(1-\delta/5)}-1.
+ \geq\frac{k}{64e}q^{(s-3)(1-\delta_0/5)}-1.
 \]
-The choice of $q$ gives $q\geq(k/s)^{1-\delta/2}$ once $L$ is large, while
-$k/s\geq L$.  Substitution into the preceding inequality, followed by
-increasing $L$ to absorb the fixed factors and the $-1$, gives
+The choice of $q$ gives
+$q\geq(k/s)^{1-\delta_0/2}\geq(k/s)^{1-\delta/2}$ once $L$ is large,
+while $k/s\geq L$.  To compare exponents without restricting the original
+$\delta$, set
+\[
+ \beta=(1-\delta_0/2)(1-\delta_0/5).
+\]
+Since $\delta_0\leq\min\{\delta,1/20\}$,
+\[
+ 1-\beta=\frac7{10}\delta_0-\frac1{10}\delta_0^2
+ \leq\frac7{10}\delta.
+\]
+Consequently
+\[
+ 1+(s-3)\beta-(1-\delta)s
+ =\delta s-(s-3)(1-\beta)+1
+ \geq\frac3{10}\delta s+3(1-\beta)+1>0.
+\]
+More explicitly, the preceding estimates give
+\[
+ \frac{k}{64e}q^{(s-3)(1-\delta_0/5)}
+ \geq \frac{s}{64e}(k/s)^{1+(s-3)\beta}.
+\]
+If $\delta<1$, the displayed exponent comparison and $k/s\geq L$ imply,
+for $L$ sufficiently large, that the right-hand side minus $1$ is at least
+$(k/s)^{(1-\delta)s}$.  If $\delta\geq1$, the target power is at most $1$,
+whereas $1+(s-3)\beta\geq1$; increasing $L$ ensures that the same right-hand
+side is at least $2$, so its difference from $1$ is again at least the target
+power.  Hence, after increasing $L$ to meet these fixed-factor inequalities,
+substitution into the preceding inequality gives
 \[
  r(s,k)\geq(k/s)^{(1-\delta)s}.
 \]
