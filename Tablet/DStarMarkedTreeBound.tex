@@ -23,21 +23,12 @@ then the improved pair digraph
  \Longleftrightarrow a\perp b'\text{ and }a'\not\perp b
 \]
 has the following marked-tree certificate.  In the rooted tree whose level-$m$
-vertices are forward-independent $m$-tuples in $D^*$, its extensions can be
-marked so that every vertex has at most $h=Aq^t$ marked children and every
-root-to-vertex path has at most $w=Aq\operatorname{Nat.log}_2q$ unmarked
-vertices.  Equivalently, there is a function
-$\operatorname{count}:\{0,1\}^k\to\mathbb N$ such that
-\[
- \operatorname{fwi}_k(D^*)=\sum_z\operatorname{count}(z),
-\]
-and, if $j(z)$ is the number of unmarked positions of $z$, then
-\[
- \operatorname{count}(z)\leq
- (4q^{2t-1})^{j(z)}(Aq^t)^{k-j(z)},
- \qquad
- \operatorname{count}(z)>0\Longrightarrow j(z)\leq Aq\operatorname{Nat.log}_2q.
-\]
+vertices are forward-independent $m$-tuples in $D^*$, there is a marking
+function $M$ assigning either marked or unmarked to every such tuple (the
+root is marked) such that every vertex has at most $h=Aq^t$ marked children and
+every root-to-vertex path has at most $w=Aq\operatorname{Nat.log}_2q$
+unmarked vertices.  Thus the assignment is global over all levels of the
+rooted tree, independently of the given $k$.
 \end{lemma}
 \begin{proof}
 Write $L=\operatorname{Nat.log}_2q$.  Since $q$ is a power of two, say
@@ -201,23 +192,12 @@ Every root-to-vertex path therefore has at most
 \]
 unmarked vertices.
 
-Finally, for a level-$k$ path let $z\in\{0,1\}^k$ record whether each
-extension is unmarked, and let $\operatorname{count}(z)$ be the number of
-paths with that signature.  The level-$k$ paths are exactly the tuples counted
-by \noderef{ForwardIndependentCount}, so
-\[
- \operatorname{fwi}_k(D^*)=\sum_{z\in\{0,1\}^k}\operatorname{count}(z).
-                                                                    \tag{19}
-\]
-There are at most $|V(D^*)|=nd\leq4q^{2t-1}$ possible appended pairs at any
-unmarked extension, while (14) gives at most $Aq^t$ choices at a marked
-extension.  Thus, if $j(z)$ is the number of unmarked positions,
-\[
- \operatorname{count}(z)\leq
- (4q^{2t-1})^{j(z)}(Aq^t)^{k-j(z)}.                            \tag{20}
-\]
-Equation (18) says that $\operatorname{count}(z)>0$ implies
-$j(z)\leq AqL$.  Equations (19)--(20) are exactly the asserted
-Boolean-signature certificate.  No final summation estimate is part of this
-claim; that estimate is supplied downstream by \noderef{RootedTreeCounting}.
+The marking rule is defined for every consistent sequence, hence for every
+vertex at every level of the rooted tree.  Mark the root, and mark precisely
+the children selected by the popular-second-coordinate or poor-first-coordinate
+rules above.  Equations (8) and (13) give the bound (14) on marked children at
+each vertex, while the decay argument (15)--(17) gives (18) on the number of
+unmarked vertices on every root-to-vertex path.  This is the claimed global
+marking function; the Boolean signature count and the final estimate are
+formed downstream from this certificate.
 \end{proof}

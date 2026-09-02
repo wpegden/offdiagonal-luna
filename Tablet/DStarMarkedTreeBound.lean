@@ -44,15 +44,32 @@ theorem DStarMarkedTreeBound
           intro u hu
           exact hu.2 hu.1
       }
-      ∃ count : (Fin k → Bool) → Nat,
-        ForwardIndependentCount D k = ∑ z, count z ∧
-        (∀ z, count z ≤
-          (4 * q ^ (2 * t - 1)) ^
-              (∑ i, if z i = true then 1 else 0) *
-            (A * q ^ t) ^
-              (k - ∑ i, if z i = true then 1 else 0)) ∧
-        (∀ z, count z > 0 →
-          (∑ i, if z i = true then 1 else 0) ≤
-            A * q * Nat.log 2 q) := by
+      letI : Fintype D.vertex := D.fintype
+      letI : ∀ m : Nat, Finite (ForwardIndependentTuple D m) := fun m =>
+        Finite.of_injective (fun σ : ForwardIndependentTuple D m => σ.vertex) (by
+          intro σ τ h
+          cases σ
+          cases τ
+          simp_all)
+      let takePrefix : ∀ {m : Nat} (σ : ForwardIndependentTuple D m)
+          (r : Nat), r ≤ m → ForwardIndependentTuple D r :=
+        fun {m} σ r hr =>
+          { vertex := fun i => σ.vertex ⟨i.val, by omega⟩
+            independent := by
+              intro i j hij
+              apply σ.independent
+              exact by omega }
+      ∃ mark : ∀ m : Nat, ForwardIndependentTuple D m → Bool,
+        (∀ σ : ForwardIndependentTuple D 0, mark 0 σ = true) ∧
+        (∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+          let child : ForwardIndependentTuple D (m + 1) → Prop :=
+            fun τ => (∀ i : Fin m, τ.vertex i.castSucc = σ.vertex i)
+              ∧ mark (m + 1) τ = true
+          Nat.card {τ : ForwardIndependentTuple D (m + 1) // child τ} ≤
+            A * q ^ t) ∧
+        (∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+          (∑ i : Fin m,
+            if mark (i.val + 1) (takePrefix σ (i.val + 1) (by omega)) = false
+            then 1 else 0) ≤ A * q * Nat.log 2 q) := by
 -- BODY
   sorry

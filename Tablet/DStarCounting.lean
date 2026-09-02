@@ -111,6 +111,19 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
         _ ≤ (2 * n) * (2 * d) := Nat.mul_le_mul hnlowN hdlowN
         _ = n * d * 4 := by ring
     exact hbound.trans (by omega)
+  have hDupper : @Fintype.card D.vertex D.fintype ≤
+      4 * q ^ (2 * t - 1) := by
+    rw [hDcard]
+    have hnupperN : n ≤ 2 * q ^ t := by
+      exact_mod_cast hnhigh
+    have hdupperN : d ≤ 2 * q ^ (t - 1) := by
+      exact_mod_cast hdhigh
+    calc
+      n * d ≤ (2 * q ^ t) * (2 * q ^ (t - 1)) :=
+        Nat.mul_le_mul hnupperN hdupperN
+      _ = 4 * q ^ (2 * t - 1) := by
+        rw [show 2 * t - 1 = t + (t - 1) by omega, pow_add]
+        ring
   have hDfrees : ¬ Nonempty (TransitiveTournament D (t + 1)) := by
     rintro ⟨tt⟩
     let a : Fin (t + 1) → G.vertex := fun i => (tt.vertex i).1.1
@@ -280,7 +293,302 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
       ⟨hcard, hdeg, hbilinear, hnlow, hnhigh, hdlow, hdhigh, hlamhigh⟩
       hAmark hCA hC4 hq hk2
     dsimp at hmark
-    rcases hmark with ⟨count, hpath, hcount', hsupport⟩
+    rcases hmark with ⟨mark, hroot, hchildren, hpathMark⟩
+    letI : Fintype D.vertex := D.fintype
+    letI : ∀ m : Nat, Fintype (ForwardIndependentTuple D m) := fun m =>
+      Fintype.ofInjective (fun σ : ForwardIndependentTuple D m => σ.vertex) (by
+        intro σ τ he
+        cases σ
+        cases τ
+        simp_all)
+    let Child : ∀ m : Nat, ForwardIndependentTuple D m → Type := fun m σ =>
+      {v : D.vertex // ∀ i : Fin m, ¬ D.arc (σ.vertex i) v}
+    let childTuple : ∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+        Child m σ → ForwardIndependentTuple D (m + 1) := fun m σ c =>
+      { vertex := fun j => if hj : j.val < m then σ.vertex ⟨j.val, hj⟩ else c.1
+        independent := by
+          intro i j hij
+          by_cases hj : j.val < m
+          · by_cases hi : i.val < m
+            · simpa [hj, hi] using σ.independent (by omega)
+            · exfalso
+              omega
+          · have hjm : j.val = m := by omega
+            by_cases hi : i.val < m
+            · have hci := c.2 ⟨i.val, hi⟩
+              simpa [hj, hi, hjm] using hci
+            · omega }
+    have child_prefix : ∀ (m : Nat) (σ : ForwardIndependentTuple D m)
+        (c : Child m σ) (i : Fin m),
+        (childTuple m σ c).vertex i.castSucc = σ.vertex i := by
+      intro m σ c i
+      simp [childTuple, i.isLt]
+    let MarkedChild : ∀ (m : Nat) (σ : ForwardIndependentTuple D m), Type :=
+      fun m σ => {c : Child m σ // mark (m + 1) (childTuple m σ c) = true}
+    let RawMarked : ∀ (m : Nat) (σ : ForwardIndependentTuple D m), Type :=
+      fun m σ => {τ : ForwardIndependentTuple D (m + 1) //
+        (∀ i : Fin m, τ.vertex i.castSucc = σ.vertex i) ∧
+          mark (m + 1) τ = true}
+    have hraw : ∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+        Nat.card (RawMarked m σ) ≤ A * q ^ t := by
+      intro m σ
+      simpa [RawMarked] using hchildren m σ
+    have hmarkedType : ∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+        Fintype (MarkedChild m σ) := by
+      intro m σ
+      dsimp [MarkedChild]
+      infer_instance
+    have hmarkedBound : ∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+        Fintype.card (MarkedChild m σ) ≤ A * q ^ t := by
+      intro m σ
+      let toRaw : MarkedChild m σ → RawMarked m σ := fun c =>
+        ⟨childTuple m σ c.1, ⟨child_prefix m σ c.1, c.2⟩⟩
+      have htoRaw : Function.Injective toRaw := by
+        intro a b hab
+        have hv := congrArg (fun τ : ForwardIndependentTuple D (m + 1) =>
+            τ.vertex ⟨m, by omega⟩) (congrArg Subtype.val hab)
+        apply Subtype.ext
+        apply Subtype.ext
+        simpa [toRaw, childTuple] using hv
+      have hle := Fintype.card_le_of_injective toRaw htoRaw
+      have hraw' := hraw m σ
+      rw [Nat.card_eq_fintype_card] at hraw'
+      exact hle.trans hraw'
+    have hDcard' : Fintype.card D.vertex ≤ 4 * q ^ (2 * t - 1) := by
+      simpa using hDupper
+    have hallBound : ∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+        Fintype.card (Child m σ) ≤ 4 * q ^ (2 * t - 1) := by
+      intro m σ
+      exact (Fintype.card_le_of_injective (fun c : Child m σ => c.1)
+        (by intro a b h; exact Subtype.ext h)).trans hDcard'
+    let p : (Fin k → D.vertex) → Prop := fun f =>
+      ∀ ⦃i j : Fin k⦄, i.val < j.val → ¬ D.arc (f i) (f j)
+    letI : DecidablePred p := fun f => Classical.propDecidable _
+    letI : Fintype {f : Fin k → D.vertex // p f} :=
+      Fintype.subtype (Finset.univ.filter p) (by
+        intro f
+        simp [p])
+    let tupleOf : ∀ (r : Nat) (f : {f : Fin k → D.vertex // p f}),
+        r ≤ k → ForwardIndependentTuple D r := fun r f hr =>
+      { vertex := fun i => f.1 ⟨i.val, by omega⟩
+        independent := by
+          intro i j hij
+          exact f.2 (by omega) }
+    let takePrefix : ∀ {m : Nat} (σ : ForwardIndependentTuple D m)
+        (r : Nat), r ≤ m → ForwardIndependentTuple D r :=
+      fun {m} σ r hr =>
+        { vertex := fun i => σ.vertex ⟨i.val, by omega⟩
+          independent := by
+            intro i j hij
+            exact σ.independent (by omega) }
+    let childOf : ∀ (f : {f : Fin k → D.vertex // p f}) (i : Fin k),
+        Child i.val (tupleOf i.val f (by omega)) := fun f i =>
+      ⟨f.1 i, by
+        intro j
+        have h := f.2 (i := ⟨j.val, Nat.lt_trans j.isLt i.isLt⟩)
+          (j := i) j.isLt
+        simpa [tupleOf] using h⟩
+    let sig : {f : Fin k → D.vertex // p f} → (Fin k → Bool) := fun f i =>
+      if mark (i.val + 1)
+          (childTuple i.val (tupleOf i.val f (by omega)) (childOf f i)) = true
+      then false else true
+    let Fiber (z : Fin k → Bool) :=
+      {f : {f : Fin k → D.vertex // p f} // sig f = z}
+    have hfiber : ∀ z : Fin k → Bool, Fintype (Fiber z) := by
+      intro z
+      dsimp [Fiber]
+      infer_instance
+    let g : ∀ (z : Fin k → Bool), Fiber z →
+        (∀ i : Fin k, Fin (if z i = true then
+          4 * q ^ (2 * t - 1) else A * q ^ t)) := fun z f i =>
+      dite (z i = true)
+        (fun hi =>
+          let c : Child i.val (tupleOf i.val f.1 (by omega)) := childOf f.1 i
+          let e := Fintype.equivFin (Child i.val
+            (tupleOf i.val f.1 (by omega)))
+          Fin.castLE (by
+            simpa [hi] using hallBound i.val (tupleOf i.val f.1 (by omega))) (e c))
+        (fun hi =>
+          let c : MarkedChild i.val (tupleOf i.val f.1 (by omega)) :=
+            ⟨childOf f.1 i, by
+              have hs : sig f.1 i = false := by
+                rw [congrFun f.2 i]
+                exact Bool.eq_false_of_not_eq_true hi
+              have hm : mark (i.val + 1)
+                  (childTuple i.val (tupleOf i.val f.1 (by omega)) (childOf f.1 i)) = true := by
+                cases hmval : mark (i.val + 1)
+                    (childTuple i.val (tupleOf i.val f.1 (by omega)) (childOf f.1 i)) with
+                | false => simp [sig, hmval] at hs
+                | true => simpa using hmval
+              exact hm⟩
+          let e := Fintype.equivFin (MarkedChild i.val
+            (tupleOf i.val f.1 (by omega)))
+          Fin.castLE (by
+            simpa [hi] using hmarkedBound i.val (tupleOf i.val f.1 (by omega))) (e c))
+    have tuple_ext : ∀ (r : Nat) (a b : ForwardIndependentTuple D r),
+        (∀ i, a.vertex i = b.vertex i) → a = b := by
+      intro r a b hv
+      cases a with
+      | mk av ai =>
+        cases b with
+        | mk bv bi =>
+          congr
+          funext i
+          exact hv i
+    have htake : ∀ (f : {f : Fin k → D.vertex // p f}) (i : Fin k),
+        takePrefix (tupleOf k f (by omega)) (i.val + 1) (by omega) =
+          childTuple i.val (tupleOf i.val f (by omega)) (childOf f i) := by
+      intro f i
+      apply tuple_ext
+      intro j
+      by_cases hj : j.val < i.val
+      · simp [takePrefix, tupleOf, childTuple, hj]
+      · have hj' : j.val = i.val := by omega
+        have hj'' : j = ⟨i.val, by omega⟩ := Fin.ext hj'
+        rw [hj'']
+        simp [takePrefix, tupleOf, childTuple, childOf]
+    have hpath : ∀ (m : Nat) (σ : ForwardIndependentTuple D m),
+        (∑ i : Fin m,
+          if mark (i.val + 1)
+              (takePrefix σ (i.val + 1) (by omega)) = false
+          then 1 else 0) ≤ A * q * Nat.log 2 q := by
+      intro m σ
+      simpa [takePrefix] using hpathMark m σ
+    have marked_rank_injective : ∀ (m : Nat)
+        (σ1 σ2 : ForwardIndependentTuple D m)
+        (c1 : MarkedChild m σ1) (c2 : MarkedChild m σ2), σ1 = σ2 →
+        (Fintype.equivFin (MarkedChild m σ1) c1).val =
+          (Fintype.equivFin (MarkedChild m σ2) c2).val →
+        c1.1.1 = c2.1.1 := by
+      intro m σ1 σ2 c1 c2 hσ hr
+      subst σ2
+      have hc : c1 = c2 := by
+        apply (Fintype.equivFin _).injective
+        apply Fin.ext
+        exact hr
+      exact congrArg (fun c => c.1.1) hc
+    have child_rank_injective : ∀ (m : Nat)
+        (σ1 σ2 : ForwardIndependentTuple D m)
+        (c1 : Child m σ1) (c2 : Child m σ2), σ1 = σ2 →
+        (Fintype.equivFin (Child m σ1) c1).val =
+          (Fintype.equivFin (Child m σ2) c2).val →
+        c1.1 = c2.1 := by
+      intro m σ1 σ2 c1 c2 hσ hr
+      subst σ2
+      have hc : c1 = c2 := by
+        apply (Fintype.equivFin _).injective
+        apply Fin.ext
+        exact hr
+      exact congrArg (fun c => c.1) hc
+    have hg : ∀ (z : Fin k → Bool), Function.Injective (g z) := by
+      intro z f1 f2 heq
+      apply Subtype.ext
+      apply Subtype.ext
+      funext i
+      have hNat : ∀ n : Nat, ∀ j : Fin k, j.val = n → f1.1.1 j = f2.1.1 j := by
+        intro n
+        induction n using Nat.strong_induction_on with
+        | h n ih =>
+          intro j hj
+          have prev : ∀ l : Fin j.val,
+              f1.1.1 ⟨l.val, by omega⟩ = f2.1.1 ⟨l.val, by omega⟩ := by
+            intro l
+            let l' : Fin k := ⟨l.val, by omega⟩
+            have llt : l.val < n := by omega
+            exact ih l.val llt l' rfl
+          have hσ : tupleOf j.val f1.1 (by omega) =
+              tupleOf j.val f2.1 (by omega) := by
+            apply tuple_ext
+            exact prev
+          have heqj := congrFun heq j
+          by_cases hz : z j = true
+          · let c1 : Child j.val (tupleOf j.val f1.1 (by omega)) := childOf f1.1 j
+            let c2 : Child j.val (tupleOf j.val f2.1 (by omega)) := childOf f2.1 j
+            simp only [g, dif_pos hz] at heqj
+            have hr := congrArg Fin.val heqj
+            apply child_rank_injective j.val
+              (tupleOf j.val f1.1 (by omega))
+              (tupleOf j.val f2.1 (by omega)) c1 c2 hσ
+            simpa [c1, c2] using hr
+          · simp only [g, dif_neg hz] at heqj
+            have hs1 : sig f1.1 j = false := (congrFun f1.2 j).trans
+              (Bool.eq_false_of_not_eq_true hz)
+            have hs2 : sig f2.1 j = false := (congrFun f2.2 j).trans
+              (Bool.eq_false_of_not_eq_true hz)
+            let c1 : MarkedChild j.val (tupleOf j.val f1.1 (by omega)) :=
+              ⟨childOf f1.1 j, by
+                have hm : mark (j.val + 1)
+                    (childTuple j.val (tupleOf j.val f1.1 (by omega)) (childOf f1.1 j)) = true := by
+                  cases hmval : mark (j.val + 1)
+                      (childTuple j.val (tupleOf j.val f1.1 (by omega)) (childOf f1.1 j)) with
+                  | false => simp [sig, hmval] at hs1
+                  | true => simpa using hmval
+                exact hm⟩
+            let c2 : MarkedChild j.val (tupleOf j.val f2.1 (by omega)) :=
+              ⟨childOf f2.1 j, by
+                have hm : mark (j.val + 1)
+                    (childTuple j.val (tupleOf j.val f2.1 (by omega)) (childOf f2.1 j)) = true := by
+                  cases hmval : mark (j.val + 1)
+                      (childTuple j.val (tupleOf j.val f2.1 (by omega)) (childOf f2.1 j)) with
+                  | false => simp [sig, hmval] at hs2
+                  | true => simpa using hmval
+                exact hm⟩
+            have hr := congrArg Fin.val heqj
+            apply marked_rank_injective j.val
+              (tupleOf j.val f1.1 (by omega))
+              (tupleOf j.val f2.1 (by omega)) c1 c2 hσ
+            simpa [c1, c2] using hr
+      exact hNat i.val i rfl
+    have hcount' : ∀ z : Fin k → Bool, Fintype.card (Fiber z) ≤
+        (4 * q ^ (2 * t - 1)) ^ (∑ i, if z i = true then 1 else 0) *
+          (A * q ^ t) ^ (k - ∑ i, if z i = true then 1 else 0) := by
+      intro z
+      have hc := Fintype.card_le_of_injective (g z) (hg z)
+      rw [Fintype.card_pi] at hc
+      have hfilter :
+          (Finset.univ.filter (fun i : Fin k => z i = false)).card =
+            k - (Finset.univ.filter (fun i : Fin k => z i = true)).card := by
+        have hsum := Finset.card_filter_add_card_filter_not
+          (s := Finset.univ) (fun i : Fin k => z i = true)
+        simp at hsum
+        omega
+      simpa [Finset.prod_ite, hfilter] using hc
+    have hfi : ForwardIndependentCount D k =
+        Fintype.card {f : Fin k → D.vertex // p f} := by
+      simp [ForwardIndependentCount, p]
+    let count : (Fin k → Bool) → Nat := fun z => Fintype.card (Fiber z)
+    have hsum : (∑ z, count z) =
+        Fintype.card {f : Fin k → D.vertex // p f} := by
+      let e : (Σ z : Fin k → Bool, Fiber z) ≃
+          {f : Fin k → D.vertex // p f} := Equiv.sigmaFiberEquiv sig
+      rw [← Fintype.card_sigma]
+      exact Fintype.card_congr e
+    have hsupport : ∀ z, count z > 0 →
+        (∑ i, if z i = true then 1 else 0) ≤ A * q * Nat.log 2 q := by
+      intro z hz
+      rcases Fintype.card_pos_iff.mp hz with ⟨f⟩
+      have hp := hpath k (tupleOf k f.1 (by omega))
+      have hsum_eq :
+          (∑ i : Fin k, if z i = true then 1 else 0) =
+            ∑ i : Fin k, if mark (i.val + 1)
+                (takePrefix (tupleOf k f.1 (by omega)) (i.val + 1) (by omega)) = false
+              then 1 else 0 := by
+        apply Finset.sum_congr rfl
+        intro i hi
+        have hsig := congrFun f.2 i
+        have hbool : mark (i.val + 1)
+                (takePrefix (tupleOf k f.1 (by omega)) (i.val + 1) (by omega)) = false ↔
+            z i = true := by
+          rw [← hsig]
+          rw [htake f.1 i]
+          simp [sig]
+        by_cases hzi : z i = true <;> by_cases hmi : mark (i.val + 1)
+            (takePrefix (tupleOf k f.1 (by omega)) (i.val + 1) (by omega)) = false <;>
+          simp_all
+      rw [hsum_eq]
+      exact hp
+    have hpathCount : ForwardIndependentCount D k = ∑ z, count z :=
+      hfi.trans hsum.symm
     have htree := RootedTreeCounting k (A * q * Nat.log 2 q)
       (4 * q ^ (2 * t - 1)) (A * q ^ t) count hcount' hsupport
       (by
@@ -316,7 +624,7 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
     have hnat : ForwardIndependentCount D k ≤
         2 ^ k * (4 * q ^ (2 * t - 1)) ^ (A * q * Nat.log 2 q) *
           (A * q ^ t) ^ (k - A * q * Nat.log 2 q) := by
-      rw [hpath]
+      rw [hpathCount]
       exact htree
     have hApos : 0 < A := by
       dsimp [A]
