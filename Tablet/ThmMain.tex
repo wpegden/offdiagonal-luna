@@ -7,13 +7,41 @@ $k\geq2$,
 \end{theorem}
 \begin{proof}
 Fix $s\geq3$.  We first treat sufficiently large $k$.  Put $t=s-1$, and
-let $C=C(t)$ be supplied by \noderef{DStarCounting}.  Choose a power of two
-$q$ with
+let $C=C(t)$ be supplied by \noderef{DStarCounting}.  Choose the power of two
+$q$ by the following exact dyadic rule.  Since $C$ is a positive integer,
+there is a largest integer $m\geq0$ such that
 \[
- Cq(\log q)^2\leq k\leq4Cq(\log q)^2.
+             C2^m m^2\leq k.                                  \tag{1}
 \]
-For large $k$ such a power exists, and $q\asymp_s k/(\log k)^2$.
-The cited lemma supplies a loopless $T_s$-free digraph $D$ with
+Indeed, the left side is eventually strictly increasing and tends to
+infinity.  For all sufficiently large $k$, this maximal $m$ is at least
+both $6$ and an integer $m_C$ with $2^{m_C}\geq C$.  Put $q=2^m$.
+Then $q\geq C$, $q$ is a power of two, and
+\[
+ \operatorname{Nat.log}q=m,\qquad
+ Cq(\operatorname{Nat.log}q)^2=C2^m m^2\leq k.                \tag{2}
+\]
+Thus the exact hypotheses of \noderef{DStarCounting} hold.  Maximality in
+(1) also gives
+\[
+ k<C2^{m+1}(m+1)^2=2Cq(m+1)^2.                                \tag{3}
+\]
+For $m\geq1$, (1) and $C\geq1$ imply $2^m\leq k$, hence
+$m\leq\log_2 k$.  Therefore $m+1\leq2\log_2 k$, and (3) yields, with
+$\log$ denoting the natural logarithm,
+\[
+ q>\frac{k}{2C(m+1)^2}
+   \geq\frac{(\log 2)^2}{8C}\frac{k}{(\log k)^2}.             \tag{4}
+\]
+Here we used $\log_2 k=(\log k)/(\log2)$.  In particular, setting
+$c'_s=(\log2)^2/(8C)>0$ gives the required explicit lower bound on $q$.
+
+For $m\geq6$ the elementary inequality $(m+1)^2\leq2^m=q$ holds.
+Combining this with (3), $t\geq2$, and $e>2$, we also have
+\[
+ k<2Cq(m+1)^2\leq2Cq^2\leq eCq^t.                            \tag{5}
+\]
+The cited lemma now supplies a loopless $T_s$-free digraph $D$ with
 $|V(D)|\geq q^{2t-1}/4$ and
 $\operatorname{fwi}_k(D)\leq(Cq^t)^k$.
 
@@ -22,18 +50,53 @@ graph $G$ on the same vertex set.  Thus
 \[
  i_k(G)\leq(e/k)^k(Cq^t)^k.
 \]
-Set $p=k/(eCq^t)$.  The relation between $k$ and $q$, with $t\geq2$, makes
-$0<p\leq1$ for large $k$, and the last display gives $p^ki_k(G)\leq1$.
-The sampling lemma \noderef{SamplingDeletion} now yields
+Set
 \[
- r(s,k)>p|V(G)|-1\geq\frac{kq^{t-1}}{4eC}-1.
+                    p=\frac{k}{eCq^t}.
 \]
-Since $q\geq c'_s k/(\log k)^2$, reducing a positive constant depending only
-on $s$ gives the required bound for all sufficiently large $k$.
+All factors in this definition are positive, so (5) gives explicitly
+$p>0$ and $p<1$, in particular $0\leq p\leq1$.  Multiplying the displayed
+independent-set estimate by the nonnegative number $p^k$ gives
+\[
+ p^k i_k(G)
+ \leq\left(\frac{k}{eCq^t}\right)^k
+       \left(\frac{eCq^t}{k}\right)^k=1.                       \tag{6}
+\]
+Also $k\geq2$ gives $1\leq k$, while the construction gives a loopless
+$K_s$-free graph and preserves the order of $D$.  Hence all hypotheses of
+\noderef{SamplingDeletion} are now explicitly available.  That lemma yields
+\[
+ r(s,k)>p|V(G)|-1
+ \geq\frac{k}{eCq^t}\frac{q^{2t-1}}4-1
+ =\frac{kq^{t-1}}{4eC}-1.                                    \tag{7}
+\]
+Substituting (4) into (7), and using $t=s-1$, gives
+\[
+ r(s,k)>B_s\frac{k^{s-1}}{(\log k)^{2s-4}}-1,\qquad
+ B_s=\frac{(c'_s)^{s-2}}{4eC}>0.                              \tag{8}
+\]
+For fixed $s\geq3$, the quantity
+$X_k=k^{s-1}/(\log k)^{2s-4}$ tends to infinity.  We may therefore enlarge
+the preceding threshold for $k$ so that $B_sX_k\geq2$.  Then the final
+$-1$ is absorbed by the explicit inequality
+\[
+ B_sX_k-1\geq\frac{B_s}{2}X_k.                                \tag{9}
+\]
+Thus the desired lower bound holds for every sufficiently large $k$ with
+the positive constant $B_s/2$.
 
 There are only finitely many integers $k\geq2$ below this threshold.  By
 \noderef{FiniteRamseyPositivity}, all corresponding $r(s,k)$ are positive.
-Choose $c_s$ smaller than the finitely many ratios
-$r(s,k)(\log k)^{2s-4}/k^{s-1}$ and than the large-$k$ constant.  This
-simultaneously proves the displayed inequality for every $k\geq2$.
+For each of these finitely many $k$, define
+\[
+ \rho_{s,k}=r(s,k)\frac{(\log k)^{2s-4}}{k^{s-1}}.
+\]
+The positivity lemma and $k\geq2$ imply $\rho_{s,k}>0$.  Choose
+\[
+ c_s=\min\left(\frac{B_s}{2},\min_{2\leq k<K_s}\rho_{s,k}\right)>0,\tag{10}
+\]
+where $K_s$ is the large-$k$ threshold above.  For $k\geq K_s$, (9) and
+$c_s\leq B_s/2$ prove the target inequality; for $2\leq k<K_s$,
+$c_s\leq\rho_{s,k}$ proves it by the definition of $\rho_{s,k}$.
+This establishes the displayed bound for every integer $k\geq2$.
 \end{proof}
