@@ -7,7 +7,7 @@
 | CompleteColoring | definition | definition | closed | - | - | Preamble |
 | DStarCounting | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldPolarityParameters, PolarityGraph, RootedTreeCounting, TransitiveTournament |
 | ExpanderMixing | lemma | proof | closed | - | - | Preamble |
-| F2AsymptoticCorollary | lemma | proof | open | - | - | F2RankSequenceBound |
+| F2AsymptoticCorollary | lemma | proof | closed | - | - | F2RankSequenceBound |
 | F2ForwardIndependentBound | lemma | proof | closed | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
 | F2PairDigraph | definition | definition | closed | - | - | OldPairDigraph |
 | F2PairDigraphProperties | lemma | proof | closed | - | - | F2PairDigraph, OldPairDigraphProperties, TransitiveTournament |
@@ -41,4 +41,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 37 nodes | **Closed:** 23 | **Open:** 14
+**Total:** 37 nodes | **Closed:** 24 | **Open:** 13

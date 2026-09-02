@@ -9,7 +9,7 @@
 | CompleteColoring | definition | - | closed |
 | DStarCounting | proof | - | open |
 | ExpanderMixing | proof | - | closed |
-| F2AsymptoticCorollary | proof | - | open |
+| F2AsymptoticCorollary | proof | - | closed |
 | F2ForwardIndependentBound | proof | - | closed |
 | F2PairDigraph | definition | - | closed |
 | F2PairDigraphProperties | proof | - | closed |
@@ -42,4 +42,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 23/37 closed
+**Summary:** 24/37 closed
