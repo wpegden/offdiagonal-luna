@@ -27,7 +27,7 @@
 | OldCoherentTreeCount | proof | - | closed |
 | OldPairDigraph | definition | - | closed |
 | OldPairDigraphProperties | proof | - | closed |
-| OldPolarityConstruction | proof | - | open |
+| OldPolarityConstruction | proof | - | closed |
 | OldPolarityParameters | proof | - | closed |
 | PolarityGraph | definition | - | closed |
 | RamseyNumber | definition | - | closed |
@@ -42,4 +42,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 26/37 closed
+**Summary:** 27/37 closed
