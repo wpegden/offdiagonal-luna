@@ -26,7 +26,7 @@
 | OldPairDigraph | definition | definition | closed | - | - | LoopGraph, LooplessDigraph |
 | OldPairDigraphProperties | lemma | proof | closed | - | - | OldPairDigraph, TransitiveTournament |
 | OldPolarityConstruction | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldCoherentTreeCount, OldPairDigraph, OldPairDigraphProperties, OldPolarityParameters |
-| OldPolarityParameters | lemma | proof | open | - | - | ExpanderMixing, NonprincipalSpectralBound, OldPairDigraph, PolarityGraph |
+| OldPolarityParameters | lemma | proof | closed | - | - | ExpanderMixing, NonprincipalSpectralBound, OldPairDigraph, PolarityGraph |
 | PolarityGraph | definition | definition | closed | - | - | LoopGraph |
 | Preamble | preamble | preamble | closed | - | - | - |
 | RamseyNumber | definition | definition | closed | - | - | CliqueWitness, IndependentWitness, LoopGraph, Preamble |
@@ -41,4 +41,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 37 nodes | **Closed:** 24 | **Open:** 13
+**Total:** 37 nodes | **Closed:** 25 | **Open:** 12

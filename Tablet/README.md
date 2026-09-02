@@ -28,7 +28,7 @@
 | OldPairDigraph | definition | - | closed |
 | OldPairDigraphProperties | proof | - | closed |
 | OldPolarityConstruction | proof | - | open |
-| OldPolarityParameters | proof | - | open |
+| OldPolarityParameters | proof | - | closed |
 | PolarityGraph | definition | - | closed |
 | RamseyNumber | definition | - | closed |
 | RandomHomomorphismColoring | proof | - | open |
@@ -42,4 +42,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 24/37 closed
+**Summary:** 25/37 closed
