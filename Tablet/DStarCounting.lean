@@ -24,8 +24,8 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
               (C * q ^ t : ℝ) ^ k := by
 -- BODY
   classical
-  let A : Nat := 256 * t * t * (t + 1)
-  let C : Nat := max 64 (max (16 * t * A) (4 * A))
+  let A : Nat := 20000 * t * t * (t + 1)
+  let C : Nat := max 64 (max (2 * t * A) (4 * A))
   have hC : 0 < C := by
     dsimp [C]
     omega
@@ -34,6 +34,16 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
   obtain ⟨m, hqm⟩ := hqpow
   have hqpos : 0 < q := by omega
   have hq16 : 16 ≤ q := by omega
+  have hqone : 1 < q := by omega
+  have hlog : Nat.log 2 q = m := by
+    rw [hqm]
+    exact Nat.log_pow (by norm_num) m
+  have hk2 : C * q * (Nat.log 2 q) ^ 2 ≤ k := by
+    have hkfun := hk (q ^ m)
+    simp only [Pi.mul_apply, Pi.pow_apply, Pi.ofNat_apply, Pi.natCast_apply] at hkfun
+    rw [Nat.log_pow hqone m] at hkfun
+    have hkfun' : C * q * m ^ 2 ≤ k := by exact_mod_cast hkfun
+    simpa [hlog] using hkfun'
   have hqprime : IsPrimePow q := by
     subst q
     have hmpos : 0 < m := by
@@ -254,10 +264,9 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
     have : xa 0 = 0 := (dotProduct_eq_zero_iff.mp horth)
     exact hxa 0 this
   have hcount : (ForwardIndependentCount D k : ℝ) ≤ (C * q ^ t : ℝ) ^ k := by
-    have hAdecay : 100 * t * t * (t + 1) ≤ A := by
+    have hAmark : 20000 * t * t * (t + 1) ≤ A := by
       dsimp [A]
-      gcongr
-      norm_num
+      exact le_rfl
     have hCA : 2 * t * A ≤ C := by
       dsimp [C]
       exact le_trans (by gcongr <;> norm_num)
@@ -266,9 +275,135 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
       dsimp [C]
       exact le_trans (le_max_right _ _)
         (le_max_right _ _)
-    have hcount' := DStarMarkedTreeBound K t q k A C ht hq16 ⟨m, hqm⟩ hKcard
+    have hmark := DStarMarkedTreeBound K t q k A C ht hq16 ⟨m, hqm⟩ hKcard
       n d lambda
       ⟨hcard, hdeg, hbilinear, hnlow, hnhigh, hdlow, hdhigh, hlamhigh⟩
-      hAdecay hCA hC4 hq hk
-    simpa [D, G] using hcount'
+      hAmark hCA hC4 hq hk2
+    dsimp at hmark
+    rcases hmark with ⟨count, hpath, hcount', hsupport⟩
+    have htree := RootedTreeCounting k (A * q * Nat.log 2 q)
+      (4 * q ^ (2 * t - 1)) (A * q ^ t) count hcount' hsupport
+      (by
+        have hAq : A ≤ q := by
+          have hAC : A ≤ C := by
+            dsimp [C]
+            omega
+          exact hAC.trans hq
+        have hpow : q ^ (t + 1) ≤ q ^ (2 * t - 1) := by
+          apply Nat.pow_le_pow_right
+          · omega
+          · omega
+        calc
+          A * q ^ t ≤ q * q ^ t := Nat.mul_le_mul_right _ hAq
+          _ = q ^ (t + 1) := by rw [pow_succ]; ring
+          _ ≤ q ^ (2 * t - 1) := hpow
+          _ ≤ 4 * q ^ (2 * t - 1) := by omega)
+      (by
+        have hlogpos : 0 < Nat.log 2 q := by
+          exact Nat.log_pos (by norm_num) (by omega)
+        calc
+          A * q * Nat.log 2 q ≤ A * q * (Nat.log 2 q) ^ 2 := by
+            gcongr
+            nlinarith
+          _ ≤ k := by
+            have hAC : A ≤ C := by
+              dsimp [C]
+              omega
+            have hmul : A * q * (Nat.log 2 q) ^ 2 ≤
+                C * q * (Nat.log 2 q) ^ 2 := by
+              gcongr
+            exact hmul.trans hk2)
+    have hnat : ForwardIndependentCount D k ≤
+        2 ^ k * (4 * q ^ (2 * t - 1)) ^ (A * q * Nat.log 2 q) *
+          (A * q ^ t) ^ (k - A * q * Nat.log 2 q) := by
+      rw [hpath]
+      exact htree
+    have hApos : 0 < A := by
+      dsimp [A]
+      positivity
+    have hBpos : 0 < A * q ^ t := by positivity
+    have hWk : A * q * Nat.log 2 q ≤ k := by
+      have hlogpos : 0 < Nat.log 2 q := by
+        exact Nat.log_pos (by norm_num) (by omega)
+      calc
+        A * q * Nat.log 2 q ≤ A * q * (Nat.log 2 q) ^ 2 := by
+          gcongr
+          nlinarith
+        _ ≤ k := by
+          have hAC : A ≤ C := by
+            dsimp [C]
+            omega
+          have hmul : A * q * (Nat.log 2 q) ^ 2 ≤
+              C * q * (Nat.log 2 q) ^ 2 := by
+            gcongr
+          exact hmul.trans hk2
+    have hDelta : 4 * q ^ (2 * t - 1) ≤ q ^ (2 * t) := by
+      have hq4 : 4 ≤ q := by omega
+      rw [show 2 * t = (2 * t - 1) + 1 by omega, pow_succ]
+      calc
+        4 * q ^ (2 * t - 1) ≤ q * q ^ (2 * t - 1) :=
+          Nat.mul_le_mul_right _ hq4
+        _ = q ^ (2 * t - 1) * q := by ring
+    have hcoef : 2 * t * A ≤ C := hCA
+    have hexp : Nat.log 2 q * (2 * t * (A * q * Nat.log 2 q)) ≤ k := by
+      calc
+        Nat.log 2 q * (2 * t * (A * q * Nat.log 2 q)) =
+            (2 * t * A) * (q * (Nat.log 2 q) ^ 2) := by ring
+        _ ≤ C * (q * (Nat.log 2 q) ^ 2) := by
+          exact Nat.mul_le_mul_right _ hcoef
+        _ ≤ k := by simpa [Nat.mul_assoc] using hk2
+    have hqtw : q ^ (2 * t * (A * q * Nat.log 2 q)) ≤ 2 ^ k := by
+      let E : Nat := 2 * t * (A * q * Nat.log 2 q)
+      have hE : m * E ≤ k := by
+        simpa [E, hlog] using hexp
+      calc
+        q ^ E = (2 ^ m) ^ E := by rw [hqm]
+        _ = 2 ^ (m * E) := by rw [← pow_mul]
+        _ ≤ 2 ^ k := Nat.pow_le_pow_right (by norm_num) hE
+    have hnat' : ForwardIndependentCount D k ≤
+        2 ^ k * q ^ (2 * t * (A * q * Nat.log 2 q)) *
+          (A * q ^ t) ^ k := by
+      calc
+        ForwardIndependentCount D k ≤
+            2 ^ k * (4 * q ^ (2 * t - 1)) ^ (A * q * Nat.log 2 q) *
+              (A * q ^ t) ^ (k - A * q * Nat.log 2 q) := hnat
+        _ ≤ 2 ^ k * (q ^ (2 * t)) ^ (A * q * Nat.log 2 q) *
+              (A * q ^ t) ^ k := by
+          have hpowDelta :
+              (4 * q ^ (2 * t - 1)) ^ (A * q * Nat.log 2 q) ≤
+                (q ^ (2 * t)) ^ (A * q * Nat.log 2 q) :=
+            Nat.pow_le_pow_left hDelta _
+          have hpowH : (A * q ^ t) ^ (k - A * q * Nat.log 2 q) ≤
+              (A * q ^ t) ^ k :=
+            Nat.pow_le_pow_right hBpos (Nat.sub_le _ _)
+          calc
+            2 ^ k * (4 * q ^ (2 * t - 1)) ^ (A * q * Nat.log 2 q) *
+                (A * q ^ t) ^ (k - A * q * Nat.log 2 q) ≤
+              (2 ^ k * (q ^ (2 * t)) ^ (A * q * Nat.log 2 q)) *
+                (A * q ^ t) ^ (k - A * q * Nat.log 2 q) :=
+              Nat.mul_le_mul_right _ (Nat.mul_le_mul_left _ hpowDelta)
+            _ ≤ (2 ^ k * (q ^ (2 * t)) ^ (A * q * Nat.log 2 q)) *
+                (A * q ^ t) ^ k :=
+              Nat.mul_le_mul_left _ hpowH
+        _ = 2 ^ k * q ^ (2 * t * (A * q * Nat.log 2 q)) *
+              (A * q ^ t) ^ k := by
+          rw [← pow_mul]
+    have hreal : ForwardIndependentCount D k ≤
+        2 ^ k * q ^ (2 * t * (A * q * Nat.log 2 q)) *
+          (A * q ^ t) ^ k := hnat'
+    have hfinalNat : ForwardIndependentCount D k ≤
+        (C * q ^ t) ^ k := by
+      calc
+        ForwardIndependentCount D k ≤
+            2 ^ k * q ^ (2 * t * (A * q * Nat.log 2 q)) *
+              (A * q ^ t) ^ k := hreal
+        _ ≤ 2 ^ k * 2 ^ k * (A * q ^ t) ^ k := by
+          exact Nat.mul_le_mul_right _ (Nat.mul_le_mul_left _ hqtw)
+        _ = (4 * A * q ^ t) ^ k := by
+          rw [← mul_pow, ← mul_pow]
+          ring
+        _ ≤ (C * q ^ t) ^ k := by
+          apply Nat.pow_le_pow_left
+          exact Nat.mul_le_mul_right _ hC4
+    exact_mod_cast hfinalNat
   exact ⟨D, hDfrees, hDlower, hcount⟩

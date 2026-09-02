@@ -30,11 +30,11 @@ theorem DStarMarkedTreeBound
         (q : ℝ) ^ (t - 1) / 2 ≤ d ∧
         (d : ℝ) ≤ 2 * (q : ℝ) ^ (t - 1) ∧
         lambda ≤ 2 * Real.sqrt d) →
-      100 * t * t * (t + 1) ≤ A →
+      20000 * t * t * (t + 1) ≤ A →
       2 * t * A ≤ C →
       4 * A ≤ C →
       C ≤ q →
-      C * q * (Nat.log q) ^ 2 ≤ k →
+      C * q * (Nat.log 2 q) ^ 2 ≤ k →
       let D : LooplessDigraph := {
         vertex := {p : G.vertex × G.vertex // G.adj p.1 p.2}
         fintype := inferInstance
@@ -44,6 +44,15 @@ theorem DStarMarkedTreeBound
           intro u hu
           exact hu.2 hu.1
       }
-      (ForwardIndependentCount D k : ℝ) ≤ (C * q ^ t : ℝ) ^ k := by
+      ∃ count : (Fin k → Bool) → Nat,
+        ForwardIndependentCount D k = ∑ z, count z ∧
+        (∀ z, count z ≤
+          (4 * q ^ (2 * t - 1)) ^
+              (∑ i, if z i = true then 1 else 0) *
+            (A * q ^ t) ^
+              (k - ∑ i, if z i = true then 1 else 0)) ∧
+        (∀ z, count z > 0 →
+          (∑ i, if z i = true then 1 else 0) ≤
+            A * q * Nat.log 2 q) := by
 -- BODY
   sorry
