@@ -5,7 +5,8 @@
 | AlonRodlBound | lemma | proof | closed | - | - | ExpanderMixing |
 | CliqueWitness | definition | definition | closed | - | - | LoopGraph |
 | CompleteColoring | definition | definition | closed | - | - | Preamble |
-| DStarCounting | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldPolarityParameters, PolarityGraph, RootedTreeCounting, TransitiveTournament |
+| DStarCounting | lemma | proof | closed | - | - | AlonRodlBound, DStarMarkedTreeBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldPolarityParameters, PolarityGraph, RootedTreeCounting, TransitiveTournament |
+| DStarMarkedTreeBound | lemma | proof | open | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, PolarityGraph, RootedTreeCounting |
 | ExpanderMixing | lemma | proof | closed | - | - | Preamble |
 | F2AsymptoticCorollary | lemma | proof | closed | - | - | F2RankSequenceBound |
 | F2ForwardIndependentBound | lemma | proof | closed | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
@@ -41,4 +42,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 37 nodes | **Closed:** 27 | **Open:** 10
+**Total:** 38 nodes | **Closed:** 28 | **Open:** 10

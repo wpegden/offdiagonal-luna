@@ -7,7 +7,8 @@
 | AlonRodlBound | proof | - | closed |
 | CliqueWitness | definition | - | closed |
 | CompleteColoring | definition | - | closed |
-| DStarCounting | proof | - | open |
+| DStarCounting | proof | - | closed |
+| DStarMarkedTreeBound | proof | - | open |
 | ExpanderMixing | proof | - | closed |
 | F2AsymptoticCorollary | proof | - | closed |
 | F2ForwardIndependentBound | proof | - | closed |
@@ -42,4 +43,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 27/37 closed
+**Summary:** 28/38 closed

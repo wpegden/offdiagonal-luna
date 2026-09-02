@@ -1,0 +1,184 @@
+\begin{lemma}
+Let $t\geq2$, let $K$ be a finite field of order $q\geq16$, where $q$ is a
+power of two, and let
+$G=G_K(t)$ be the projective polarity graph.  Suppose that $G$ has order
+$n$, degree $d$, and bilinear mixing parameter $\lambda$ satisfying
+\[
+ |V(G)|=n,\qquad d_G(v)=d,
+ \qquad \lambda\leq2\sqrt d,
+\]
+the bilinear spectral inequality, and
+\[
+ q^t/2\leq n\leq2q^t,\qquad
+ q^{t-1}/2\leq d\leq2q^{t-1}.
+\]
+If
+\[
+100t^2(t+1)\leq A,\quad 2tA\leq C,\quad4A\leq C,
+\quad C\leq q,
+\quad Cq(\operatorname{Nat.log}q)^2\leq k,
+\]
+then the improved pair digraph
+\[
+ V(D^*)=\{(a,b)\in V(G)^2:a\perp b\},\qquad
+ ((a,b),(a',b'))\in A(D^*)
+ \Longleftrightarrow a\perp b'\text{ and }a'\not\perp b
+\]
+satisfies
+\[
+ \operatorname{fwi}_k(D^*)\leq(Cq^t)^k.
+\]
+\end{lemma}
+\begin{proof}
+The graph and digraph in the statement are exactly the objects supplied by
+\noderef{PolarityGraph}; in particular, the vertex relation is orthogonality
+of one-spaces of $K^{t+1}$.  The hypotheses provide the order and regularity
+data needed below.  Applying \noderef{ExpanderMixing} to the stated bilinear
+inequality and indicator functions gives, for all ordered subsets $X,Y$,
+\[
+ \left|e_G(X,Y)-\frac dn|X||Y|\right|
+ \leq\lambda\sqrt{|X||Y|}.                                  \tag{1}
+\]
+This is the ordered convention, so loops are allowed in $e_G(X,Y)$.
+
+By the definitions in \noderef{ForwardIndependentTuple} and
+\noderef{ForwardIndependentCount}, a forward-independent tuple in $D^*$ is
+the same thing as a consistent sequence
+\[
+ \sigma=(a_1,b_1,\ldots,a_m,b_m),
+\quad a_i\perp b_i,
+\quad a_i\perp b_j\Longrightarrow a_j\perp b_i\ (i<j).   \tag{2}
+\]
+Indeed, the implication in (2) is the negation of the two conjuncts in the
+arc definition.  Thus the level-$k$ vertices in the tree of consistent
+sequences are counted by the left side of the desired inequality.
+
+Fix a consistent sequence $\sigma$.  For each one-space $y$ define
+\[
+ W^\sigma(y)=\operatorname{span}\{b_i:a_i\perp y\},
+ \qquad r^\sigma(y)=\dim W^\sigma(y).                       \tag{3}
+\]
+If $(a,b)$ extends $\sigma$, then $a\perp b$ and, whenever
+$a_i\perp b$, (2) gives $a\perp b_i$.  Hence $a$ is orthogonal to
+$W^\sigma(b)$.  The orthogonal complement has dimension
+$t+1-r^\sigma(b)$, so the number of possible $a$ for fixed $b$ is at most
+\[
+ \frac{q^{t+1-r^\sigma(b)}-1}{q-1}\leq2q^{t-r^\sigma(b)}              \tag{4}
+\]
+when $r^\sigma(b)\leq t$, and is zero when the dimension is $t+1$.
+
+Put
+\[
+ U_r^\sigma=\{y:r^\sigma(y)\leq r\},\qquad
+ Z_r^\sigma=U_r^\sigma\setminus U_{r-1}^\sigma,qquad U_{-1}^\sigma=\varnothing.
+                                                                    \tag{5}
+\]
+For $0\leq r\leq t$ with $U_r^\sigma\ne\varnothing$, choose
+$\ell=\ell_r^\sigma\leq r$ maximizing $|Z_\ell^\sigma|$.  The sets in
+(5) partition $U_r^\sigma$, and therefore
+\[
+ |Z_\ell^\sigma|\geq |U_r^\sigma|/(r+1)\geq|U_r^\sigma|/(2t).       \tag{6}
+\]
+
+Call $u\in Z_r^\sigma$ popular if it lies in at least
+$|Z_\ell^\sigma|/(16q)$ of the spaces $W^\sigma(y)$ with
+$y\in Z_\ell^\sigma$.  A space of dimension $\ell$ contains
+$(q^\ell-1)/(q-1)\leq2q^{\ell-1}$ one-spaces.  Double-counting incidences
+$(u,y)$ therefore gives at most
+\[
+ 32q^\ell                                                        \tag{7}
+\]
+popular points.  Mark all children whose second coordinate is popular at its
+level.  Equations (4), (7), and $\ell_r^\sigma\leq r$ show that this marks
+at most
+\[
+ \sum_{r=0}^t32q^{\ell_r^\sigma}2q^{t-r}
+ \leq64(t+1)q^t\leq128tq^t.                                    \tag{8}
+\]
+
+Call $a$ poor at level $r$ if
+\[
+ |N_G(a)\cap Z_{\ell_r^\sigma}^\sigma|
+ \leq |Z_{\ell_r^\sigma}^\sigma|/(8q),                         \tag{9}
+\]
+and write $P_r$ for the poor set.  The definition gives
+\[
+ e_G(P_r,Z_{\ell_r^\sigma}^\sigma)
+ \leq |P_r||Z_{\ell_r^\sigma}^\sigma|/(8q).                    \tag{10}
+\]
+Since $d/n\geq1/(4q)$, every point in $P_r$ has at most
+$d|Z_{\ell_r^\sigma}^\sigma|/(2n)$ neighbours in that set.  Apply the
+product estimate \noderef{AlonRodlBound}, using (1), positivity of $n,d$,
+and the exact regularity and cardinality hypotheses, to obtain
+\[
+ |P_r||Z_{\ell_r^\sigma}^\sigma|
+ \leq4\lambda^2n^2/d^2\leq1024q^{t+1}.                         \tag{11}
+\]
+The last inequality follows from $\lambda^2\leq4d$,
+$n\leq2q^t$, and $d\geq q^{t-1}/2$.  Applying (1) to
+$P_r,Z_r^\sigma$, using $|Z_r^\sigma|\leq|Z_{\ell_r^\sigma}^\sigma|$,
+gives
+\[
+ e_G(P_r,Z_r^\sigma)
+ \leq {4\over q}1024q^{t+1}
+   +4q^{(t-1)/2}\sqrt{1024q^{t+1}}
+ \leq5000q^t.                                                  \tag{12}
+\]
+Thus marking every child with poor first coordinate marks at most
+$5000(t+1)q^t\leq10000tq^t$ children.  With $A\geq100t^2(t+1)$,
+enlarging the harmless constants if needed, both types together are at most
+$h=Aq^t$ marked children at every tree vertex.
+
+Now consider an unmarked extension $\sigma'$ of $\sigma$ by $(a,b)$, put
+$r=r^\sigma(b)$ and $\ell=\ell_r^\sigma$.  The child exists only for
+$r\leq t$.  Since $a$ is not poor, at least
+$|Z_\ell^\sigma|/(8q)$ points $y\in Z_\ell^\sigma$ satisfy $a\perp y$;
+since $b$ is not popular, at most half as many have
+$b\subseteq W^\sigma(y)$.  For at least
+$|Z_\ell^\sigma|/(16q)$ remaining points, adjoining $b$ increases the
+dimension in (3) from $\ell$ to $\ell+1$.  Consequently
+\[
+ |U_\ell^{\sigma'}|
+ \leq |U_\ell^\sigma|-|Z_\ell^\sigma|/(16q)
+ \leq\left(1-{1\over32tq}\right)|U_\ell^\sigma|.              \tag{13}
+\]
+The last inequality is (6), together with
+$|U_\ell^\sigma|\leq|U_r^\sigma|\leq2t|Z_\ell^\sigma|$.
+Record the index $\ell$ on this unmarked extension.  The recorded set was
+nonempty before every such decrease because it contains
+$Z_\ell^\sigma$.
+
+Take a root-to-vertex path and suppose that more than
+$w=Aq\operatorname{Nat.log}q$ of its vertices are unmarked.  One index
+$\ell\in[0,t]$ is then recorded at least $w/(t+1)$ times.  The sets
+$U_\ell$ are nonincreasing along the path, and (13) applies at each recorded
+occurrence.  Since the initial set has size at most $n\leq2q^t$, the last
+recorded occurrence would have a preceding set of size at most
+\[
+ 2q^t\left(1-{1\over32tq}\right)^{w/(t+1)-1}.                  \tag{14}
+\]
+Using $1-x\leq e^{-x}$, the assumption
+$A\geq100t^2(t+1)$, and $q\geq C\geq16$, the right side is less than $1$;
+the subtractive constant is absorbed by increasing the fixed $C$ in the
+stated inequalities.  This contradicts the recorded nonemptiness.  Hence
+every path has at most $w$ unmarked vertices.
+
+Set $\Delta=4q^{2t-1}$ and use $h=Aq^t$, $w=Aq\operatorname{Nat.log}q$.
+The order estimate gives at most $\Delta$ children.  Also $C\leq q$ and
+$t\geq2$ imply $h\leq\Delta$, while the threshold on $k$ implies
+$w\leq k$.  For a Boolean signature $z$ of a level-$k$ path, let
+$\operatorname{count}(z)$ be the number of paths whose unmarked extensions
+have precisely that signature.  A signature of weight $j$ has at most
+$\Delta^j h^{k-j}$ realizations, and the path bound makes this count zero
+for $j>w$.  Therefore \noderef{RootedTreeCounting}, applied with these
+exact $\Delta,h,w$, yields
+\[
+ \operatorname{fwi}_k(D^*)leq2^k\Delta^wh^{k-w}
+ \leq2^kq^{2tw}(Aq^t)^k.                                      \tag{15}
+\]
+Since $q=2^{\operatorname{Nat.log}q}$ for the powers of two used in the
+application, the threshold $k\geq Cq(\operatorname{Nat.log}q)^2$ and
+$2tA\leq C$ give $q^{2tw}\leq2^k$.  Thus (15) is at most
+$(4Aq^t)^k\leq(Cq^t)^k$, as required.  The count is exactly the desired
+forward-independent count by \noderef{ForwardIndependentCount}.
+\end{proof}

@@ -6,6 +6,7 @@ import Tablet.PolarityGraph
 import Tablet.OldPolarityParameters
 import Tablet.ExpanderMixing
 import Tablet.ForwardIndependentTuple
+import Tablet.DStarMarkedTreeBound
 import Mathlib.FieldTheory.Cardinality
 
 set_option maxHeartbeats 2000000
@@ -23,8 +24,8 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
               (C * q ^ t : ℝ) ^ k := by
 -- BODY
   classical
-  let A : Nat := 128 * (t + 1)
-  let C : Nat := max 64 (max (2 * t * A) (4 * A))
+  let A : Nat := 256 * t * t * (t + 1)
+  let C : Nat := max 64 (max (16 * t * A) (4 * A))
   have hC : 0 < C := by
     dsimp [C]
     omega
@@ -253,5 +254,21 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
     have : xa 0 = 0 := (dotProduct_eq_zero_iff.mp horth)
     exact hxa 0 this
   have hcount : (ForwardIndependentCount D k : ℝ) ≤ (C * q ^ t : ℝ) ^ k := by
-    sorry
+    have hAdecay : 100 * t * t * (t + 1) ≤ A := by
+      dsimp [A]
+      gcongr
+      norm_num
+    have hCA : 2 * t * A ≤ C := by
+      dsimp [C]
+      exact le_trans (by gcongr <;> norm_num)
+        (le_trans (le_max_left _ _) (le_max_right _ _))
+    have hC4 : 4 * A ≤ C := by
+      dsimp [C]
+      exact le_trans (le_max_right _ _)
+        (le_max_right _ _)
+    have hcount' := DStarMarkedTreeBound K t q k A C ht hq16 ⟨m, hqm⟩ hKcard
+      n d lambda
+      ⟨hcard, hdeg, hbilinear, hnlow, hnhigh, hdlow, hdhigh, hlamhigh⟩
+      hAdecay hCA hC4 hq hk
+    simpa [D, G] using hcount'
   exact ⟨D, hDfrees, hDlower, hcount⟩
