@@ -13,13 +13,21 @@ is at most $2^{\frac32s^2+as-\frac52s+e}$ eventually.
 \begin{proof}
 All estimates below are understood for sufficiently large values of the
 parameter, and all logarithms in the proof of the estimate are to base $2$.
-Put $k=s+a$ and write $t=s-j$.  For $1\leq t\leq s-1$ we have
+Put $k=s+a$.  For every integer $t$ with $1\leq t\leq s-1$, define the
+exact $t$-th summand by
+\[
+ M_t:=\binom kt
+ 2^{(s-1)(t+k)-\binom{t+1}{2}}.
+\]
+Thus the finite sum $\sum_{t=1}^{s-1}M_t$ is exactly the sum displayed in
+the lemma statement.  Now write $t=s-j$.  For $1\leq t\leq s-1$ we have
 $1\leq j\leq s-1$ and
 $\binom{s+a}{t}=\binom{s+a}{j+a}$.  Since $j+a\geq a+1$, the standard
 estimate $\binom uv\leq(eu/v)^v$ gives, with
 $B=e(s+a)/(a+1)$,
 \[
- \binom{s+a}{s-j}2^{(s-1)(s-j+s+a)-\binom{s-j+1}{2}}
+ M_{s-j}=\binom{s+a}{s-j}
+ 2^{(s-1)(s-j+s+a)-\binom{s-j+1}{2}}
  \leq
  B^{j+a}
  2^{s^2/2+s(s+a)-3s/2-(s+a)+3j/2-j^2/2}.
@@ -62,8 +70,9 @@ Consequently, uniformly for every integer $t$ with $1\leq t\leq s-1$,
  M_t\leq
  2^{A+a\log_2B+C(\log s)^2}
 \]
-for one fixed constant $C$ and all sufficiently large parameters.  There
-are at most $s$ such summands, so
+for one fixed constant $C$ and all sufficiently large parameters.  Since
+the sum $\sum_{t=1}^{s-1}M_t$ is exactly the finite sum in the lemma
+statement, and there are at most $s$ such summands, we have
 \[
  \sum_{t=1}^{s-1}M_t
  \leq
