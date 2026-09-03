@@ -35,7 +35,7 @@
 | PolarityGraph | definition | - | closed |
 | ProjectiveSpanPointBound | proof | - | closed |
 | RamseyNumber | definition | - | closed |
-| RandomHomomorphismColoring | proof | - | open |
+| RandomHomomorphismColoring | proof | - | closed |
 | RandomPermutationReduction | proof | - | closed |
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | closed |
@@ -47,4 +47,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 37/42 closed
+**Summary:** 38/42 closed

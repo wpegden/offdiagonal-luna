@@ -34,7 +34,7 @@
 | Preamble | preamble | preamble | closed | - | - | - |
 | ProjectiveSpanPointBound | helper | proof | closed | - | - | Preamble |
 | RamseyNumber | definition | definition | closed | - | - | CliqueWitness, IndependentWitness, LoopGraph, Preamble |
-| RandomHomomorphismColoring | lemma | proof | open | - | - | CompleteColoring, ForwardIndependentCount, MonochromaticClique, TransitiveTournament |
+| RandomHomomorphismColoring | lemma | proof | closed | - | - | CompleteColoring, ForwardIndependentCount, MonochromaticClique, TransitiveTournament |
 | RandomPermutationReduction | lemma | proof | closed | - | - | CliqueWitness, ForwardIndependentCount, IndependentSetCount, TransitiveTournament |
 | RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
 | SamplingDeletion | lemma | proof | closed | - | - | CliqueWitness, FiniteRamseyPositivity, IndependentSetCount, RamseyNumber |
@@ -46,4 +46,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 42 nodes | **Closed:** 37 | **Open:** 5
+**Total:** 42 nodes | **Closed:** 38 | **Open:** 4
