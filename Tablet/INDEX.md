@@ -42,8 +42,8 @@
 | ThmClose | theorem | proof | open | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmKCk | theorem | proof | open | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmMain | theorem | proof | closed | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
-| ThmMulticolor | theorem | proof | open | - | - | F2ForwardIndependentBound, MulticolorRamseyNumber, RandomHomomorphismColoring |
+| ThmMulticolor | theorem | proof | closed | - | - | F2ForwardIndependentBound, FiniteRamseyPositivity, MulticolorRamseyNumber, RandomHomomorphismColoring |
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 42 nodes | **Closed:** 38 | **Open:** 4
+**Total:** 42 nodes | **Closed:** 39 | **Open:** 3
