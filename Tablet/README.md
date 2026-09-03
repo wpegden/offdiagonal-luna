@@ -41,10 +41,10 @@
 | SamplingDeletion | proof | - | closed |
 | StrictSpanGrowth | proof | - | closed |
 | ThmClose | proof | - | closed |
-| ThmKCk | proof | - | open |
+| ThmKCk | proof | - | closed |
 | ThmMain | proof | - | closed |
 | ThmMulticolor | proof | - | closed |
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 40/42 closed
+**Summary:** 41/42 closed
