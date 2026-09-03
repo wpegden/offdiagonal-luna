@@ -37,7 +37,7 @@
 | RandomHomomorphismColoring | lemma | proof | open | - | - | CompleteColoring, ForwardIndependentCount, MonochromaticClique, TransitiveTournament |
 | RandomPermutationReduction | lemma | proof | closed | - | - | CliqueWitness, ForwardIndependentCount, IndependentSetCount, TransitiveTournament |
 | RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
-| SamplingDeletion | lemma | proof | open | - | - | CliqueWitness, IndependentSetCount, RamseyNumber |
+| SamplingDeletion | lemma | proof | closed | - | - | CliqueWitness, FiniteRamseyPositivity, IndependentSetCount, RamseyNumber |
 | StrictSpanGrowth | helper | proof | closed | - | - | Preamble |
 | ThmClose | theorem | proof | open | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmKCk | theorem | proof | open | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
@@ -46,4 +46,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 42 nodes | **Closed:** 35 | **Open:** 7
+**Total:** 42 nodes | **Closed:** 36 | **Open:** 6

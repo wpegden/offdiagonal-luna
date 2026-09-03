@@ -38,7 +38,7 @@
 | RandomHomomorphismColoring | proof | - | open |
 | RandomPermutationReduction | proof | - | closed |
 | RootedTreeCounting | proof | - | closed |
-| SamplingDeletion | proof | - | open |
+| SamplingDeletion | proof | - | closed |
 | StrictSpanGrowth | proof | - | closed |
 | ThmClose | proof | - | open |
 | ThmKCk | proof | - | open |
@@ -47,4 +47,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 35/42 closed
+**Summary:** 36/42 closed
