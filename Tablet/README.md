@@ -36,7 +36,7 @@
 | ProjectiveSpanPointBound | proof | - | closed |
 | RamseyNumber | definition | - | closed |
 | RandomHomomorphismColoring | proof | - | open |
-| RandomPermutationReduction | proof | - | open |
+| RandomPermutationReduction | proof | - | closed |
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | open |
 | StrictSpanGrowth | proof | - | closed |
@@ -47,4 +47,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 34/42 closed
+**Summary:** 35/42 closed
