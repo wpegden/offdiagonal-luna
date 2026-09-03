@@ -42,9 +42,9 @@
 | StrictSpanGrowth | proof | - | closed |
 | ThmClose | proof | - | open |
 | ThmKCk | proof | - | open |
-| ThmMain | proof | - | open |
+| ThmMain | proof | - | closed |
 | ThmMulticolor | proof | - | open |
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 36/42 closed
+**Summary:** 37/42 closed

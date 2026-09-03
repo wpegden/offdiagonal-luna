@@ -1,13 +1,13 @@
 \begin{lemma}
 For every integer $t\geq2$ there is a constant $C=C(t)$ such that, for every
-sufficiently large power of two $q$ and every $k\geq Cq(\operatorname{Nat.log}q)^2$,
+sufficiently large power of two $q$ and every $k\geq Cq(\operatorname{Nat.log}_2 q)^2$,
 there is a loopless digraph $D$ (the paper's improved pair digraph
 $D^*(t,q)$) that is $T_{t+1}$-free, has at least $q^{2t-1}/4$ vertices, and
 satisfies
 \[
  \operatorname{fwi}_k(D^*(t,q))\leq(Cq^t)^k.
 \]
-Here $\operatorname{Nat.log}$ is the base-two natural-number logarithm used
+Here $\operatorname{Nat.log}_2$ is the base-two natural-number logarithm used
 by the Lean threshold; for powers of two it is converted to the paper's
 natural logarithm explicitly in the proof.
 \end{lemma}
@@ -17,9 +17,9 @@ in particular, it is at least $16$ and all later lower bounds on $q$ are
 absorbed into $q\geq C$.  Let $q\geq C$ be a power of two, write
 $q=2^m$, and suppose
 \[
-        k\geq Cq(\operatorname{Nat.log}q)^2.                 \tag{1}
+        k\geq Cq(\operatorname{Nat.log}_2 q)^2.                 \tag{1}
 \]
-Since $q\geq2$, $\operatorname{Nat.log}q=m$; put $L=m$.  Thus the exact
+Since $q\geq2$, $\operatorname{Nat.log}_2 q=m$; put $L=m$.  Thus the exact
 conversion between the two logarithms is
 \[
         q=2^L,\qquad \log q=L\log2.

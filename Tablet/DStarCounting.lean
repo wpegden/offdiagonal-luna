@@ -15,7 +15,7 @@ set_option maxHeartbeats 2000000
 theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
     ∃ C : Nat, 0 < C ∧
       ∀ q : Nat, C ≤ q → (∃ m : Nat, q = 2 ^ m) →
-        ∀ k : Nat, C * q * (Nat.log q) ^ 2 ≤ k →
+        ∀ k : Nat, C * q * (Nat.log 2 q) ^ 2 ≤ k →
           ∃ D : LooplessDigraph,
             ¬ Nonempty (TransitiveTournament D (t + 1)) ∧
             (q ^ (2 * t - 1) / 4 : Nat) ≤
@@ -38,12 +38,7 @@ theorem DStarCounting (t : Nat) (ht : 2 ≤ t) :
   have hlog : Nat.log 2 q = m := by
     rw [hqm]
     exact Nat.log_pow (by norm_num) m
-  have hk2 : C * q * (Nat.log 2 q) ^ 2 ≤ k := by
-    have hkfun := hk (q ^ m)
-    simp only [Pi.mul_apply, Pi.pow_apply, Pi.ofNat_apply, Pi.natCast_apply] at hkfun
-    rw [Nat.log_pow hqone m] at hkfun
-    have hkfun' : C * q * m ^ 2 ≤ k := by exact_mod_cast hkfun
-    simpa [hlog] using hkfun'
+  have hk2 : C * q * (Nat.log 2 q) ^ 2 ≤ k := hk
   have hqprime : IsPrimePow q := by
     subst q
     have hmpos : 0 < m := by
