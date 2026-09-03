@@ -15,7 +15,7 @@
 | F2PairDigraph | definition | - | closed |
 | F2PairDigraphProperties | proof | - | closed |
 | F2RankSequenceBound | proof | - | closed |
-| FiniteRamseyPositivity | proof | - | open |
+| FiniteRamseyPositivity | proof | - | closed |
 | ForwardIndependentCount | definition | - | closed |
 | ForwardIndependentTuple | definition | - | closed |
 | IncidenceDecayBound | proof | - | closed |
@@ -47,4 +47,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 33/42 closed
+**Summary:** 34/42 closed
