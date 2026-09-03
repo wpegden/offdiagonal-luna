@@ -1,0 +1,78 @@
+version: "v0.3"
+project:
+  name: "Off-diagonal Ramsey numbers (Trellis formalization)"
+  license: "Apache-2.0"
+sources:
+  - title: "Off-diagonal Ramsey numbers"
+    id: "arXiv:2605.28793v3"
+    type: "preprint"
+snapshot:
+  commit: "ad58c3afc010c7cfe3f5c46dc9b0f3b45ee6523a"
+  date: "2026-09-03T15:45:37-04:00"
+  checkpoint: "supervisor2 checkpoint 000343 | cycle 68 | Cleanup | Start | F2RankSequenceBound"
+environment:
+  lean_toolchain: "leanprover/lean4:v4.33.0"
+  mathlib_rev: "db584cd6d46c92f209a44c0f1c829460d327499d"
+status:
+  scope: >-
+    The formalization corresponds to v3 of the paper. All five labelled paper targets are Lean-closed. The run was still in its cleanup phase when this snapshot was taken.
+  sorry_count: 0
+  targets_total: 5
+  targets_closed: 5
+  node_count: 42
+  lean_lines: 11326
+  axioms: ["Classical.choice", "Quot.sound", "propext"]
+  main_results:
+    - paper_label: "thm:close"
+      declaration: "ThmClose"
+      module: "Tablet.ThmClose"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+    - paper_label: "thm:k-Ck"
+      declaration: "ThmKCk"
+      module: "Tablet.ThmKCk"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+    - paper_label: "thm:main"
+      declaration: "ThmMain"
+      module: "Tablet.ThmMain"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+    - paper_label: "thm:multicolor"
+      declaration: "ThmMulticolor"
+      module: "Tablet.ThmMulticolor"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+    - paper_label: "thm:off-diagonal-general"
+      declaration: "ThmOffDiagonalGeneral"
+      module: "Tablet.ThmOffDiagonalGeneral"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+cost:
+  wall_time: >-
+    Run spanned 2 days 6 hours of wall-clock time (49.2 h of agent
+    time, 90% duty cycle) across 68 supervisor cycles.
+  spend_usd: >-
+    No metered per-token API spend: the run was carried on a ChatGPT/Codex subscription. A list-rate equivalent is given for comparison only.
+  token_usage: >-
+    Main lane — OpenAI gpt-5.6-luna via the Codex CLI, reasoning effort "high", across 212 model bursts covering worker, reviewer and
+    the verifier lanes: 792,084,811 input tokens, of which 763,486,208 (96.4%) were served
+    from prompt cache, and 3,740,390 output tokens, of which 1,920,200 were reasoning
+    tokens.
+  grunt_lane: >-
+    A parallel lightweight lane attempted node closure independently, on a
+    separate ledger: 65 attempts of which 13 succeeded, consuming 112,002,026 input
+    tokens, of which 101,809,664 (90.9%) were cache-served, and 1,709,986 output tokens,
+    of which 1,146,598 were reasoning tokens. Not included in the figures above.
+  combined_tokens: >-
+    Main lane and grunt lane together: 904,086,837 input, 5,450,376 output.
+  api_rate_equivalent_usd: >-
+    No per-token spend was incurred; the run was carried on a subscription.
+    For comparison only, priced at published gpt-5.6-luna list rates ($0.20 per M
+    input tokens, $0.02 per M cached input, $1.20 per M output), the token
+    usage above corresponds to approximately $25.48 for the main lane.
+    The grunt lane corresponds to approximately $6.13 on the same rates,
+    $31.60 combined.
+    Cached input dominates: 763,486,208 of 792,084,811 input tokens (96.4%) were cache-served.
+    This is an accounting comparison, not a bill.
+  hardware: "API/subscription-based; no local GPU"

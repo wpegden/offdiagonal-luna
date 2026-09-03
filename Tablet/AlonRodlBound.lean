@@ -16,6 +16,7 @@ theorem AlonRodlBound
         (d : ℝ) * B.card / (2 * n)) :
     (A.card : ℝ) * B.card ≤ 4 * lambda ^ 2 / d ^ 2 * n ^ 2 := by
 -- BODY
+  have _hcard := hcard
   have hcount : ((A.product B).filter (fun e => adj e.1 e.2)).card =
       Finset.sum A (fun u => (B.filter (fun v => adj u v)).card) := by
     rw [Finset.card_eq_sum_ones, Finset.sum_filter]
