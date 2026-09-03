@@ -43,7 +43,7 @@
 | ThmKCk | theorem | proof | closed | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmMain | theorem | proof | closed | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
 | ThmMulticolor | theorem | proof | closed | - | - | F2ForwardIndependentBound, FiniteRamseyPositivity, MulticolorRamseyNumber, RandomHomomorphismColoring |
-| ThmOffDiagonalGeneral | theorem | proof | open | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
+| ThmOffDiagonalGeneral | theorem | proof | closed | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 42 nodes | **Closed:** 41 | **Open:** 1
+**Total:** 42 nodes | **Closed:** 42 | **Open:** 0

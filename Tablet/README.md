@@ -44,7 +44,7 @@
 | ThmKCk | proof | - | closed |
 | ThmMain | proof | - | closed |
 | ThmMulticolor | proof | - | closed |
-| ThmOffDiagonalGeneral | proof | - | open |
+| ThmOffDiagonalGeneral | proof | - | closed |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 41/42 closed
+**Summary:** 42/42 closed
