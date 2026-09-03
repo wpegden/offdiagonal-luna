@@ -17,6 +17,7 @@ theorem ExpanderMixing
           (d : ℝ) / n * A.card * B.card| ≤
         lambda * Real.sqrt (A.card * B.card) := by
 -- BODY
+  have _hcard := hcard
   intro A B
   have h := hspectral (fun u => if u ∈ A then 1 else 0)
     (fun v => if v ∈ B then 1 else 0)
