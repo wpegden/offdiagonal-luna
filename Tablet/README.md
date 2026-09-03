@@ -39,7 +39,6 @@
 | RandomPermutationReduction | proof | - | closed |
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | closed |
-| StrictSpanGrowth | proof | - | closed |
 | ThmClose | proof | - | closed |
 | ThmKCk | proof | - | closed |
 | ThmMain | proof | - | closed |
@@ -47,4 +46,4 @@
 | ThmOffDiagonalGeneral | proof | - | closed |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 42/42 closed
+**Summary:** 41/41 closed

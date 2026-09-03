@@ -6,7 +6,7 @@
 | CliqueWitness | definition | definition | closed | - | - | LoopGraph |
 | CompleteColoring | definition | definition | closed | - | - | Preamble |
 | DStarCounting | lemma | proof | closed | - | - | AlonRodlBound, DStarMarkedTreeBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, OldPolarityParameters, PolarityGraph, RootedTreeCounting, TransitiveTournament |
-| DStarMarkedTreeBound | lemma | proof | closed | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, IncidenceDecayBound, OrthogonalComplementCardinality, PolarityGraph, ProjectiveSpanPointBound, RootedTreeCounting, StrictSpanGrowth |
+| DStarMarkedTreeBound | lemma | proof | closed | - | - | AlonRodlBound, ExpanderMixing, ForwardIndependentCount, ForwardIndependentTuple, IncidenceDecayBound, OrthogonalComplementCardinality, PolarityGraph, ProjectiveSpanPointBound, RootedTreeCounting |
 | ExpanderMixing | lemma | proof | closed | - | - | Preamble |
 | F2AsymptoticCorollary | lemma | proof | closed | - | - | F2RankSequenceBound |
 | F2ForwardIndependentBound | lemma | proof | closed | - | - | F2PairDigraphProperties, F2RankSequenceBound, ForwardIndependentCount |
@@ -38,7 +38,6 @@
 | RandomPermutationReduction | lemma | proof | closed | - | - | CliqueWitness, ForwardIndependentCount, IndependentSetCount, TransitiveTournament |
 | RootedTreeCounting | lemma | proof | closed | - | - | Preamble |
 | SamplingDeletion | lemma | proof | closed | - | - | CliqueWitness, FiniteRamseyPositivity, IndependentSetCount, RamseyNumber |
-| StrictSpanGrowth | helper | proof | closed | - | - | Preamble |
 | ThmClose | theorem | proof | closed | - | - | F2AsymptoticCorollary, F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmKCk | theorem | proof | closed | - | - | F2ForwardIndependentBound, RandomPermutationReduction, SamplingDeletion |
 | ThmMain | theorem | proof | closed | - | - | DStarCounting, FiniteRamseyPositivity, RandomPermutationReduction, SamplingDeletion |
@@ -46,4 +45,4 @@
 | ThmOffDiagonalGeneral | theorem | proof | closed | - | - | OldPolarityConstruction, RandomPermutationReduction, SamplingDeletion |
 | TransitiveTournament | definition | definition | closed | - | - | LooplessDigraph |
 
-**Total:** 42 nodes | **Closed:** 42 | **Open:** 0
+**Total:** 41 nodes | **Closed:** 41 | **Open:** 0

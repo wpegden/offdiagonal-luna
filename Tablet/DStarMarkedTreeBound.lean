@@ -6,7 +6,6 @@ import Tablet.PolarityGraph
 import Tablet.ExpanderMixing
 import Tablet.ProjectiveSpanPointBound
 import Tablet.OrthogonalComplementCardinality
-import Tablet.StrictSpanGrowth
 import Tablet.IncidenceDecayBound
 
 open scoped BigOperators LinearAlgebra.Projectivization
@@ -1173,7 +1172,7 @@ theorem DStarMarkedTreeBound
                       (hW_snoc_adj m f x y
                         (Finset.mem_filter.mp hyY).2.1)
             _ = Module.finrank K ↥(W m f y) + 1 :=
-              StrictSpanGrowth K V (W m f y) (bvec' x) hnotW
+              Submodule.finrank_sup_span_singleton hnotW
             _ = l + 1 := by simp [rnk, hyr]
         omega
       exact Finset.mem_sdiff.mpr ⟨hyold, hynot⟩
