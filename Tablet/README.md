@@ -40,11 +40,11 @@
 | RootedTreeCounting | proof | - | closed |
 | SamplingDeletion | proof | - | closed |
 | StrictSpanGrowth | proof | - | closed |
-| ThmClose | proof | - | open |
+| ThmClose | proof | - | closed |
 | ThmKCk | proof | - | open |
 | ThmMain | proof | - | closed |
 | ThmMulticolor | proof | - | closed |
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 39/42 closed
+**Summary:** 40/42 closed
