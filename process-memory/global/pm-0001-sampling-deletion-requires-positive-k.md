@@ -1,7 +1,8 @@
 ---
 id: pm-0001-sampling-deletion-requires-positive-k
 type: constraint
-status: active
+status: superseded
+superseded_by: pm-0007-sampling-deletion-now-carries-positive-k-premise
 coarse_node: global
 created: {cycle: 11, request_id: 41}
 ---

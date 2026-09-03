@@ -8,7 +8,7 @@
 | CliqueWitness | definition | - | closed |
 | CompleteColoring | definition | - | closed |
 | DStarCounting | proof | - | closed |
-| DStarMarkedTreeBound | proof | - | open |
+| DStarMarkedTreeBound | proof | - | closed |
 | ExpanderMixing | proof | - | closed |
 | F2AsymptoticCorollary | proof | - | closed |
 | F2ForwardIndependentBound | proof | - | closed |
@@ -47,4 +47,4 @@
 | ThmOffDiagonalGeneral | proof | - | open |
 | TransitiveTournament | definition | - | closed |
 
-**Summary:** 32/42 closed
+**Summary:** 33/42 closed

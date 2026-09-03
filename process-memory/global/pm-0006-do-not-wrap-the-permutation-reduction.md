@@ -1,7 +1,8 @@
 ---
 id: pm-0006-do-not-wrap-the-permutation-reduction
 type: refuted-route
-status: active
+status: superseded
+superseded_by: pm-0008-permutation-reduction-citation-defect-is-repaire
 coarse_node: global
 created: {cycle: 33, request_id: 107}
 ---
